@@ -1,0 +1,13 @@
+D:\Projects\C++\Projects\OGLEngine\Src\OGLEngine\Display\Font\Font.cpp;D:\Projects\C++\Projects\Int\OGLEngine\Debug\Win32\Font.obj
+D:\Projects\C++\Projects\OGLEngine\Src\OGLEngine\Input\Input.cpp;D:\Projects\C++\Projects\Int\OGLEngine\Debug\Win32\Input.obj
+D:\Projects\C++\Projects\OGLEngine\Src\OGLEngine\Display\Rendering\UIRenderer.cpp;D:\Projects\C++\Projects\Int\OGLEngine\Debug\Win32\UIRenderer.obj
+D:\Projects\C++\Projects\OGLEngine\Src\OGLEngine\LibraryManager.cpp;D:\Projects\C++\Projects\Int\OGLEngine\Debug\Win32\LibraryManager.obj
+D:\Projects\C++\Projects\OGLEngine\Src\dllmain.cpp;D:\Projects\C++\Projects\Int\OGLEngine\Debug\Win32\dllmain.obj
+D:\Projects\C++\Projects\OGLEngine\Src\OGLEngine\Display\Display.cpp;D:\Projects\C++\Projects\Int\OGLEngine\Debug\Win32\Display.obj
+D:\Projects\C++\Projects\OGLEngine\Src\OGLEngine\Display\Mesh\UITexturedMesh.cpp;D:\Projects\C++\Projects\Int\OGLEngine\Debug\Win32\UITexturedMesh.obj
+D:\Projects\C++\Projects\OGLEngine\Src\OGLEngine\Display\Shader\Shader.cpp;D:\Projects\C++\Projects\Int\OGLEngine\Debug\Win32\Shader.obj
+D:\Projects\C++\Projects\OGLEngine\Src\OGLEngine\OGLEngine.cpp;D:\Projects\C++\Projects\Int\OGLEngine\Debug\Win32\OGLEngine.obj
+D:\Projects\C++\Projects\OGLEngine\Src\OGLEngine\UI\UI.cpp;D:\Projects\C++\Projects\Int\OGLEngine\Debug\Win32\UI.obj
+D:\Projects\C++\Projects\OGLEngine\Src\OGLEngine\UI\UIS\Frame.cpp;D:\Projects\C++\Projects\Int\OGLEngine\Debug\Win32\Frame.obj
+D:\Projects\C++\Projects\OGLEngine\Src\pch.cpp;D:\Projects\C++\Projects\Int\OGLEngine\Debug\Win32\pch.obj
+D:\Projects\C++\Projects\OGLEngine\Src\OGLEngine\UI\UIS\TextLabel.cpp;D:\Projects\C++\Projects\Int\OGLEngine\Debug\Win32\TextLabel.obj

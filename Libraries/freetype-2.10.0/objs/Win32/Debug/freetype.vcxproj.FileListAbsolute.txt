@@ -1,0 +1,1 @@
+C:\Users\1weir\Downloads\ft2100\freetype-2.10.0\objs\Win32\Debug\freetype.dll

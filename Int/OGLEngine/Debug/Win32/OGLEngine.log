@@ -1,0 +1,7 @@
+﻿  Font.cpp
+  UIRenderer.cpp
+D:\Projects\C++\Projects\OGLEngine\Src\OGLEngine\Display\Rendering\UIRenderer.cpp(96,20): warning C4018: '<': signed/unsigned mismatch
+D:\Projects\C++\Projects\OGLEngine\Src\OGLEngine\Display\Rendering\UIRenderer.cpp(148,20): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+freetype.lib(freetype.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in opengl32.lib(OPENGL32.dll); second definition ignored
+  OGLEngine.vcxproj -> D:\Projects\C++\Projects\Libraries\OGLEngine\Debug\Win32\OGLEngine.lib
