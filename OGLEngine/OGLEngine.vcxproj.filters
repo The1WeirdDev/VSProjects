@@ -57,7 +57,11 @@
     <ClInclude Include="Src\OGLEngine\Display\Font\Font.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
+    <ClInclude Include="Src\OGLEngine\Time\Time.h">
+=======
     <ClInclude Include="Src\OGLEngine\Display\Texture.h">
+>>>>>>> d4be18e3f19b757b527198440508972ef708dd6b
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -101,7 +105,11 @@
     <ClCompile Include="Src\OGLEngine\Display\Font\Font.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
+    <ClCompile Include="Src\OGLEngine\Time\Time.cpp">
+=======
     <ClCompile Include="Src\OGLEngine\Display\Texture.cpp">
+>>>>>>> d4be18e3f19b757b527198440508972ef708dd6b
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

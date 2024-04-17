@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+#include <OGLEngine/Display/Display.h>
+
 UI::UI() {
 
 }
@@ -24,4 +26,15 @@ void UI::SetSize(float x, float y) {
 void UI::AppendChild(UI& ui) {
 	ui.parent = this;
 	children.push_back(&ui);
+}
+
+float UI::GetScreenRestrainedWidth() {
+	switch (screen_size_restraint) {
+	case ScreenSizeRestraint::AspectX:
+		return width * Display::aspect_ratio;
+	case ScreenSizeRestraint::InverseAspectX:
+		return width * Display::inverse_aspect_ratio;
+	default:
+		return width;
+	}
 }

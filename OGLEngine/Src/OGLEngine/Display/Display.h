@@ -9,7 +9,7 @@
 
 extern "C" OGLENGINE_API class Display {
 public:
-	static OGLENGINE_API void CreateWindow(int width, int height, const char* title);
+	static OGLENGINE_API void Create(int width, int height, const char* title);
 	static OGLENGINE_API void Destroy();
 
 	static OGLENGINE_API void CenterWindow();

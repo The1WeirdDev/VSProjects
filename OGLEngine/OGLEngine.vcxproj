@@ -30,6 +30,7 @@
     <ClInclude Include="Src\OGLEngine\Display\Mesh\UITexturedMesh.h" />
     <ClInclude Include="Src\OGLEngine\Display\Shader\Shader.h" />
     <ClInclude Include="Src\OGLEngine\OGLEngine.h" />
+    <ClInclude Include="Src\OGLEngine\Time\Time.h" />
     <ClInclude Include="Src\OGLEngine\UI\UI.h" />
     <ClInclude Include="Src\OGLEngine\UI\UIS\Frame.h" />
     <ClInclude Include="Src\pch.h" />
@@ -46,6 +47,7 @@
     <ClCompile Include="Src\OGLEngine\Display\Mesh\UITexturedMesh.cpp" />
     <ClCompile Include="Src\OGLEngine\Display\Shader\Shader.cpp" />
     <ClCompile Include="Src\OGLEngine\OGLEngine.cpp" />
+    <ClCompile Include="Src\OGLEngine\Time\Time.cpp" />
     <ClCompile Include="Src\OGLEngine\UI\UI.cpp" />
     <ClCompile Include="Src\OGLEngine\UI\UIS\Frame.cpp" />
     <ClCompile Include="Src\pch.cpp" />
@@ -171,7 +173,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLEW_STATIC;WINDOWS;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(SolutionDir)Libraries\freetype-2.10.0\include;$(SolutionDir)Libraries\GLFW3.4\include\x64;$(SolutionDir)\Libraries\GLEW2.2\include;$(ProjectDir)src\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -194,7 +196,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLEW_STATIC;WINDOWS;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(SolutionDir)Libraries\freetype-2.10.0\include;$(SolutionDir)Libraries\GLFW3.4\include\x64;$(SolutionDir)\Libraries\GLEW2.2\include;$(ProjectDir)src\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>

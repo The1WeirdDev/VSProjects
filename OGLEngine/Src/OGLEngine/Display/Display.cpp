@@ -12,7 +12,7 @@ float Display::inverse_aspect_ratio = 1.0f;
 
 std::function<void(int, int)> Display::window_resize_callback;
 
-void Display::CreateWindow(int width, int height, const char* title){
+void Display::Create(int width, int height, const char* title){
 	Display::window = glfwCreateWindow(width, height, title, nullptr, nullptr);
 
 	glfwMakeContextCurrent(window);

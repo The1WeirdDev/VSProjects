@@ -41,6 +41,8 @@ public:
 	OGLENGINE_API void SetSize(float x, float y);
 
 	OGLENGINE_API void AppendChild(UI& ui);
+	OGLENGINE_API float GetScreenRestrainedWidth();
+public:
 
 	UI* parent = nullptr;
 	std::vector<UI*> children;

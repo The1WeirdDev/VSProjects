@@ -11,6 +11,14 @@ Shader::Shader() {
 	
 }
 
+Shader::~Shader() {
+	glDeleteShader(vertex_shader_id);
+	glDeleteShader(fragment_shader_id);
+	glDeleteProgram(program_id);
+	vertex_shader_id = 0;
+	fragment_shader_id = 0;
+	program_id = 0;
+}
 void Shader::Start() {
 	glUseProgram(program_id);
 }

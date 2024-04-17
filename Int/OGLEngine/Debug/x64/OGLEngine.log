@@ -1,0 +1,16 @@
+﻿  Font.cpp
+  Input.cpp
+  UIRenderer.cpp
+  LibraryManager.cpp
+  dllmain.cpp
+  Display.cpp
+  UITexturedMesh.cpp
+  Shader.cpp
+  OGLEngine.cpp
+  Time.cpp
+  UI.cpp
+  Frame.cpp
+  pch.cpp
+  TextLabel.cpp
+  Generating Code...
+LINK : fatal error LNK1181: cannot open input file 'freetype.lib'

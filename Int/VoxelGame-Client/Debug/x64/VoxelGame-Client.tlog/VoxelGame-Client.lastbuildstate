@@ -1,2 +1,7 @@
+<<<<<<< HEAD
+PlatformToolSet=v143:VCToolArchitecture=Native64Bit:VCToolsVersion=14.39.33519:TargetPlatformVersion=10.0.22621.0:
+Debug|x64|C:\Projects\VSProjects\|
+=======
 PlatformToolSet=v143:VCToolArchitecture=Native64Bit:VCToolsVersion=14.36.32532:TargetPlatformVersion=10.0.22621.0:
 Debug|x64|D:\Projects\C++\VSProjects\|
+>>>>>>> d4be18e3f19b757b527198440508972ef708dd6b

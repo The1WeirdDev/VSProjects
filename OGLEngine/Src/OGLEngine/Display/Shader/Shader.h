@@ -6,6 +6,7 @@
 extern "C" OGLENGINE_API class Shader{
 public:
 	OGLENGINE_API Shader();
+	OGLENGINE_API ~Shader();
 
 	OGLENGINE_API void Start();
 	static OGLENGINE_API void Stop();

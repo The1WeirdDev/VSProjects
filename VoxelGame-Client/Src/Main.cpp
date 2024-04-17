@@ -10,11 +10,22 @@
 #include <OGLEngine/Display/Display.h>
 #include <OGLEngine/Display/Mesh/UITexturedMesh.h>
 #include <OGLEngine/LibraryManager.h>
+#include <OGLEngine/Time/Time.h>
+
+#include <Networking/TCP/TCPClient.h>
+
+#define BOOST_ALL_NO_LIB
+#define DBOOST_ALL_NO_LIB
+#include <asio.hpp>
+#define ASIO_STANDALONE
+
+using asio::ip::tcp;
 
 int main(int argc, char** argv) {
+	TCPClient client("127.0.0.1", 8888);
 	LibraryManager::InitializeGLFW();
 
-	Display::CreateWindow(1280, 720, "VoxelGame");
+	Display::Create(1280, 720, "VoxelGame");
 	Display::CenterWindow();
 
 	Font::Init();
@@ -27,6 +38,7 @@ int main(int argc, char** argv) {
 	TextLabel text_label;
 	text_label.SetText("HELLO WORLD");
 	text_label.GenerateMesh();
+	Time::Init();
 	
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -34,13 +46,14 @@ int main(int argc, char** argv) {
 	printf("Initialized\n");
 	while (Display::ShouldUpdateWindow()) {
 		Display::PollEvents();
-		//frame.x -= 0.001f;
+
+		Time::Update();
 		//frame.y -= 0.001f;
 		Display::ClearColors();
 
 		Display::ClearDepth();
 		UIRenderer::RenderFrame(frame);
-		UIRenderer::RenderTextLabel(text_label);
+		//UIRenderer::RenderTextLabel(text_label);
 		Display::SwapBuffers();
 	}
 	Display::Destroy();
