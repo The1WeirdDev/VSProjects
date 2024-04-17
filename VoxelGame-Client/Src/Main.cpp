@@ -10,6 +10,7 @@
 #include <OGLEngine/Display/Display.h>
 #include <OGLEngine/Display/Mesh/UITexturedMesh.h>
 #include <OGLEngine/LibraryManager.h>
+
 int main(int argc, char** argv) {
 	LibraryManager::InitializeGLFW();
 
@@ -26,6 +27,9 @@ int main(int argc, char** argv) {
 	TextLabel text_label;
 	text_label.SetText("HELLO WORLD");
 	text_label.GenerateMesh();
+	
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	printf("Initialized\n");
 	while (Display::ShouldUpdateWindow()) {

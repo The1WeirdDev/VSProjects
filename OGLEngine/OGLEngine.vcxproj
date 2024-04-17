@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="Src\OGLEngine\Display\Font\Font.h" />
     <ClInclude Include="Src\OGLEngine\Display\Display.h" />
+    <ClInclude Include="Src\OGLEngine\Display\Texture.h" />
     <ClInclude Include="Src\OGLEngine\Display\UI.h" />
     <ClInclude Include="Src\OGLEngine\Input\Input.h" />
     <ClInclude Include="Src\OGLEngine\Display\Rendering\UIRenderer.h" />
@@ -36,6 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\OGLEngine\Display\Font\Font.cpp" />
+    <ClCompile Include="Src\OGLEngine\Display\Texture.cpp" />
     <ClCompile Include="Src\OGLEngine\Input\Input.cpp" />
     <ClCompile Include="Src\OGLEngine\Display\Rendering\UIRenderer.cpp" />
     <ClCompile Include="Src\OGLEngine\LibraryManager.cpp" />

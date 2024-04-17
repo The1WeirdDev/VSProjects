@@ -46,7 +46,7 @@ void UIRenderer::Init() {
 
 	//Text Label
 	vertex_data = "#version 330 core \nin vec2 position; in vec2 in_text_coords; out vec2 text_coords; uniform vec2 ui_pos; uniform vec2 size; void main(){text_coords = in_text_coords; gl_Position = vec4(ui_pos + (position * size), 0.0, 1.0);}";
-	fragment_data = "#version 330 core \n uniform vec3 color; in vec2 text_coords; out vec4 frag_color; uniform sampler2D tex; void main(){frag_color = texture2D(tex, text_coords).a * vec4(0,0,1,1);}";
+	fragment_data = "#version 330 core \n uniform vec3 color; in vec2 text_coords; out vec4 frag_color; uniform sampler2D tex; void main(){frag_color = texture2D(tex, text_coords).a * vec4(1,1,0,1);}";
 	text_label_shader.CreateShader(vertex_data, fragment_data);
 
 	text_label_shader.BindAttribute(0, "position");
