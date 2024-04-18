@@ -14,15 +14,14 @@
 
 #include <Networking/TCP/TCPClient.h>
 
-#define BOOST_ALL_NO_LIB
-#define DBOOST_ALL_NO_LIB
 #include <asio.hpp>
-#define ASIO_STANDALONE
 
 using asio::ip::tcp;
 
 int main(int argc, char** argv) {
-	TCPClient client("127.0.0.1", 8888);
+	printf("TTESRDFTES 1\n");
+	TCPClient client("192.168.1.204", 8888);
+	printf("TTESRDFTES 2\n");
 	LibraryManager::InitializeGLFW();
 
 	Display::Create(1280, 720, "VoxelGame");

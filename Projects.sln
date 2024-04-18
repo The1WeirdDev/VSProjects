@@ -11,6 +11,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Interpreter1", "Interpreter
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Networking", "Networking\Networking.vcxproj", "{788C4452-0176-4A06-9C58-E3C245D58C01}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ProjectTemplate", "ProjectTemplate\ProjectTemplate.vcxproj", "{20421B4F-2181-4F76-BA08-01490752A918}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VoxelGame-Server", "VoxelGame-Server\VoxelGame-Server.vcxproj", "{1B9296BF-3FE5-4E33-AB4E-37C340A90D61}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -51,6 +55,22 @@ Global
 		{788C4452-0176-4A06-9C58-E3C245D58C01}.Release|x64.Build.0 = Release|x64
 		{788C4452-0176-4A06-9C58-E3C245D58C01}.Release|x86.ActiveCfg = Release|Win32
 		{788C4452-0176-4A06-9C58-E3C245D58C01}.Release|x86.Build.0 = Release|Win32
+		{20421B4F-2181-4F76-BA08-01490752A918}.Debug|x64.ActiveCfg = Debug|x64
+		{20421B4F-2181-4F76-BA08-01490752A918}.Debug|x64.Build.0 = Debug|x64
+		{20421B4F-2181-4F76-BA08-01490752A918}.Debug|x86.ActiveCfg = Debug|Win32
+		{20421B4F-2181-4F76-BA08-01490752A918}.Debug|x86.Build.0 = Debug|Win32
+		{20421B4F-2181-4F76-BA08-01490752A918}.Release|x64.ActiveCfg = Release|x64
+		{20421B4F-2181-4F76-BA08-01490752A918}.Release|x64.Build.0 = Release|x64
+		{20421B4F-2181-4F76-BA08-01490752A918}.Release|x86.ActiveCfg = Release|Win32
+		{20421B4F-2181-4F76-BA08-01490752A918}.Release|x86.Build.0 = Release|Win32
+		{1B9296BF-3FE5-4E33-AB4E-37C340A90D61}.Debug|x64.ActiveCfg = Debug|x64
+		{1B9296BF-3FE5-4E33-AB4E-37C340A90D61}.Debug|x64.Build.0 = Debug|x64
+		{1B9296BF-3FE5-4E33-AB4E-37C340A90D61}.Debug|x86.ActiveCfg = Debug|Win32
+		{1B9296BF-3FE5-4E33-AB4E-37C340A90D61}.Debug|x86.Build.0 = Debug|Win32
+		{1B9296BF-3FE5-4E33-AB4E-37C340A90D61}.Release|x64.ActiveCfg = Release|x64
+		{1B9296BF-3FE5-4E33-AB4E-37C340A90D61}.Release|x64.Build.0 = Release|x64
+		{1B9296BF-3FE5-4E33-AB4E-37C340A90D61}.Release|x86.ActiveCfg = Release|Win32
+		{1B9296BF-3FE5-4E33-AB4E-37C340A90D61}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
