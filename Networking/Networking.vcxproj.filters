@@ -24,7 +24,10 @@
     <ClInclude Include="include\Networking\TCP\TCPClient.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Networking\TCP\TcpServer.h">
+    <ClInclude Include="include\Networking\TCP\TCPServer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Networking\Packet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -38,7 +41,10 @@
     <ClCompile Include="include\Networking\TCP\TCPClient.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="include\Networking\TCP\TcpServer.cpp">
+    <ClCompile Include="include\Networking\TCP\TCPServer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="include\Networking\Packet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

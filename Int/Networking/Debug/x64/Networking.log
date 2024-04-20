@@ -1,0 +1,5 @@
+﻿  TCPServer.cpp
+C:\Projects\VSProjects\Networking\include\Networking\TCP\TcpServer.h(20,2): warning C4091: '__declspec(dllexport)': ignored on left of 'TCPServer' when no variable is declared
+  (compiling source file 'include/Networking/TCP/TCPServer.cpp')
+  
+  Networking.vcxproj -> C:\Projects\VSProjects\Libraries\Networking\Debug\x64\Networking.dll

@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>D:\Projects\C++\VSProjects\Build\VoxelGame-Server\Debug\Win32\VoxelGame-Server.exe</FullPath>
+      <FullPath>C:\Projects\VSProjects\Build\VoxelGame-Server\Debug\Win32\VoxelGame-Server.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

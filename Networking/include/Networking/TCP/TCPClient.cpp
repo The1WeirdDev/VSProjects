@@ -33,8 +33,8 @@ void TCPClient::Connect(const char* ip, int port) {
 			return;
 		}
 
-		for (int i = 0; i < 128; i++) {
-			printf("%d", buf[i]);
+		for (int i = 0; i < buf.size(); i++) {
+			printf("%c", (char)buf[i]);
 		}
 	}
 }

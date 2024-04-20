@@ -3,14 +3,14 @@
 
 using asio::ip::tcp;
 
-TcpServer::TcpServer() {
+TCPServer::TCPServer() {
 
 }
-TcpServer::TcpServer(int port) {
+TCPServer::TCPServer(int port) {
 	Start(port);
 }
 
-void TcpServer::Start(int port) {
+void TCPServer::Start(int port) {
 	this->port = port;
 
 	tcp::acceptor acceptor(io_service, tcp::endpoint(tcp::v4(), port));
@@ -20,9 +20,16 @@ void TcpServer::Start(int port) {
 		tcp::socket socket(io_service);
 		acceptor.accept(socket);
 		printf("Accepted\n");
-		std::string message = "HELLO\n";
-		while (message.size() < 128)message += " ";
+
+		unsigned char* bytes = new unsigned char[1024];
+		bytes[0] = 15;
+		bytes[1] = 2;
+		std::string message = "Hi\n";
 		asio::error_code ignored_error;
-		asio::write(socket, asio::buffer(message), ignored_error);
+		asio::write(socket, asio::buffer(bytes, 1024), ignored_error);
+
+		while (true) {
+
+		}
 	}
 }

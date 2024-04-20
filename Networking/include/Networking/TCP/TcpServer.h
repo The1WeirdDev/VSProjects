@@ -6,10 +6,10 @@
 #include <asio.hpp>
 #endif
 
-extern "C" NETWORKING_API class TcpServer {
+extern "C" NETWORKING_API class TCPServer {
 public:
-	NETWORKING_API TcpServer();
-	NETWORKING_API TcpServer(int port);
+	NETWORKING_API TCPServer();
+	NETWORKING_API TCPServer(int port);
 
 	NETWORKING_API void Start(int port);
 private:

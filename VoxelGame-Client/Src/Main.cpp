@@ -20,7 +20,7 @@ using asio::ip::tcp;
 
 int main(int argc, char** argv) {
 	printf("TTESRDFTES 1\n");
-	TCPClient client("192.168.1.204", 8888);
+	TCPClient client("10.16.35.133", 8888);
 	printf("TTESRDFTES 2\n");
 	LibraryManager::InitializeGLFW();
 
