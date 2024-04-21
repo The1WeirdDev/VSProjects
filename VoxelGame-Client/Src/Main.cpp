@@ -55,6 +55,8 @@ int main(int argc, char** argv) {
 		//UIRenderer::RenderTextLabel(text_label);
 		Display::SwapBuffers();
 	}
+
+	client.Disconnect();
 	Display::Destroy();
 	LibraryManager::TerminateGLFW();
 	printf("Exited Program\n");

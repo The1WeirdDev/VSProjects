@@ -26,5 +26,9 @@ const char* int_to_binary(int x)
 }
 int main(int argc, char** argv) {
 	Packet p;
-	TCPServer server(8888);
+	TCPServer::Start(8888);
+
+	while (true) {
+		TCPServer::Tick();
+	}
 }

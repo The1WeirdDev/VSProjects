@@ -1,20 +1,33 @@
 #include "Packet.h"
 #include <array>
 #include <iostream>
+#include <math.h>
 
 Packet::Packet(int packet_size){
 	this->packet_size = packet_size;
 	data = new unsigned char[packet_size];
 	std::fill(data, data + packet_size, 0);
+	bit_index = 32;
 }
 Packet::Packet(int size, unsigned char* data) {
 	packet_size = size;
 	this->data = data;
+	bit_index = 0;	//0 so we can read the length of the buffer
 }
-Packet::~Packet(){}
+Packet::~Packet(){
+	//delete data;
+	//data = nullptr;
+	//packet_size = 0;
+}
 
 void Packet::WriteLength() {
 	//The first 4 bytes are reserved just for packet length
+	int bit = bit_index;
+	bit_index = 0;
+
+	WriteInt(bit / 8);	//Write Size in bytes
+
+	bit_index = bit;
 }
 
 void Packet::WriteByte(unsigned char value) {

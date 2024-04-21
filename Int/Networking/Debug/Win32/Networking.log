@@ -1,12 +1,8 @@
 ﻿  TCPClient.cpp
-  Please define _WIN32_WINNT or _WIN32_WINDOWS appropriately. For example:
-  - add -D_WIN32_WINNT=0x0601 to the compiler command line; or
-  - add _WIN32_WINNT=0x0601 to your project's Preprocessor Definitions.
-  Assuming _WIN32_WINNT=0x0601 (i.e. Windows 7 target).
-C:\Projects\VSProjects\Networking\include\Networking\TCP\TCPClient.h(19,2): warning C4091: '__declspec(dllexport)': ignored on left of 'TCPClient' when no variable is declared
+C:\Projects\VSProjects\Networking\include\Networking\Packet.h(36,2): warning C4091: '__declspec(dllexport)': ignored on left of 'Packet' when no variable is declared
   (compiling source file 'include/Networking/TCP/TCPClient.cpp')
   
-C:\Projects\VSProjects\Networking\include\Networking\Packet.h(32,2): warning C4091: '__declspec(dllexport)': ignored on left of 'Packet' when no variable is declared
+C:\Projects\VSProjects\Networking\include\Networking\TCP\TCPClient.h(33,2): warning C4091: '__declspec(dllexport)': ignored on left of 'TCPClient' when no variable is declared
   (compiling source file 'include/Networking/TCP/TCPClient.cpp')
   
   Networking.vcxproj -> C:\Projects\VSProjects\Libraries\Networking\Debug\Win32\Networking.dll

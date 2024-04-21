@@ -1,22 +1,26 @@
 #pragma once
 
-#include <Networking/framework.h>
-
 #ifdef NETWORKING_EXPORTS
 #include <asio.hpp>
 #endif
 
+#include <Networking/framework.h>
+#include <Networking/Packet.h>
+
 extern "C" NETWORKING_API class TCPServer {
 public:
-	NETWORKING_API TCPServer();
-	NETWORKING_API TCPServer(int port);
-
-	NETWORKING_API void Start(int port);
+	static NETWORKING_API void Start(int port);
+	static NETWORKING_API void Tick();
 private:
 #ifdef NETWORKING_EXPORTS
-	asio::io_service io_service;
+	static asio::io_service io_service;
+	static asio::ip::tcp::acceptor* acceptor;
+	static asio::ip::tcp::socket* socket;
 
+
+	static void StartAccept();
+	static void OnAccept(const asio::error_code& e);
 	static void OnWrite(const asio::error_code& error, std::size_t bytes_transferred);
 #endif
-	int port = 8888;
+	static int port;
 };

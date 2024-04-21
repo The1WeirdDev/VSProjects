@@ -4,9 +4,13 @@
 
 #include <Networking/framework.h>
 
+#ifndef NETWORKING_PACKET_SIZE
+#define NETWORKING_PACKET_SIZE 2048
+#endif
+
 extern "C" NETWORKING_API class Packet {
 public:
-	NETWORKING_API Packet(int packet_size = 1024);
+	NETWORKING_API Packet(int packet_size = NETWORKING_PACKET_SIZE);
 	NETWORKING_API Packet(int size, unsigned char* data);
 	NETWORKING_API ~Packet();
 

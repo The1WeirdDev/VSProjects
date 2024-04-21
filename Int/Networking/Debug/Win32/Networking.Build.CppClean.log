@@ -3,9 +3,9 @@ c:\projects\vsprojects\int\networking\debug\win32\vc143.pdb
 c:\projects\vsprojects\int\networking\debug\win32\vc143.idb
 c:\projects\vsprojects\int\networking\debug\win32\pch.obj
 c:\projects\vsprojects\int\networking\debug\win32\packet.obj
+c:\projects\vsprojects\int\networking\debug\win32\tcpserver.obj
 c:\projects\vsprojects\int\networking\debug\win32\tcpclient.obj
 c:\projects\vsprojects\int\networking\debug\win32\dllmain.obj
-c:\projects\vsprojects\int\networking\debug\win32\tcpserver.obj
 c:\projects\vsprojects\libraries\networking\debug\win32\networking.dll
 c:\projects\vsprojects\libraries\networking\debug\win32\networking.pdb
 c:\projects\vsprojects\libraries\networking\debug\win32\networking.lib
