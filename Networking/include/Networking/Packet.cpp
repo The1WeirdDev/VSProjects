@@ -1,10 +1,15 @@
 #include "Packet.h"
 #include <array>
 #include <iostream>
-int Packet::packet_size = 1024;
-Packet::Packet(){
+
+Packet::Packet(int packet_size){
+	this->packet_size = packet_size;
 	data = new unsigned char[packet_size];
 	std::fill(data, data + packet_size, 0);
+}
+Packet::Packet(int size, unsigned char* data) {
+	packet_size = size;
+	this->data = data;
 }
 Packet::~Packet(){}
 
@@ -14,9 +19,12 @@ void Packet::WriteLength() {
 
 void Packet::WriteByte(unsigned char value) {
 	int byte_pos = bit_index / 8;
-	unsigned char filled_bits = 8 - (bit_index % 8);
+	unsigned char filled_bits = bit_index % 8;
+	unsigned char remaining = 8 - filled_bits;
+
 	data[byte_pos] |= value >> filled_bits;
-	data[byte_pos + 1] |= value << filled_bits;
+	data[byte_pos + 4] |= (value & ((1 << remaining) - 1)) << remaining;
+
 	bit_index += 8;
 }
 void Packet::WriteInt(int value) {
@@ -28,19 +36,22 @@ void Packet::WriteInt(int value) {
 	data[byte_pos + 1] |= (value >> 16) >> filled_bits;
 	data[byte_pos + 2] |= (value >> 8) >> filled_bits;
 	data[byte_pos + 3] |= value >> filled_bits;
-	data[byte_pos + 4] |= (value & ((1 << remaining) - 1) << (8 - remaining));
+	data[byte_pos + 4] |= (value & ((1 << remaining) - 1)) << remaining;
+	
 	bit_index += 32;
 }
 
 void Packet::WriteUInt(unsigned int value) {
 	int byte_pos = bit_index / 8;
-	unsigned char filled_bits = 8 - (bit_index % 8);
+	unsigned char filled_bits = bit_index % 8;
+	unsigned char remaining = 8 - filled_bits;
 
 	data[byte_pos] |= (value >> 24) >> filled_bits;
 	data[byte_pos + 1] |= (value >> 16) >> filled_bits;
 	data[byte_pos + 2] |= (value >> 8) >> filled_bits;
 	data[byte_pos + 3] |= value >> filled_bits;
-	data[byte_pos + 4] |= value << filled_bits;
+	data[byte_pos + 4] |= (value & ((1 << remaining) - 1)) << remaining;
+
 	bit_index += 32;
 }
 
@@ -51,13 +62,21 @@ void Packet::WriteBool(bool value) {
 	bit_index++;
 }
 
-unsigned char Packet::GetByte() {
-	//An integer is 4 bytes
-	unsigned char filled_bits = 8 - (bit_index % 8);
-	int byte_pos = bit_index / 8;
+void Packet::WriteString(const char* value) {
+	for (int i = 0; i < strlen(value); i++) {
+		WriteByte((unsigned char)value[i]);
+	}
+	WriteByte(0x00);
+}
 
-	int value = (data[byte_pos] << filled_bits);
-	value |= (data[byte_pos + 1] >> filled_bits);
+unsigned char Packet::GetByte() {
+	//An bute is 1 byte
+	int byte_pos = bit_index / 8;
+	unsigned char filled_bits = bit_index % 8;
+	unsigned char remaining = 8 - filled_bits;
+
+	int value = data[byte_pos] << filled_bits;
+	value |= (data[byte_pos + 1] >> (8 - filled_bits));
 	bit_index += 8;
 	return value;
 }
@@ -67,11 +86,11 @@ int Packet::GetInt() {
 	unsigned char filled_bits = bit_index % 8;
 	unsigned char remaining = 8 - filled_bits;
 
-	int value = (data[byte_pos] & ((1 << (remaining)) - 1)) << 24;
+	int value = (data[byte_pos]) << 24 << filled_bits;
 	value |= (data[byte_pos + 1] << 16) << filled_bits;
 	value |= (data[byte_pos + 2] << 8) << filled_bits;
-	value |= (data[byte_pos + 3] << filled_bits);
-	value |= (data[byte_pos + 4] >> (8 - remaining));
+	value |= (data[byte_pos + 3]) << filled_bits;
+	value |= (data[byte_pos + 4] >> (8 - filled_bits));
 	bit_index += 32;
 	return value;
 }
@@ -97,4 +116,16 @@ bool Packet::GetBool() {
 	bool value = (1 & (data[bit_index / 8] >> (7 - bit_index))) > 0 ? true : false;
 	bit_index++;
 	return value;
+}
+
+std::string Packet::GetString() {
+	std::string string;
+	unsigned char byte = 0x00;
+	while (true) {
+		byte = GetByte();
+		if (byte == 0x00 || bit_index / 8 >= packet_size)break;
+		string = string + (char)byte;
+	}
+
+	return string;
 }

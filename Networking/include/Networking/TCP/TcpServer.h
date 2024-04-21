@@ -15,6 +15,8 @@ public:
 private:
 #ifdef NETWORKING_EXPORTS
 	asio::io_service io_service;
+
+	static void OnWrite(const asio::error_code& error, std::size_t bytes_transferred);
 #endif
 	int port = 8888;
 };

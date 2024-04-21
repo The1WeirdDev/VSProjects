@@ -26,46 +26,5 @@ const char* int_to_binary(int x)
 }
 int main(int argc, char** argv) {
 	Packet p;
-	printf("TEST1\n");
-	p.bit_index = 0;
-	p.WriteBool(true);
-	p.WriteBool(true);
-	p.WriteBool(true);
-	p.WriteBool(true);
-	p.WriteBool(true);
-	p.WriteBool(true);
-	p.WriteBool(true);
-	p.WriteInt(513);
-	//p.WriteInt(232165);
-	//p.WriteUInt(UINT_MAX);
-	p.WriteLength();
-	p.bit_index -= 32;
-	unsigned char* data = p.GetData();
-	std::cout << p.GetInt() << std::endl;
-	printf("%s\n", array_to_binary(data, 5).c_str());
-	/*
-	p.WriteBool(true);
-	p.WriteBool(false);
-	p.WriteBool(true);
-	p.WriteInt(256);
-	p.WriteInt(512);
-	p.WriteBool(true);
-	p.WriteBool(true);
-	p.WriteBool(false);
-	p.WriteBool(false);
-	p.WriteBool(true);
-	printf("TEST2\n");
-	p.bit_index = 0;
-	bool b1 = p.GetBool();
-	bool b2 = p.GetBool();
-	bool b3 = p.GetBool();
-	int int1 = p.GetInt();
-	int int2 = p.GetInt();
-	bool b4 = p.GetBool();
-	bool b5 = p.GetBool();
-	bool b6 = p.GetBool();
-	bool b7 = p.GetBool();
-	bool b8 = p.GetBool();
-	printf("INT %i %i %i %d %d %i %i %i %i %i\n", b1, b2, b3, int1, int2, b4, b5, b6, b7, b8);\*/
 	TCPServer server(8888);
 }

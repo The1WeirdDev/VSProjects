@@ -1,9 +1,3 @@
-﻿  Main.cpp
-C:\Projects\VSProjects\Networking\include\Networking\TCP\TCPServer.h(20,2): warning C4091: '__declspec(dllimport)': ignored on left of 'TCPServer' when no variable is declared
-  (compiling source file 'Src/Main.cpp')
-  
-C:\Projects\VSProjects\Networking\include\Networking\Packet.h(28,2): warning C4091: '__declspec(dllimport)': ignored on left of 'Packet' when no variable is declared
-  (compiling source file 'Src/Main.cpp')
-  
-  VoxelGame-Server.vcxproj -> C:\Projects\VSProjects\Build\VoxelGame-Server\Debug\Win32\VoxelGame-Server.exe
-  0 File(s) copied
+﻿  VoxelGame-Server.vcxproj -> C:\Projects\VSProjects\Build\VoxelGame-Server\Debug\Win32\VoxelGame-Server.exe
+  C:\Projects\VSProjects\/Libraries\Networking\Debug\Win32\Networking.dll
+  1 File(s) copied

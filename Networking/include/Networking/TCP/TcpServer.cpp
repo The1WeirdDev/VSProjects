@@ -1,6 +1,8 @@
 #include "TcpServer.h"
 #include <iostream>
 
+#include <Networking/Packet.h>
+
 using asio::ip::tcp;
 
 TCPServer::TCPServer() {
@@ -21,15 +23,23 @@ void TCPServer::Start(int port) {
 		acceptor.accept(socket);
 		printf("Accepted\n");
 
-		unsigned char* bytes = new unsigned char[1024];
-		bytes[0] = 15;
-		bytes[1] = 2;
+		Packet packet;
+		packet.WriteString("Welcome. from server.");
+
 		std::string message = "Hi\n";
 		asio::error_code ignored_error;
-		asio::write(socket, asio::buffer(bytes, 1024), ignored_error);
-
+		//asio::write(socket, asio::buffer(packet.GetData(), 1024), ignored_error);
+		asio::async_write(socket, asio::buffer(packet.GetData(), 1024), &TCPServer::OnWrite);
 		while (true) {
 
 		}
+	}
+}
+void TCPServer::OnWrite(const asio::error_code& error, std::size_t bytes_transferred) {
+	if (error) {
+		printf("Error writing to tcp clients.\n");
+	}
+	else {
+		printf("Transferred %d bytes.\n", (int)bytes_transferred);
 	}
 }

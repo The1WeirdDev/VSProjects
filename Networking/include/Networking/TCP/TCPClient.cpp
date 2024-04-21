@@ -2,6 +2,9 @@
 #include <iostream>
 #include <array>
 
+#include <Networking/Packet.h>
+
+
 using asio::ip::tcp;
 
 TCPClient::TCPClient() {}
@@ -23,18 +26,18 @@ void TCPClient::Connect(const char* ip, int port) {
 	socket.connect(ep);
 	printf("CONNECTED\n");
 	for (;;) {
-		std::array<char, 128> buf;
+		std::array<unsigned char, 1024> buf;
 
 		asio::error_code error;
 		size_t len = socket.read_some(asio::buffer(buf), error);
+
+		Packet packet(1024, buf.data());
 
 		if (error) {
 			printf("ERROR READING\n");
 			return;
 		}
 
-		for (int i = 0; i < buf.size(); i++) {
-			printf("%c", (char)buf[i]);
-		}
+		std::cout << packet.GetString() << std::endl;
 	}
 }
