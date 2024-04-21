@@ -26,12 +26,12 @@ void TCPClient::Connect(const char* ip, int port) {
 	socket.connect(ep);
 	printf("CONNECTED\n");
 	for (;;) {
-		std::array<unsigned char, 1024> buf;
+		std::array<unsigned char, 5000> buf;
 
 		asio::error_code error;
 		size_t len = socket.read_some(asio::buffer(buf), error);
 
-		Packet packet(1024, buf.data());
+		Packet packet(4000, buf.data());
 
 		if (error) {
 			printf("ERROR READING\n");

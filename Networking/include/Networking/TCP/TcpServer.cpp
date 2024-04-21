@@ -23,13 +23,14 @@ void TCPServer::Start(int port) {
 		acceptor.accept(socket);
 		printf("Accepted\n");
 
-		Packet packet;
+		Packet packet(4000);
 		packet.WriteString("Welcome. from server.");
 
 		std::string message = "Hi\n";
 		asio::error_code ignored_error;
 		//asio::write(socket, asio::buffer(packet.GetData(), 1024), ignored_error);
-		asio::async_write(socket, asio::buffer(packet.GetData(), 1024), &TCPServer::OnWrite);
+		asio::async_write(socket, asio::buffer(packet.GetData(), packet.packet_size), &TCPServer::OnWrite);
+		io_service.poll();
 		while (true) {
 
 		}

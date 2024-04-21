@@ -1,6 +1,4 @@
-﻿  pch.cpp
-  dllmain.cpp
-  TCPClient.cpp
+﻿  TCPClient.cpp
   Please define _WIN32_WINNT or _WIN32_WINDOWS appropriately. For example:
   - add -D_WIN32_WINNT=0x0601 to the compiler command line; or
   - add _WIN32_WINNT=0x0601 to your project's Preprocessor Definitions.
@@ -11,18 +9,4 @@ C:\Projects\VSProjects\Networking\include\Networking\TCP\TCPClient.h(19,2): warn
 C:\Projects\VSProjects\Networking\include\Networking\Packet.h(32,2): warning C4091: '__declspec(dllexport)': ignored on left of 'Packet' when no variable is declared
   (compiling source file 'include/Networking/TCP/TCPClient.cpp')
   
-  TCPServer.cpp
-C:\Projects\VSProjects\Networking\include\Networking\TCP\TcpServer.h(22,2): warning C4091: '__declspec(dllexport)': ignored on left of 'TCPServer' when no variable is declared
-  (compiling source file 'include/Networking/TCP/TCPServer.cpp')
-  
-C:\Projects\VSProjects\Networking\include\Networking\Packet.h(32,2): warning C4091: '__declspec(dllexport)': ignored on left of 'Packet' when no variable is declared
-  (compiling source file 'include/Networking/TCP/TCPServer.cpp')
-  
-  Packet.cpp
-C:\Projects\VSProjects\Networking\include\Networking\Packet.h(32,2): warning C4091: '__declspec(dllexport)': ignored on left of 'Packet' when no variable is declared
-  (compiling source file 'include/Networking/Packet.cpp')
-  
-C:\Projects\VSProjects\Networking\include\Networking\Packet.cpp(66,20): warning C4018: '<': signed/unsigned mismatch
-  Generating Code...
-     Creating library C:\Projects\VSProjects\\Libraries\Networking\Debug\Win32\Networking.lib and object C:\Projects\VSProjects\\Libraries\Networking\Debug\Win32\Networking.exp
   Networking.vcxproj -> C:\Projects\VSProjects\Libraries\Networking\Debug\Win32\Networking.dll
