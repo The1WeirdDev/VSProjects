@@ -14,6 +14,7 @@ public:
 	NETWORKING_API Packet(int size, unsigned char* data);
 	NETWORKING_API ~Packet();
 
+	NETWORKING_API void DeleteData();
 	NETWORKING_API void WriteLength();
 
 	NETWORKING_API void WriteByte(unsigned char value);

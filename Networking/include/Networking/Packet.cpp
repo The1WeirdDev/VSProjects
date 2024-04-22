@@ -15,9 +15,12 @@ Packet::Packet(int size, unsigned char* data) {
 	bit_index = 0;	//0 so we can read the length of the buffer
 }
 Packet::~Packet(){
-	//delete data;
-	//data = nullptr;
-	//packet_size = 0;
+}
+
+void Packet::DeleteData() {
+	delete data;
+	data = nullptr;
+	packet_size = 0;
 }
 
 void Packet::WriteLength() {

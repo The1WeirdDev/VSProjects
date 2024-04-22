@@ -20,7 +20,10 @@ using asio::ip::tcp;
 
 int main(int argc, char** argv) {
 	printf("TTESRDFTES 1\n");
-	TCPClient client("192.168.0.236", 8888);
+	TCPClient client;
+
+	std::thread t{[&client]() { client.Connect("192.168.0.38", 8888); }};
+
 	printf("TTESRDFTES 2\n");
 	LibraryManager::InitializeGLFW();
 
@@ -56,8 +59,9 @@ int main(int argc, char** argv) {
 		Display::SwapBuffers();
 	}
 
-	client.Disconnect();
 	Display::Destroy();
 	LibraryManager::TerminateGLFW();
+	client.Disconnect();
+	t.join();
 	printf("Exited Program\n");
 }

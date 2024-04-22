@@ -32,10 +32,11 @@ void TCPServer::StartAccept() {
 }
 
 void TCPServer::OnAccept(const asio::error_code& e) {
-	Packet packet(1024);
+	Packet packet;
 	int i = rand();
-	std::string string = "Welcome. from server. " + i;
+	std::string string = "Welcome. from server. " + std::to_string(i);
 	packet.WriteString(string.c_str());
+	packet.WriteLength();
 
 	std::string message = "Hi\n";
 	asio::error_code ignored_error;

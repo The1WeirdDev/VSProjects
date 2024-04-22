@@ -7,33 +7,32 @@
 
 using asio::ip::tcp;
 
-TCPClient::TCPClient() {}
-TCPClient::TCPClient(const char* ip, int port) {
-	Connect(ip, port);
+TCPClient::TCPClient() : socket(io_context){
 }
-
+TCPClient::~TCPClient(){
+	socket.cancel();
+	io_context.stop();
+}
 void TCPClient::Connect(const char* ip, int port) {
-	tcp::resolver resolver(io_service);
+	tcp::resolver resolver(io_context);
 
-	tcp::resolver::query query(ip, "daytime");
-	asio::ip::tcp::endpoint ep(asio::ip::address::from_string(ip),port);
+	_endpoints = resolver.resolve(ip, std::to_string(port));
+	asio::async_connect(socket, _endpoints, [this](asio::error_code ec, asio::ip::tcp::endpoint ep) {
+		OnConnect(ec);
+	});
 
-	socket = new tcp::socket(io_service, ep.protocol());
-
-	socket->async_connect(ep, std::bind(&TCPClient::OnConnect, this, std::placeholders::_1));
-	io_service.run();
+	io_context.run();
 }
 
 void TCPClient::Disconnect() {
-	if (socket == nullptr)return;
 	try {
+		asio::error_code ec;
+		socket.close(ec);
+		io_context.stop();
 
-		socket->cancel();
-		socket->close();
-		socket->shutdown(socket->shutdown_both);
-		io_service.stop();
-		delete socket;
-		socket = nullptr;
+		if (ec) {
+			// process error
+		}
 	}
 	catch (std::exception& e) {
 		printf("Exception closing socket %s\n", e.what());
@@ -41,15 +40,14 @@ void TCPClient::Disconnect() {
 }
 void TCPClient::AsyncRead() {
 	//socket->async_read_some(asio::buffer(this->read_buffer, NETWORKING_PACKET_SIZE), std::bind(&TCPClient::OnRead, shared_from_this(), std::placeholders::_1, std::placeholders::_2));
-	socket->async_read_some(asio::buffer(this->read_buffer, NETWORKING_PACKET_SIZE), [this](asio::error_code ec, size_t bytes_transferred) {
+	socket.async_read_some(asio::buffer(this->read_buffer, NETWORKING_PACKET_SIZE), [this](asio::error_code ec, size_t bytes_transferred) {
 		OnRead(ec, bytes_transferred);
-		});
-
-	printf("TEST1\n");
+	});
 }
 void TCPClient::OnConnect(const asio::error_code& e) {
 	if (e) {
-		printf("Failed to connect to server.\n");
+		printf("Failed to connect to server. Error %s\n", e.message().c_str());
+		Disconnect();
 		return;
 	}
 
@@ -58,11 +56,13 @@ void TCPClient::OnConnect(const asio::error_code& e) {
 }
 void TCPClient::OnRead(const asio::error_code& error, std::size_t bytes_transferred) {
 	if (error) {
+		Disconnect();
 		printf("Error reading. %d bytes transferred.\n", (int)bytes_transferred);
 	}
 	else {
 		printf("Read %d bytes\n", (int)bytes_transferred);
 		Packet packet(NETWORKING_PACKET_SIZE, this->read_buffer.data());
+		int length = packet.GetInt();
 		std::cout << packet.GetString() << std::endl;
 
 		AsyncRead();
