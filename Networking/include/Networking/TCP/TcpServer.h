@@ -7,6 +7,11 @@
 #include <Networking/framework.h>
 #include <Networking/Packet.h>
 
+extern "C" NETWORKING_API class TCPConnection {
+public:
+	TCPConnection() {}
+};
+
 extern "C" NETWORKING_API class TCPServer {
 public:
 	static NETWORKING_API void Start(int port);
