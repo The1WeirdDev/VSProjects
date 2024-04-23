@@ -20,6 +20,9 @@ public:
 	void NETWORKING_API Disconnect();;
 private:
 	std::array<unsigned char, NETWORKING_PACKET_SIZE> read_buffer;
+
+	bool is_attempting_connect = false;
+	bool is_connected = false;
 #ifdef NETWORKING_EXPORTS
 
 	void AsyncRead();
@@ -28,7 +31,7 @@ private:
 	void OnRead(const asio::error_code& error, std::size_t bytes_transferred);
 
 	asio::io_context io_context;
-	asio::ip::tcp::socket socket;
+	asio::ip::tcp::socket *socket;
 	asio::ip::tcp::resolver::results_type _endpoints;
 
 #endif

@@ -1,4 +1,8 @@
 ﻿  TCPClient.cpp
-D:\Projects\C++\VSProjects\Networking\include\Networking\Packet.h(37,2): warning C4091: '__declspec(dllexport)': ignored on left of 'Packet' when no variable is declared
-D:\Projects\C++\VSProjects\Networking\include\Networking\TCP\TCPClient.h(35,2): warning C4091: '__declspec(dllexport)': ignored on left of 'TCPClient' when no variable is declared
-  Networking.vcxproj -> D:\Projects\C++\VSProjects\Libraries\Networking\Debug\Win32\Networking.dll
+C:\Projects\VSProjects\Networking\include\Networking\Packet.h(37,2): warning C4091: '__declspec(dllexport)': ignored on left of 'Packet' when no variable is declared
+  (compiling source file 'include/Networking/TCP/TCPClient.cpp')
+  
+C:\Projects\VSProjects\Networking\include\Networking\TCP\TCPClient.h(38,2): warning C4091: '__declspec(dllexport)': ignored on left of 'TCPClient' when no variable is declared
+  (compiling source file 'include/Networking/TCP/TCPClient.cpp')
+  
+  Networking.vcxproj -> C:\Projects\VSProjects\Libraries\Networking\Debug\Win32\Networking.dll

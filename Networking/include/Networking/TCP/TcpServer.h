@@ -1,16 +1,19 @@
 #pragma once
 
-#ifdef NETWORKING_EXPORTS
-#include <asio.hpp>
-#endif
+#include <vector>
 
 #include <Networking/framework.h>
 #include <Networking/Packet.h>
 
+#ifdef NETWORKING_EXPORTS
+#include <asio.hpp>
+
 extern "C" NETWORKING_API class TCPConnection {
 public:
-	TCPConnection() {}
+	TCPConnection(asio::ip::tcp::socket* socket) { this->socket = socket; }
+	asio::ip::tcp::socket* socket;
 };
+#endif
 
 extern "C" NETWORKING_API class TCPServer {
 public:
@@ -26,6 +29,7 @@ private:
 	static void StartAccept();
 	static void OnAccept(const asio::error_code& e);
 	static void OnWrite(const asio::error_code& error, std::size_t bytes_transferred);
+	static std::vector<TCPConnection*> connections;
 #endif
 	static int port;
 };

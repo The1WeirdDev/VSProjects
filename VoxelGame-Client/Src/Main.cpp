@@ -22,7 +22,7 @@ int main(int argc, char** argv) {
 	printf("TTESRDFTES 1\n");
 	TCPClient client;
 
-	std::thread t{[&client]() { client.Connect("192.168.0.38", 8888); }};
+	std::thread t{[&client]() { client.Connect("10.16.34.109", 8888); }};
 
 	printf("TTESRDFTES 2\n");
 	LibraryManager::InitializeGLFW();
@@ -58,10 +58,10 @@ int main(int argc, char** argv) {
 		//UIRenderer::RenderTextLabel(text_label);
 		Display::SwapBuffers();
 	}
+	client.Disconnect();
+	t.join();
 
 	Display::Destroy();
 	LibraryManager::TerminateGLFW();
-	client.Disconnect();
-	t.join();
 	printf("Exited Program\n");
 }

@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>D:\Projects\C++\VSProjects\Build\ProjectTemplate\Debug\Win32\ProjectTemplate.exe</FullPath>
+      <FullPath>C:\Projects\VSProjects\Build\ProjectTemplate\Debug\Win32\ProjectTemplate.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

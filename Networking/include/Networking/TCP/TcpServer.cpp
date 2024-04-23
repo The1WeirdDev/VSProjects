@@ -6,6 +6,7 @@
 using asio::ip::tcp;
 
 int TCPServer::port = 8888;
+std::vector<TCPConnection*> TCPServer::connections;
 
 #ifdef NETWORKING_EXPORTS
 asio::io_service TCPServer::io_service;
@@ -18,6 +19,8 @@ void TCPServer::Start(int port) {
 
 	acceptor = new tcp::acceptor(io_service, tcp::endpoint(tcp::v4(), port));
 	printf("Started server on port %d\n", port);
+
+	connections.clear();
 
 	StartAccept();
 	io_service.poll();
@@ -40,8 +43,11 @@ void TCPServer::OnAccept(const asio::error_code& e) {
 
 	std::string message = "Hi\n";
 	asio::error_code ignored_error;
+
+	TCPConnection* connection = new TCPConnection(socket);
+	connections.push_back(connection);
 	//asio::write(socket, asio::buffer(packet.GetData(), 1024), ignored_error);
-	asio::async_write(*socket, asio::buffer(packet.GetData(), packet.packet_size), &TCPServer::OnWrite);
+	asio::async_write(*connection->socket, asio::buffer(packet.GetData(), packet.packet_size), &TCPServer::OnWrite);
 	StartAccept();
 }
 void TCPServer::OnWrite(const asio::error_code& error, std::size_t bytes_transferred) {

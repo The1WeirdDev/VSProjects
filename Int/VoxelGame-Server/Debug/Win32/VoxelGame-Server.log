@@ -1,7 +1,10 @@
-﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppClean.targets(77,5): warning : Access to the path 'd:\projects\c++\vsprojects\build\voxelgame-server\debug\win32\voxelgame-server.exe' is denied.
-  Main.cpp
-D:\Projects\C++\VSProjects\Networking\include\Networking\Packet.h(36,2): warning C4091: '__declspec(dllimport)': ignored on left of 'Packet' when no variable is declared
-D:\Projects\C++\VSProjects\Networking\include\Networking\TCP\TCPServer.h(26,2): warning C4091: '__declspec(dllimport)': ignored on left of 'TCPServer' when no variable is declared
-  VoxelGame-Server.vcxproj -> D:\Projects\C++\VSProjects\Build\VoxelGame-Server\Debug\Win32\VoxelGame-Server.exe
-  D:\Projects\C++\VSProjects\/Libraries\Networking\Debug\Win32\Networking.dll
+﻿  Main.cpp
+C:\Projects\VSProjects\Networking\include\Networking\Packet.h(37,2): warning C4091: '__declspec(dllimport)': ignored on left of 'Packet' when no variable is declared
+  (compiling source file 'Src/Main.cpp')
+  
+C:\Projects\VSProjects\Networking\include\Networking\TCP\TCPServer.h(35,2): warning C4091: '__declspec(dllimport)': ignored on left of 'TCPServer' when no variable is declared
+  (compiling source file 'Src/Main.cpp')
+  
+  VoxelGame-Server.vcxproj -> C:\Projects\VSProjects\Build\VoxelGame-Server\Debug\Win32\VoxelGame-Server.exe
+  C:\Projects\VSProjects\/Libraries\Networking\Debug\Win32\Networking.dll
   1 File(s) copied
