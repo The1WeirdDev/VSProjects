@@ -8,6 +8,10 @@
 
 #include "OGLEngine/OGLEngine.h"
 
+#ifndef OGLENGINE_KEY_MAP_SIZE
+#define OGLENGINE_KEY_MAP_SIZE 400
+#endif
+
 extern "C" OGLENGINE_API class Input {
 public:
 	static OGLENGINE_API void Init();

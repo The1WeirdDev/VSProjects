@@ -11,6 +11,7 @@
 #include <OGLEngine/Display/Mesh/UITexturedMesh.h>
 #include <OGLEngine/LibraryManager.h>
 #include <OGLEngine/Time/Time.h>
+#include <OGLEngine/Input/Input.h>
 
 #include <Networking/TCP/TCPClient.h>
 
@@ -49,6 +50,7 @@ int main(int argc, char** argv) {
 	while (Display::ShouldUpdateWindow()) {
 		Display::PollEvents();
 
+		std::cout << (Input::IsKeyDown(GLFW_KEY_W) ? "true" : "false") << std::endl;
 		Time::Update();
 		//frame.y -= 0.001f;
 		Display::ClearColors();
