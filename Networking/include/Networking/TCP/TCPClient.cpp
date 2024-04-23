@@ -11,6 +11,10 @@ TCPClient::TCPClient(){
 	socket = new tcp::socket(io_context);
 }
 TCPClient::~TCPClient(){
+	if (socket != nullptr) {
+		Disconnect();
+		delete socket;
+	}
 }
 void TCPClient::Connect(const char* ip, int port) {
 	tcp::resolver resolver(io_context);
@@ -20,26 +24,37 @@ void TCPClient::Connect(const char* ip, int port) {
 	asio::async_connect(*socket, _endpoints, [this](asio::error_code ec, asio::ip::tcp::endpoint ep) {
 		OnConnect(ec);
 	});
-	try {
+}
 
+void TCPClient::Disconnect() {
+	try {
+		/*
+		printf("Attempting Disconnect\n");
+		if (is_attempting_connect || is_connected) {
+			printf("Calling Disconnect\n");
+			if(socket->is_open())
+				socket->shutdown(socket->shutdown_both);
+		}
+		*/
+		asio::error_code ec;
+		socket->close(ec);
+
+		if (ec) {
+			printf("Error closing socket %s\n", ec.message());
+		}
+	}
+	catch (std::exception& e) {
+		printf("Exception closing socket %s\n", e.what());
+	}
+}
+
+void TCPClient::Run() {
+	try {
 		io_context.run();
 		printf("HELO\n");
 	}
 	catch (std::exception& e) {
 		printf("Error with io context %s\n", e.what());
-	}
-}
-
-void TCPClient::Disconnect() {
-	try {
-		printf("Attempting Disconnect\n");
-		if (is_attempting_connect || is_connected) {
-			printf("Calling Disconnect\n");
-			socket->shutdown(socket->shutdown_both);
-		}
-	}
-	catch (std::exception& e) {
-		printf("Exception closing socket %s\n", e.what());
 	}
 }
 void TCPClient::AsyncRead() {
@@ -49,13 +64,13 @@ void TCPClient::AsyncRead() {
 	});
 }
 void TCPClient::OnConnect(const asio::error_code& e) {
+	is_attempting_connect = false;
 	if (e) {
 		printf("Failed to connect to server. Error %s\n", e.message().c_str());
 		Disconnect();
 		return;
 	}
 
-	is_attempting_connect = false;
 	is_connected = true;
 
 	printf("CONNECTED\n");
@@ -64,8 +79,7 @@ void TCPClient::OnConnect(const asio::error_code& e) {
 void TCPClient::OnRead(const asio::error_code& error, std::size_t bytes_transferred) {
 	if (error) {
 		printf("Error reading\n");
-		socket->close();
-		//Disconnect();
+		Disconnect();
 		return;
 	}
 

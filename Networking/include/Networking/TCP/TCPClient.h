@@ -17,7 +17,9 @@ public:
 	NETWORKING_API ~TCPClient();
 
 	void NETWORKING_API Connect(const char* ip, int port);
-	void NETWORKING_API Disconnect();;
+	void NETWORKING_API Disconnect();
+
+	void NETWORKING_API Run();
 private:
 	std::array<unsigned char, NETWORKING_PACKET_SIZE> read_buffer;
 

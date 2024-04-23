@@ -1,8 +1,16 @@
-﻿  TCPClient.cpp
-C:\Projects\VSProjects\Networking\include\Networking\Packet.h(37,2): warning C4091: '__declspec(dllexport)': ignored on left of 'Packet' when no variable is declared
-  (compiling source file 'include/Networking/TCP/TCPClient.cpp')
-  
-C:\Projects\VSProjects\Networking\include\Networking\TCP\TCPClient.h(38,2): warning C4091: '__declspec(dllexport)': ignored on left of 'TCPClient' when no variable is declared
-  (compiling source file 'include/Networking/TCP/TCPClient.cpp')
-  
-  Networking.vcxproj -> C:\Projects\VSProjects\Libraries\Networking\Debug\Win32\Networking.dll
+﻿  pch.cpp
+  dllmain.cpp
+  TCPClient.cpp
+D:\Projects\C++\VSProjects\Networking\include\Networking\Packet.h(37,2): warning C4091: '__declspec(dllexport)': ignored on left of 'Packet' when no variable is declared
+D:\Projects\C++\VSProjects\Networking\include\Networking\TCP\TCPClient.h(40,2): warning C4091: '__declspec(dllexport)': ignored on left of 'TCPClient' when no variable is declared
+D:\Projects\C++\VSProjects\Networking\include\Networking\TCP\TCPClient.cpp(43,11): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'std::string'
+  TCPServer.cpp
+D:\Projects\C++\VSProjects\Networking\include\Networking\Packet.h(37,2): warning C4091: '__declspec(dllexport)': ignored on left of 'Packet' when no variable is declared
+D:\Projects\C++\VSProjects\Networking\include\Networking\TCP\TcpServer.h(15,2): warning C4091: '__declspec(dllexport)': ignored on left of 'TCPConnection' when no variable is declared
+D:\Projects\C++\VSProjects\Networking\include\Networking\TCP\TcpServer.h(35,2): warning C4091: '__declspec(dllexport)': ignored on left of 'TCPServer' when no variable is declared
+  Packet.cpp
+D:\Projects\C++\VSProjects\Networking\include\Networking\Packet.h(37,2): warning C4091: '__declspec(dllexport)': ignored on left of 'Packet' when no variable is declared
+D:\Projects\C++\VSProjects\Networking\include\Networking\Packet.cpp(82,20): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+     Creating library D:\Projects\C++\VSProjects\\Libraries\Networking\Debug\Win32\Networking.lib and object D:\Projects\C++\VSProjects\\Libraries\Networking\Debug\Win32\Networking.exp
+  Networking.vcxproj -> D:\Projects\C++\VSProjects\Libraries\Networking\Debug\Win32\Networking.dll

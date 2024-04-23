@@ -1,8 +1,9 @@
 #include "Display.h"
 
 #include <stdio.h>
-
 #include <OGLEngine/LibraryManager.h>
+
+#include <OGLEngine/Input/Input.h>
 
 GLFWwindow* Display::window = nullptr;
 int Display::width = 0;
@@ -19,7 +20,7 @@ void Display::Create(int width, int height, const char* title){
 	LibraryManager::InitializeGLEW();
 
 	glfwGetWindowSize(window, &width, &height);
-	glfwSetWindowSizeCallback(window, Display::OnWindowResize);
+	AddWindowCallbacks();
 
 	Display::width = width;
 	Display::height = height;
@@ -27,6 +28,11 @@ void Display::Create(int width, int height, const char* title){
 	inverse_aspect_ratio = (float)height / (float)width;
 
 	glViewport(0, 0, width, height);
+}
+
+void Display::AddWindowCallbacks() {
+	glfwSetWindowSizeCallback(window, Display::OnWindowResize);
+	glfwSetKeyCallback(window, Input::KeyCallback);
 }
 void Display::Destroy() {
 	glfwDestroyWindow(window);

@@ -1,116 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
+    <ClCompile Include="Src\OGLEngine\Display\Font\Font.cpp" />
+    <ClCompile Include="Src\OGLEngine\Display\Texture.cpp" />
+    <ClCompile Include="Src\OGLEngine\Input\Input.cpp" />
+    <ClCompile Include="Src\OGLEngine\Display\Rendering\UIRenderer.cpp" />
+    <ClCompile Include="Src\OGLEngine\LibraryManager.cpp" />
+    <ClCompile Include="Src\dllmain.cpp" />
+    <ClCompile Include="Src\OGLEngine\Display\Display.cpp" />
+    <ClCompile Include="Src\OGLEngine\Display\Mesh\UITexturedMesh.cpp" />
+    <ClCompile Include="Src\OGLEngine\Display\Shader\Shader.cpp" />
+    <ClCompile Include="Src\OGLEngine\OGLEngine.cpp" />
+    <ClCompile Include="Src\OGLEngine\Time\Time.cpp" />
+    <ClCompile Include="Src\OGLEngine\UI\UI.cpp" />
+    <ClCompile Include="Src\OGLEngine\UI\UIS\Frame.cpp" />
+    <ClCompile Include="Src\pch.cpp" />
+    <ClCompile Include="Src\OGLEngine\UI\UIS\TextLabel.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Src\pch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\framework.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\OGLEngine\OGLEngine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\OGLEngine\Display\Shader\Shader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\OGLEngine\Display\Mesh\UITexturedMesh.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\OGLEngine\LibraryManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\OGLEngine\UI\UIS\Frame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\OGLEngine\Display\Rendering\UIRenderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\OGLEngine\Input\Input.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\OGLEngine\Display\UI.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\OGLEngine\UI\UI.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\OGLEngine\Display\Display.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\OGLEngine\UI\UIS\TextLabel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\OGLEngine\Display\Font\Font.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-<<<<<<< HEAD
-    <ClInclude Include="Src\OGLEngine\Time\Time.h">
-=======
-    <ClInclude Include="Src\OGLEngine\Display\Texture.h">
->>>>>>> d4be18e3f19b757b527198440508972ef708dd6b
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Src\pch.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\OGLEngine\OGLEngine.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\dllmain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\OGLEngine\Display\Shader\Shader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\OGLEngine\Display\Mesh\UITexturedMesh.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\OGLEngine\Display\Display.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\OGLEngine\LibraryManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\OGLEngine\UI\UI.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\OGLEngine\UI\UIS\Frame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\OGLEngine\Display\Rendering\UIRenderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\OGLEngine\Input\Input.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\OGLEngine\UI\UIS\TextLabel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\OGLEngine\Display\Font\Font.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-<<<<<<< HEAD
-    <ClCompile Include="Src\OGLEngine\Time\Time.cpp">
-=======
-    <ClCompile Include="Src\OGLEngine\Display\Texture.cpp">
->>>>>>> d4be18e3f19b757b527198440508972ef708dd6b
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <ClInclude Include="Src\OGLEngine\Display\Font\Font.h" />
+    <ClInclude Include="Src\OGLEngine\Display\Display.h" />
+    <ClInclude Include="Src\OGLEngine\Display\Texture.h" />
+    <ClInclude Include="Src\OGLEngine\Display\UI.h" />
+    <ClInclude Include="Src\OGLEngine\Input\Input.h" />
+    <ClInclude Include="Src\OGLEngine\Display\Rendering\UIRenderer.h" />
+    <ClInclude Include="Src\OGLEngine\LibraryManager.h" />
+    <ClInclude Include="Src\framework.h" />
+    <ClInclude Include="Src\OGLEngine\Display\Mesh\UITexturedMesh.h" />
+    <ClInclude Include="Src\OGLEngine\Display\Shader\Shader.h" />
+    <ClInclude Include="Src\OGLEngine\OGLEngine.h" />
+    <ClInclude Include="Src\OGLEngine\Time\Time.h" />
+    <ClInclude Include="Src\OGLEngine\UI\UI.h" />
+    <ClInclude Include="Src\OGLEngine\UI\UIS\Frame.h" />
+    <ClInclude Include="Src\pch.h" />
+    <ClInclude Include="Src\OGLEngine\UI\UIS\TextLabel.h" />
   </ItemGroup>
 </Project>

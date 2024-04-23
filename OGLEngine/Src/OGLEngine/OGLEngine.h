@@ -1,14 +1,14 @@
 // MathLibrary.h - Contains declarations of math functions
 #pragma once
 
-#define STATIC
+#define OGLENGINE_STATIC
 /*
 INTENDED PLATFORMS
 WINDOWS
 ANDROID
 */
 
-#ifndef STATIC
+#ifndef OGLENGINE_STATIC
 	#ifdef OGLENGINE_EXPORT
 	#define OGLENGINE_API __declspec(dllexport)
 	#else

@@ -19,12 +19,6 @@
 using asio::ip::tcp;
 
 int main(int argc, char** argv) {
-	printf("TTESRDFTES 1\n");
-	TCPClient client;
-
-	std::thread t{[&client]() { client.Connect("10.16.34.109", 8888); }};
-
-	printf("TTESRDFTES 2\n");
 	LibraryManager::InitializeGLFW();
 
 	Display::Create(1280, 720, "VoxelGame");
@@ -40,6 +34,12 @@ int main(int argc, char** argv) {
 	TextLabel text_label;
 	text_label.SetText("HELLO WORLD");
 	text_label.GenerateMesh();
+
+	TCPClient client;
+
+	client.Connect("192.168.0.38", 8888);
+	std::thread t{[&client]() { client.Run(); }};
+
 	Time::Init();
 	
 	glEnable(GL_BLEND);
@@ -58,10 +58,9 @@ int main(int argc, char** argv) {
 		//UIRenderer::RenderTextLabel(text_label);
 		Display::SwapBuffers();
 	}
-	client.Disconnect();
-	t.join();
 
 	Display::Destroy();
 	LibraryManager::TerminateGLFW();
+	t.join();
 	printf("Exited Program\n");
 }
