@@ -28,6 +28,7 @@ int main(int argc, char** argv) {
 	Font::Init();
 
 	UIRenderer::Init();
+	/*
 	Frame frame;
 	frame.SetSize(0.5f, 0.5f);
 	frame.screen_size_restraint = ScreenSizeRestraint::InverseAspectX;
@@ -35,10 +36,10 @@ int main(int argc, char** argv) {
 	TextLabel text_label;
 	text_label.SetText("HELLO WORLD");
 	text_label.GenerateMesh();
-
+	*/
 	TCPClient client;
 
-	client.Connect("192.168.0.38", 8888);
+	client.Connect("10.16.34.109", 8888);
 	std::thread t{[&client]() { client.Run(); }};
 
 	Time::Init();
@@ -50,19 +51,21 @@ int main(int argc, char** argv) {
 	while (Display::ShouldUpdateWindow()) {
 		Display::PollEvents();
 
-		std::cout << (Input::IsKeyDown(GLFW_KEY_W) ? "true" : "false") << std::endl;
+		//std::cout << (Input::IsKeyDown(GLFW_KEY_W) ? "true" : "false") << std::endl;
 		Time::Update();
 		//frame.y -= 0.001f;
 		Display::ClearColors();
 
 		Display::ClearDepth();
-		UIRenderer::RenderFrame(frame);
+		//UIRenderer::RenderFrame(frame);
 		//UIRenderer::RenderTextLabel(text_label);
 		Display::SwapBuffers();
 	}
 
 	Display::Destroy();
 	LibraryManager::TerminateGLFW();
+	client.Disconnect();
+	client.Stop();
 	t.join();
 	printf("Exited Program\n");
 }

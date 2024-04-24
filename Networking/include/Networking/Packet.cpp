@@ -15,6 +15,7 @@ Packet::Packet(int size, unsigned char* data) {
 	bit_index = 0;	//0 so we can read the length of the buffer
 }
 Packet::~Packet(){
+
 }
 
 void Packet::DeleteData() {
@@ -38,8 +39,9 @@ void Packet::WriteByte(unsigned char value) {
 	unsigned char filled_bits = bit_index % 8;
 	unsigned char remaining = 8 - filled_bits;
 
+	
 	data[byte_pos] |= value >> filled_bits;
-	data[byte_pos + 4] |= (value & ((1 << remaining) - 1)) << remaining;
+	data[byte_pos + 1] |= (value & ((1 << remaining) - 1)) << remaining;
 
 	bit_index += 8;
 }

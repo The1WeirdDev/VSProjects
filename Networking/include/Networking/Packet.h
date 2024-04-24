@@ -16,6 +16,7 @@ public:
 
 	NETWORKING_API void DeleteData();
 	NETWORKING_API void WriteLength();
+	NETWORKING_API int GetUsedSize() { return bit_index / 8 + 1; }
 
 	NETWORKING_API void WriteByte(unsigned char value);
 	NETWORKING_API void WriteInt(int value);
