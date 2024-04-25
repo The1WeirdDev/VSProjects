@@ -7,67 +7,80 @@
 
 using asio::ip::tcp;
 
+namespace T1WD {
+	class TCPConnection {
+	public:
+		TCPConnection(tcp::socket* socket) { this->socket = socket; }
 
-class TCPConnection {
-public:
-	TCPConnection(tcp::socket* socket) { this->socket = socket; }
-	tcp::socket* socket;
-};
+		void Post(Packet* packet) {
 
-int TCPServer::port = 8888;
-std::vector<TCPConnection*> TCPServer::connections;
+		}
 
-void* TCPServer::io_context;
-void* TCPServer::acceptor;
-void* TCPServer::socket;
+		tcp::socket* socket;
+	};
 
-void TCPServer::Start(int port) {
-	TCPServer::port = port;
+	int TCPServer::port = 8888;
+	std::vector<TCPConnection*> TCPServer::connections;
 
-	io_context = new asio::io_context();
-	acceptor = new tcp::acceptor(*(asio::io_context*)io_context, tcp::endpoint(tcp::v4(), port));
+	void* TCPServer::io_context;
+	void* TCPServer::acceptor;
+	void* TCPServer::socket;
 
-	printf("Started server on port %d\n", port);
+	std::function<void()> TCPServer::on_client_connected = nullptr;
+	std::function<void()> TCPServer::on_server_started = nullptr; 
+	std::function<void(std::error_code)> TCPServer::on_server_start_failed = nullptr;
 
-	connections.clear();
+	void TCPServer::Start(int port) {
+		TCPServer::port = port;
+		connections.clear();
 
-	StartAccept();
-	((asio::io_context*)io_context)->poll();
-}
+		io_context = new asio::io_context();
+		acceptor = new tcp::acceptor(*(asio::io_context*)io_context);
+		((tcp::acceptor*)acceptor)->open(tcp::v4());
 
-void TCPServer::Tick() {
-	((asio::io_context*)io_context)->poll();
-}
-void TCPServer::StartAccept() {
-	socket = new tcp::socket(*(asio::io_context*)io_context);
-	((tcp::acceptor*)acceptor)->async_accept(*((tcp::socket*)socket), &TCPServer::OnAccept);
-}
+		asio::error_code ec;
+		((tcp::acceptor*)acceptor)->bind(tcp::endpoint(tcp::v4(), port), ec);
 
-void TCPServer::OnAccept(const std::error_code& e) {
-	Packet packet;
-	int i = rand();
-	std::string string = "Welcome. from server. " + std::to_string(i);
-	packet.WriteString(string.c_str());
-	packet.WriteLength();
-
-	std::string message = "Hi\n";
-	asio::error_code ignored_error;
-
-	TCPConnection* connection = new TCPConnection((tcp::socket*)socket);
-	connections.push_back(connection);
-
-	unsigned char* data = packet.GetData();
-	asio::async_write(*((tcp::socket*)socket), asio::buffer(packet.GetData(), packet.GetUsedSize()), [data](const asio::error_code& error, std::size_t bytes_transferred) {
-		delete data;
-		OnWrite(error, bytes_transferred);
-	});
-	StartAccept();
-}
-void TCPServer::OnWrite(const std::error_code& error, std::size_t bytes_transferred) {
-	if (error) {
-		printf("Error writing to tcp clients.\n");
+		if (ec) {
+			if (on_server_start_failed)on_server_start_failed(ec);
+		}
+		else {
+			if (on_server_started)on_server_started();
+			StartAccept();
+			((asio::io_context*)io_context)->poll();
+		}
 	}
-	else {
-		printf("Transferred %d bytes.\n", (int)bytes_transferred);
+
+	void TCPServer::Tick() {
+		((asio::io_context*)io_context)->poll();
+	}
+	void TCPServer::StartAccept() {
+		socket = new tcp::socket(*(asio::io_context*)io_context);
+		((tcp::acceptor*)acceptor)->async_accept(*((tcp::socket*)socket), &TCPServer::OnAccept);
+	}
+
+	void TCPServer::OnAccept(const std::error_code& e) {
+		std::string message = "Hi\n";
+		asio::error_code ignored_error;
+
+		TCPConnection* connection = new TCPConnection((tcp::socket*)socket);
+		connections.push_back(connection);
+
+		if(on_client_connected)on_client_connected();
+		//unsigned char* data = packet.GetData();
+		//asio::async_write(*((tcp::socket*)socket), asio::buffer(packet.GetData(), packet.GetUsedSize()), [data](const asio::error_code& error, std::size_t bytes_transferred) {
+		//	delete data;
+		//	OnWrite(error, bytes_transferred);
+		//});
+		StartAccept();
+	}
+
+	void TCPServer::OnWrite(const std::error_code& error, std::size_t bytes_transferred) {
+		if (error) {
+			printf("Error writing to tcp clients.\n");
+		}
+		else {
+			printf("Transferred %d bytes.\n", (int)bytes_transferred);
+		}
 	}
 }

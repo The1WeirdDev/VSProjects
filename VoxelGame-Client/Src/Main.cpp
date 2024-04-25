@@ -17,6 +17,7 @@
 
 #include <asio.hpp>
 
+using namespace T1WD;
 using asio::ip::tcp;
 
 int main(int argc, char** argv) {
@@ -40,14 +41,18 @@ int main(int argc, char** argv) {
 	TCPClient client;
 
 	client.on_connected = []() {
-		printf("CONNECTED TO SERVER\n");
+		printf("Connected to server.\n");
 	};
-	client.on_connect_failed = [](std::error_code e) {
+	client.on_connect_failed = [](std::string message) {
 		printf("Failed to connect to server. Reason ");
-		std::cout << e.message() << std::endl;
+		std::cout << message << std::endl;
 	};
 	client.on_disconnected = []() {
-		printf("Disconnected from server\n");
+		printf("Disconnected from server.\n");
+	};
+
+	client.on_packet_read = [](Packet* packet, size_t bytes_transferred) {
+		std::cout << "Packet says " << packet->GetString() << std::endl;
 	};
 	client.Connect("192.168.0.38", 8888);
 	std::thread t{[&client]() { client.Run(); }};

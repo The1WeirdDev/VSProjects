@@ -1,20 +1,12 @@
 ﻿  pch.cpp
   dllmain.cpp
   TCPClient.cpp
-D:\Projects\C++\VSProjects\Networking\include\Networking\Packet.h(38,2): warning C4091: '__declspec(dllexport)': ignored on left of 'Packet' when no variable is declared
-D:\Projects\C++\VSProjects\Networking\include\Networking\TCP\TCPClient.h(39,2): warning C4091: '__declspec(dllexport)': ignored on left of 'TCPClient' when no variable is declared
-D:\Projects\C++\VSProjects\Networking\include\Networking\TCP\TCPClient.cpp(41,12): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'std::string'
-D:\Projects\C++\VSProjects\Networking\include\Networking\TCP\TCPClient.cpp(48,13): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'std::string'
-D:\Projects\C++\VSProjects\Networking\include\Networking\TCP\TCPClient.cpp(54,12): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'std::string'
-D:\Projects\C++\VSProjects\Networking\include\Networking\TCP\TCPClient.cpp(57,78): error C2589: ')': illegal token on right side of '::'
-D:\Projects\C++\VSProjects\Networking\include\Networking\TCP\TCPClient.cpp(57,78): error C2144: syntax error: 'unknown-type' should be preceded by ')'
-D:\Projects\C++\VSProjects\Networking\include\Networking\TCP\TCPClient.cpp(57,78): error C2144: syntax error: 'unknown-type' should be preceded by ';'
-D:\Projects\C++\VSProjects\Networking\include\Networking\TCP\TCPClient.cpp(57,79): error C2059: syntax error: ')'
+D:\Projects\C++\VSProjects\Networking\include\Networking\TCP\TCPClient.h(46,3): warning C4091: '__declspec(dllexport)': ignored on left of 'T1WD::TCPClient' when no variable is declared
   TCPServer.cpp
-D:\Projects\C++\VSProjects\Networking\include\Networking\Packet.h(38,2): warning C4091: '__declspec(dllexport)': ignored on left of 'Packet' when no variable is declared
-D:\Projects\C++\VSProjects\Networking\include\Networking\TCP\TcpServer.h(10,46): warning C4091: '__declspec(dllexport)': ignored on left of 'TCPConnection' when no variable is declared
-D:\Projects\C++\VSProjects\Networking\include\Networking\TCP\TcpServer.h(30,2): warning C4091: '__declspec(dllexport)': ignored on left of 'TCPServer' when no variable is declared
+D:\Projects\C++\VSProjects\Networking\include\Networking\TCP\TcpServer.h(12,47): warning C4091: '__declspec(dllexport)': ignored on left of 'T1WD::TCPConnection' when no variable is declared
+D:\Projects\C++\VSProjects\Networking\include\Networking\TCP\TcpServer.h(35,3): warning C4091: '__declspec(dllexport)': ignored on left of 'T1WD::TCPServer' when no variable is declared
   Packet.cpp
-D:\Projects\C++\VSProjects\Networking\include\Networking\Packet.h(38,2): warning C4091: '__declspec(dllexport)': ignored on left of 'Packet' when no variable is declared
-D:\Projects\C++\VSProjects\Networking\include\Networking\Packet.cpp(84,20): warning C4018: '<': signed/unsigned mismatch
+D:\Projects\C++\VSProjects\Networking\include\Networking\Packet.cpp(85,21): warning C4018: '<': signed/unsigned mismatch
   Generating Code...
+     Creating library D:\Projects\C++\VSProjects\\Libraries\Networking\Debug\Win32\Networking.lib and object D:\Projects\C++\VSProjects\\Libraries\Networking\Debug\Win32\Networking.exp
+  Networking.vcxproj -> D:\Projects\C++\VSProjects\Libraries\Networking\Debug\Win32\Networking.dll

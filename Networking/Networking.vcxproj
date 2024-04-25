@@ -163,6 +163,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\Networking\ErrorCodes.h" />
     <ClInclude Include="include\Networking\framework.h" />
     <ClInclude Include="include\Networking\pch.h" />
     <ClInclude Include="include\Networking\TCP\TCPClient.h" />
