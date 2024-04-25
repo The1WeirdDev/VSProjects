@@ -1,3 +1,7 @@
-﻿  VoxelGame-Client.vcxproj -> C:\Projects\VSProjects\Build\VoxelGame-Client\Debug\Win32\VoxelGame-Client.exe
-  C:\Projects\VSProjects\/Libraries\Networking\Debug\Win32\Networking.dll
-  1 File(s) copied
+﻿  Main.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
+D:\Projects\C++\VSProjects\Libraries\GLFW3.4\include\Win32\GLFW\glfw3.h(123,1): message : see previous definition of 'APIENTRY'
+D:\Projects\C++\VSProjects\Networking\include\Networking\Packet.h(38,2): warning C4091: '__declspec(dllimport)': ignored on left of 'Packet' when no variable is declared
+D:\Projects\C++\VSProjects\Networking\include\Networking\TCP\TCPClient.h(39,2): warning C4091: '__declspec(dllimport)': ignored on left of 'TCPClient' when no variable is declared
+  VoxelGame-Client.vcxproj -> D:\Projects\C++\VSProjects\Build\VoxelGame-Client\Debug\Win32\VoxelGame-Client.exe
+  0 File(s) copied

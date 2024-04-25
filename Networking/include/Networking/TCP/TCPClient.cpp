@@ -32,10 +32,8 @@ void TCPClient::Connect(const char* ip, int port){
 
 void TCPClient::Disconnect() {
 	try {
-		printf("Attempting Disconnect\n");
 		if ((is_attempting_connect || is_connected) && !is_disconnecting) {
 			is_disconnecting = true;
-			printf("Calling Disconnect\n");
 			asio::error_code ec;
 
 			((tcp::socket*)socket)->cancel(ec);
@@ -55,10 +53,14 @@ void TCPClient::Disconnect() {
 			if (ec) {
 				printf("Error closing socket %s\n", ec.message());
 			}
-
+			if (!is_connected) {
+				if (on_connect_failed)on_connect_failed(std::error_code(std::error_code::));
+			}
+			else {
+				if (on_disconnected)on_disconnected();
+			}
 			is_attempting_connect = false;
 			is_connected = false;
-			printf("Successfully disconencted socket\n");
 		}
 	}
 	catch (std::exception& e) {
@@ -92,25 +94,34 @@ void TCPClient::AsyncRead() {
 	
 	((tcp::socket*)socket)->async_read_some(asio::buffer(this->read_buffer, NETWORKING_PACKET_SIZE), [this](asio::error_code ec, size_t bytes_transferred) {
 		if (is_disconnecting)return;
-		OnRead(nullptr, ec, bytes_transferred);
+		OnRead(ec, bytes_transferred);
 	});
-	
+}
+
+void TCPClient::AsyncWrite() {
+	Packet packet;
+	unsigned char* data = packet.GetData();
+	asio::async_write(*((tcp::socket*)socket), asio::buffer(packet.GetData(), packet.GetUsedSize()), [data](const asio::error_code& error, std::size_t bytes_transferred) {
+		delete data;
+		//OnWrite(error, bytes_transferred);
+	});
 }
 void TCPClient::OnConnect(std::shared_ptr<TCPClient> seslf, const std::error_code& e) {
 	if (is_disconnecting)return;
 
 	if (e) {
-		printf("Failed to connect to server. Error %s\n", e.message().c_str());
+		if (on_connect_failed)on_connect_failed(e);
 		Disconnect();
 		return;
 	}
 
 	is_connected = true;
+	if (on_connected)on_connected();
 
 	printf("CONNECTED\n");
 	AsyncRead();
 }
-void TCPClient::OnRead(std::shared_ptr<TCPClient> self, const std::error_code& error, std::size_t bytes_transferred) {
+void TCPClient::OnRead(const std::error_code& error, std::size_t bytes_transferred) {
 	if (error) {
 		printf("Error reading\n");
 		Disconnect();
@@ -123,5 +134,13 @@ void TCPClient::OnRead(std::shared_ptr<TCPClient> self, const std::error_code& e
 	std::cout << packet.GetString() << std::endl;
 
 	AsyncRead();
+}
+void TCPClient::OnWrite(const std::error_code& error, std::size_t bytes_transferred) {
+	if (error) {
+		printf("Error writing\n");
+		Disconnect();
+		return;
+	}
+
 }
 //#endif

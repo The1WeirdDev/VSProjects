@@ -39,7 +39,17 @@ int main(int argc, char** argv) {
 	*/
 	TCPClient client;
 
-	client.Connect("10.16.34.109", 8888);
+	client.on_connected = []() {
+		printf("CONNECTED TO SERVER\n");
+	};
+	client.on_connect_failed = [](std::error_code e) {
+		printf("Failed to connect to server. Reason ");
+		std::cout << e.message() << std::endl;
+	};
+	client.on_disconnected = []() {
+		printf("Disconnected from server\n");
+	};
+	client.Connect("192.168.0.38", 8888);
 	std::thread t{[&client]() { client.Run(); }};
 
 	Time::Init();
