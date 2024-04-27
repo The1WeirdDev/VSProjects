@@ -40,7 +40,7 @@ namespace T1WD {
 		//socket->async_read_some(asio::buffer(this->read_buffer, NETWORKING_PACKET_SIZE), std::bind(&TCPClient::OnRead, shared_from_this(), std::placeholders::_1, std::placeholders::_2));
 
 		((tcp::socket*)socket)->async_read_some(asio::buffer(this->read_buffer, this->read_buffer.size()), [this](asio::error_code ec, size_t bytes_transferred) {
-			OnRead(ec, bytes_transferred);
+			OnRead(ec, bytes_transferred);																																		
 		});
 	}
 	void TCPConnection::Post(Packet* packet, bool delete_packet_data) {
