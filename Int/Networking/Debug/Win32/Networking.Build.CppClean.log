@@ -6,11 +6,11 @@ d:\projects\c++\vsprojects\int\networking\debug\win32\packet.obj
 d:\projects\c++\vsprojects\int\networking\debug\win32\tcpserver.obj
 d:\projects\c++\vsprojects\int\networking\debug\win32\tcpclient.obj
 d:\projects\c++\vsprojects\int\networking\debug\win32\dllmain.obj
-d:\projects\c++\vsprojects\libraries\networking\debug\win32\networking.lib
-d:\projects\c++\vsprojects\libraries\networking\debug\win32\networking.exp
 d:\projects\c++\vsprojects\int\networking\debug\win32\networking.ilk
 d:\projects\c++\vsprojects\libraries\networking\debug\win32\networking.dll
 d:\projects\c++\vsprojects\libraries\networking\debug\win32\networking.pdb
+d:\projects\c++\vsprojects\libraries\networking\debug\win32\networking.lib
+d:\projects\c++\vsprojects\libraries\networking\debug\win32\networking.exp
 d:\projects\c++\vsprojects\\libraries\networking\debug\win32\networking.pdb
 d:\projects\c++\vsprojects\\int\networking\debug\win32\networking.vcxproj.filelistabsolute.txt
 d:\projects\c++\vsprojects\int\networking\debug\win32\networking.tlog\cl.command.1.tlog

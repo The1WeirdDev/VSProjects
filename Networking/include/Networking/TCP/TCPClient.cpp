@@ -21,7 +21,16 @@ namespace T1WD {
 		delete (asio::io_context*)io_context;
 	}
 	void TCPClient::Connect(const char* ip, int port) {
+		for (int i = 0; i < messages.size(); i++) {
+			if (messages[i] == nullptr)continue;
+			unsigned char* data = messages[i]->GetData();
+			if (data == nullptr)continue;
+			delete data;
+		}
+		messages.clear();
 		is_disconnecting = false;
+		is_writing = false;
+
 		asio::io_context* context = (asio::io_context*)io_context;
 		tcp::resolver resolver(*context);
 
@@ -29,8 +38,8 @@ namespace T1WD {
 		is_attempting_connect = true;
 		is_connected = false;
 		asio::async_connect(*((tcp::socket*)socket), _endpoints, [this](asio::error_code ec, asio::ip::tcp::endpoint ep) {
-			OnConnect(nullptr, ec);
-			});
+			OnConnect(ec);
+		});
 	}
 
 	void TCPClient::Disconnect() {
@@ -81,25 +90,52 @@ namespace T1WD {
 		}*/
 	}
 
+	void TCPClient::Post(Packet* packet) {
+		packet->WriteLength();
+		messages.push_back(packet);
+
+		if (is_writing == false)
+			AsyncWrite();
+	}
+
 	//#ifdef NETWORKING_EXPORTS
 	void TCPClient::AsyncRead() {
 		//socket->async_read_some(asio::buffer(this->read_buffer, NETWORKING_PACKET_SIZE), std::bind(&TCPClient::OnRead, shared_from_this(), std::placeholders::_1, std::placeholders::_2));
 
-		((tcp::socket*)socket)->async_read_some(asio::buffer(this->read_buffer, NETWORKING_PACKET_SIZE), [this](asio::error_code ec, size_t bytes_transferred) {
+		((tcp::socket*)socket)->async_read_some(asio::buffer(this->read_buffer, this->read_buffer.size()), [this](asio::error_code ec, size_t bytes_transferred) {
 			if (is_disconnecting)return;
 			OnRead(ec, bytes_transferred);
 		});
 	}
 
-	void TCPClient::AsyncWrite() {
-		Packet packet;
-		unsigned char* data = packet.GetData();
-		asio::async_write(*((tcp::socket*)socket), asio::buffer(packet.GetData(), packet.GetUsedSize()), [data](const asio::error_code& error, std::size_t bytes_transferred) {
-			delete data;
-			//OnWrite(error, bytes_transferred);
-			});
+	bool TCPClient::IsValidMessage() {
+		if (messages.size() < 1) return false;
+
+		if (messages[0] == nullptr)return false;
+
+		if (messages[0]->GetData() == nullptr)return false;
+
+		return true;
 	}
-	void TCPClient::OnConnect(std::shared_ptr<TCPClient> seslf, const std::error_code& e) {
+
+	void TCPClient::AsyncWrite() {
+		is_writing = true;
+		while (!IsValidMessage() && messages.size() > 0) {
+			messages.erase(messages.begin());
+		}
+
+		if (messages.size() < 1) {
+			is_writing = false;
+			return;
+		}
+		
+		Packet* packet = messages[0];
+		unsigned char* data = packet->GetData();
+		asio::async_write(*((tcp::socket*)socket), asio::buffer(packet->GetData(), packet->GetUsedSize()), [this, data](const asio::error_code& error, std::size_t bytes_transferred) {
+			OnWrite(error, bytes_transferred);
+		});
+	}
+	void TCPClient::OnConnect(const std::error_code& e) {
 		if (is_disconnecting)return;
 
 		if (e) {
@@ -130,6 +166,16 @@ namespace T1WD {
 		if (error) {
 			Disconnect();
 			return;
+		}
+		delete messages[0]->GetData();
+		delete messages[0];
+		messages.erase(messages.begin());
+
+		if (messages.size() > 1) {
+			AsyncWrite();
+		}
+		else {
+			is_writing = false;
 		}
 
 	}

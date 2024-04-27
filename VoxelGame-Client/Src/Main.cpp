@@ -66,8 +66,16 @@ int main(int argc, char** argv) {
 	while (Display::ShouldUpdateWindow()) {
 		Display::PollEvents();
 
+		if (Input::IsKeyPressed(GLFW_KEY_R)) {
+			printf("SENDING PACKET\n");
+			Packet* packet = new Packet(500);
+			packet->WriteString("Hello Server\n");
+			client.Post(packet);
+		}
+
 		//std::cout << (Input::IsKeyDown(GLFW_KEY_W) ? "true" : "false") << std::endl;
 		Time::Update();
+		Input::Update();
 		//frame.y -= 0.001f;
 		Display::ClearColors();
 
