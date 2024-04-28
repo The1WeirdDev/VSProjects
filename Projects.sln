@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VoxelGame-Client", "VoxelGame-Client\VoxelGame-Client.vcxproj", "{487232F7-92E1-43F6-89AE-DF17E2BDCF74}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VoxelGame-Client", "VoxelGame\VoxelGame-Client\VoxelGame-Client.vcxproj", "{487232F7-92E1-43F6-89AE-DF17E2BDCF74}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OGLEngine", "OGLEngine\OGLEngine.vcxproj", "{9E9CC5F1-2E1F-4134-92E1-C9A39CCC3032}"
 EndProject
@@ -13,9 +13,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Networking", "Networking\Ne
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ProjectTemplate", "ProjectTemplate\ProjectTemplate.vcxproj", "{20421B4F-2181-4F76-BA08-01490752A918}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VoxelGame-Server", "VoxelGame-Server\VoxelGame-Server.vcxproj", "{1B9296BF-3FE5-4E33-AB4E-37C340A90D61}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoxelEngine-Client-Android", "VoxelEngine-Client-Android\VoxelEngine-Client-Android.csproj", "{9B733298-E22B-4F3F-B132-A469E7E85F09}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VoxelGame-Server", "VoxelGame\VoxelGame-Server\VoxelGame-Server.vcxproj", "{1B9296BF-3FE5-4E33-AB4E-37C340A90D61}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -151,36 +149,6 @@ Global
 		{1B9296BF-3FE5-4E33-AB4E-37C340A90D61}.Release|x64.Build.0 = Release|x64
 		{1B9296BF-3FE5-4E33-AB4E-37C340A90D61}.Release|x86.ActiveCfg = Release|Win32
 		{1B9296BF-3FE5-4E33-AB4E-37C340A90D61}.Release|x86.Build.0 = Release|Win32
-		{9B733298-E22B-4F3F-B132-A469E7E85F09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9B733298-E22B-4F3F-B132-A469E7E85F09}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9B733298-E22B-4F3F-B132-A469E7E85F09}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{9B733298-E22B-4F3F-B132-A469E7E85F09}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{9B733298-E22B-4F3F-B132-A469E7E85F09}.Debug|ARM.Build.0 = Debug|Any CPU
-		{9B733298-E22B-4F3F-B132-A469E7E85F09}.Debug|ARM.Deploy.0 = Debug|Any CPU
-		{9B733298-E22B-4F3F-B132-A469E7E85F09}.Debug|ARM64.ActiveCfg = Debug|Any CPU
-		{9B733298-E22B-4F3F-B132-A469E7E85F09}.Debug|ARM64.Build.0 = Debug|Any CPU
-		{9B733298-E22B-4F3F-B132-A469E7E85F09}.Debug|ARM64.Deploy.0 = Debug|Any CPU
-		{9B733298-E22B-4F3F-B132-A469E7E85F09}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{9B733298-E22B-4F3F-B132-A469E7E85F09}.Debug|x64.Build.0 = Debug|Any CPU
-		{9B733298-E22B-4F3F-B132-A469E7E85F09}.Debug|x64.Deploy.0 = Debug|Any CPU
-		{9B733298-E22B-4F3F-B132-A469E7E85F09}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{9B733298-E22B-4F3F-B132-A469E7E85F09}.Debug|x86.Build.0 = Debug|Any CPU
-		{9B733298-E22B-4F3F-B132-A469E7E85F09}.Debug|x86.Deploy.0 = Debug|Any CPU
-		{9B733298-E22B-4F3F-B132-A469E7E85F09}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9B733298-E22B-4F3F-B132-A469E7E85F09}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9B733298-E22B-4F3F-B132-A469E7E85F09}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{9B733298-E22B-4F3F-B132-A469E7E85F09}.Release|ARM.ActiveCfg = Release|Any CPU
-		{9B733298-E22B-4F3F-B132-A469E7E85F09}.Release|ARM.Build.0 = Release|Any CPU
-		{9B733298-E22B-4F3F-B132-A469E7E85F09}.Release|ARM.Deploy.0 = Release|Any CPU
-		{9B733298-E22B-4F3F-B132-A469E7E85F09}.Release|ARM64.ActiveCfg = Release|Any CPU
-		{9B733298-E22B-4F3F-B132-A469E7E85F09}.Release|ARM64.Build.0 = Release|Any CPU
-		{9B733298-E22B-4F3F-B132-A469E7E85F09}.Release|ARM64.Deploy.0 = Release|Any CPU
-		{9B733298-E22B-4F3F-B132-A469E7E85F09}.Release|x64.ActiveCfg = Release|Any CPU
-		{9B733298-E22B-4F3F-B132-A469E7E85F09}.Release|x64.Build.0 = Release|Any CPU
-		{9B733298-E22B-4F3F-B132-A469E7E85F09}.Release|x64.Deploy.0 = Release|Any CPU
-		{9B733298-E22B-4F3F-B132-A469E7E85F09}.Release|x86.ActiveCfg = Release|Any CPU
-		{9B733298-E22B-4F3F-B132-A469E7E85F09}.Release|x86.Build.0 = Release|Any CPU
-		{9B733298-E22B-4F3F-B132-A469E7E85F09}.Release|x86.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
