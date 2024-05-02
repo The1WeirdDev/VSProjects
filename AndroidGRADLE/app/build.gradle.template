@@ -29,7 +29,7 @@ android {
     cmake {
 
       // Provides a relative path to your CMake build script.
-      path "../AndroidCMakeLists.txt"
+      path "AndroidCMakeLists.txt"
     }
   }
 

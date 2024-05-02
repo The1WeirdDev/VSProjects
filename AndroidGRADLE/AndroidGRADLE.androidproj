@@ -125,6 +125,7 @@
     <GradleTemplate Include="gradle\wrapper\gradle-wrapper.properties.template" />
   </ItemGroup>
   <ItemGroup>
+    <JavaCompile Include="AndroidCMakeLists.txt" />
     <JavaCompile Include="app\src\main\java\com\AndroidGRADLE\AndroidGRADLE.java" />
   </ItemGroup>
   <Import Project="$(AndroidTargetsPath)\Android.targets" />
