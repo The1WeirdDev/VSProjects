@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <array>
 
 #include <Networking/framework.h>
 
@@ -31,7 +32,12 @@ namespace T1WD {
 		NETWORKING_API void WriteLength();
 		NETWORKING_API int GetUsedSize() { return bit_index / 8 + 1; }
 
-		NETWORKING_API void WriteByte(unsigned char value);
+		//Maybe we can save some size in the library by having these writing functions-
+		//Maybe write only 1 2 3 or 4 bytes.
+		NETWORKING_API void WriteChar(char value);
+		NETWORKING_API void WriteUChar(unsigned char value);
+		NETWORKING_API void WriteShort(short value);
+		NETWORKING_API void WriteUShort(unsigned short value);
 		NETWORKING_API void WriteInt(int value);
 		NETWORKING_API void WriteUInt(unsigned int value);
 		NETWORKING_API void WriteBool(bool value);
@@ -39,11 +45,19 @@ namespace T1WD {
 		NETWORKING_API void WriteString(std::string& value);
 		NETWORKING_API void WriteString(std::string value);
 
-		NETWORKING_API unsigned char GetByte();
+		NETWORKING_API void WriteUCharArray(unsigned int array_size, unsigned char* array);
+		NETWORKING_API void WriteCharArray(unsigned int array_size, char* array);
+
+		NETWORKING_API char GetChar();
+		NETWORKING_API unsigned char GetUChar();
+		NETWORKING_API short GetShort();
+		NETWORKING_API unsigned short GetUShort();
 		NETWORKING_API int GetInt();
 		NETWORKING_API unsigned int GetUInt();
 		NETWORKING_API bool GetBool();
 		NETWORKING_API std::string GetString();
+		NETWORKING_API unsigned char* GetUCharArray(size_t* length);
+		NETWORKING_API char* GetCharArray(size_t* length);
 
 		NETWORKING_API unsigned char* GetData() { return data; }
 

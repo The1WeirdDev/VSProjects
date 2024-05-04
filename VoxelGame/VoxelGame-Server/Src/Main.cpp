@@ -28,7 +28,7 @@ int main(int argc, char** argv) {
 		printf("CLIENT %d CONNECTED\n", id);
 		Packet packet(500);
 		packet.WriteString((std::string("HELLO Client ") + std::to_string(id)));
-		TCPServer::SendPacket(id,&packet);
+		TCPServer::SendPacket(id, &packet);
 	};
 	TCPServer::on_client_failed_connect = [](const char* message) {
 		printf("CLIENT failed to connect. Reason %s\n", message);
@@ -38,6 +38,12 @@ int main(int argc, char** argv) {
 	};
 	TCPServer::on_packet_read = [](unsigned short id, Packet* packet, size_t bytes_transferred) {
 		std::cout << "PACKET SAID " << packet->GetString() << std::endl;
+		size_t size = 0;
+		unsigned char* data = packet->GetUCharArray(&size);
+		std::cout << "SIZE: " << size << std::endl;
+		for (int i = 0; i < size; i++) {
+			printf("%d\n", (int)data[i]);
+		}
 	};
 	TCPServer::Start(8888);
 

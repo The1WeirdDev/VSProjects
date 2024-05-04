@@ -29,11 +29,11 @@ int main(int argc, char** argv) {
 	Font::Init();
 
 	UIRenderer::Init();
-	/*
+	
 	Frame frame;
 	frame.SetSize(0.5f, 0.5f);
 	frame.screen_size_restraint = ScreenSizeRestraint::InverseAspectX;
-
+	/*
 	TextLabel text_label;
 	text_label.SetText("HELLO WORLD");
 	text_label.GenerateMesh();
@@ -54,7 +54,7 @@ int main(int argc, char** argv) {
 	client.on_packet_read = [](Packet* packet, size_t bytes_transferred) {
 		std::cout << "Packet says " << packet->GetString() << std::endl;
 	};
-	client.Connect("192.168.0.38", 8888);
+	client.Connect("192.168.0.102", 8888);
 	std::thread t{[&client]() { client.Run(); }};
 
 	Time::Init();
@@ -70,6 +70,12 @@ int main(int argc, char** argv) {
 			printf("SENDING PACKET\n");
 			Packet* packet = new Packet(500);
 			packet->WriteString("Hello Server\n");
+			unsigned char data[10];
+			data[0] = 15;
+			data[1] = 212;
+			data[2] = 255;
+			data[3] = 127;
+			packet->WriteUCharArray(10, data);
 			client.Post(packet);
 		}
 

@@ -1,17 +1,19 @@
 ﻿  pch.cpp
   dllmain.cpp
   TCPClient.cpp
-D:\Projects\C++\VSProjects\Networking\include\Networking\Packet.h(36,2): warning C4091: '__declspec(dllexport)': ignored on left of 'Packet' when no variable is declared
-D:\Projects\C++\VSProjects\Networking\include\Networking\TCP\TCPClient.h(33,2): warning C4091: '__declspec(dllexport)': ignored on left of 'TCPClient' when no variable is declared
+D:\VSProjects\Networking\include\Networking\TCP\TCPClient.h(57,3): warning C4091: '__declspec(dllexport)': ignored on left of 'T1WD::TCPClient' when no variable is declared
+  (compiling source file 'include/Networking/TCP/TCPClient.cpp')
+  
   TCPServer.cpp
-  Please define _WIN32_WINNT or _WIN32_WINDOWS appropriately. For example:
-  - add -D_WIN32_WINNT=0x0601 to the compiler command line; or
-  - add _WIN32_WINNT=0x0601 to your project's Preprocessor Definitions.
-  Assuming _WIN32_WINNT=0x0601 (i.e. Windows 7 target).
-D:\Projects\C++\VSProjects\Networking\include\Networking\Packet.h(36,2): warning C4091: '__declspec(dllexport)': ignored on left of 'Packet' when no variable is declared
-D:\Projects\C++\VSProjects\Networking\include\Networking\TCP\TcpServer.h(26,2): warning C4091: '__declspec(dllexport)': ignored on left of 'TCPServer' when no variable is declared
+D:\VSProjects\Networking\include\Networking\TCP\TcpServer.h(36,3): warning C4091: '__declspec(dllexport)': ignored on left of 'T1WD::TCPConnection' when no variable is declared
+  (compiling source file 'include/Networking/TCP/TCPServer.cpp')
+  
+D:\VSProjects\Networking\include\Networking\TCP\TcpServer.h(67,3): warning C4091: '__declspec(dllexport)': ignored on left of 'T1WD::TCPServer' when no variable is declared
+  (compiling source file 'include/Networking/TCP/TCPServer.cpp')
+  
+D:\VSProjects\Networking\include\Networking\TCP\TCPServer.cpp(87,47): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   Packet.cpp
-D:\Projects\C++\VSProjects\Networking\include\Networking\Packet.h(36,2): warning C4091: '__declspec(dllexport)': ignored on left of 'Packet' when no variable is declared
+D:\VSProjects\Networking\include\Networking\Packet.cpp(78,27): warning C4333: '>>': right shift by too large amount, data loss
   Generating Code...
-     Creating library D:\Projects\C++\VSProjects\\Libraries\Networking\Debug\x64\Networking.lib and object D:\Projects\C++\VSProjects\\Libraries\Networking\Debug\x64\Networking.exp
-  Networking.vcxproj -> D:\Projects\C++\VSProjects\Libraries\Networking\Debug\x64\Networking.dll
+     Creating library D:\VSProjects\\Libraries\Networking\Debug\x64\Networking.lib and object D:\VSProjects\\Libraries\Networking\Debug\x64\Networking.exp
+  Networking.vcxproj -> D:\VSProjects\Libraries\Networking\Debug\x64\Networking.dll

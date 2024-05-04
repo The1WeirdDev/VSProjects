@@ -37,7 +37,17 @@ namespace T1WD {
 		bit_index = bit;
 	}
 
-	void Packet::WriteByte(unsigned char value) {
+	void Packet::WriteChar(char value) {
+		int byte_pos = bit_index / 8;
+		unsigned char filled_bits = bit_index % 8;
+		unsigned char remaining = 8 - filled_bits;
+
+		data[byte_pos] |= value >> filled_bits;
+		data[byte_pos + 1] |= (value & ((1 << remaining) - 1)) << remaining;
+
+		bit_index += 8;
+	}
+	void Packet::WriteUChar(unsigned char value) {
 		int byte_pos = bit_index / 8;
 		unsigned char filled_bits = bit_index % 8;
 		unsigned char remaining = 8 - filled_bits;
@@ -47,6 +57,29 @@ namespace T1WD {
 		data[byte_pos + 1] |= (value & ((1 << remaining) - 1)) << remaining;
 
 		bit_index += 8;
+	}
+
+	void Packet::WriteShort(short value) {
+		int byte_pos = bit_index / 8;
+		unsigned char filled_bits = bit_index % 8;
+		unsigned char remaining = 8 - filled_bits;
+
+		data[byte_pos] |= value >> 16 >> filled_bits;
+		data[byte_pos + 1] |= value >> filled_bits;
+		data[byte_pos + 2] |= (value & ((1 << remaining) - 1)) << remaining;
+
+		bit_index += 16;
+	}
+	void Packet::WriteUShort(unsigned short value) {
+		int byte_pos = bit_index / 8;
+		unsigned char filled_bits = bit_index % 8;
+		unsigned char remaining = 8 - filled_bits;
+
+		data[byte_pos] |= value >> 16 >> filled_bits;
+		data[byte_pos + 1] |= value >> filled_bits;
+		data[byte_pos + 2] |= (value & ((1 << remaining) - 1)) << remaining;
+
+		bit_index += 16;
 	}
 	void Packet::WriteInt(int value) {
 		int byte_pos = bit_index / 8;
@@ -84,24 +117,37 @@ namespace T1WD {
 
 	void Packet::WriteString(const char* value) {
 		for (int i = 0; i < strlen(value); i++) {
-			WriteByte((unsigned char)value[i]);
+			WriteUChar((unsigned char)value[i]);
 		}
-		WriteByte(0x00);
+		WriteUChar(0x00);
 	}
 	void Packet::WriteString(std::string& value) {
 		for (int i = 0; i < value.size(); i++) {
-			WriteByte((unsigned char)value[i]);
+			WriteUChar((unsigned char)value[i]);
 		}
-		WriteByte(0x00);
+		WriteUChar(0x00);
 	}
 	void Packet::WriteString(std::string value) {
 		for (int i = 0; i < value.size(); i++) {
-			WriteByte((unsigned char)value[i]);
+			WriteChar((unsigned char)value[i]);
 		}
-		WriteByte(0x00);
+		WriteChar(0x00);
 	}
 
-	unsigned char Packet::GetByte() {
+	void Packet::WriteUCharArray(unsigned int array_size, unsigned char* array) {
+		WriteUInt(array_size);
+		for (unsigned short i = 0; i < array_size; i++) {
+			WriteUChar(array[i]);
+		}
+	}
+	void Packet::WriteCharArray(unsigned int array_size, char* array) {
+		WriteUInt(array_size);
+		for (unsigned short i = 0; i < array_size; i++) {
+			WriteUChar(array[i]);
+		}
+	}
+
+	char Packet::GetChar() {
 #ifdef NETWORKING_READ_SAFE
 		if (byte_pos / 8 + 2 <= packet_size) {
 			throw std::range_error("Unable to read byte. Not enough bytes left to read.\n");
@@ -113,9 +159,65 @@ namespace T1WD {
 		unsigned char filled_bits = bit_index % 8;
 		unsigned char remaining = 8 - filled_bits;
 
-		int value = data[byte_pos] << filled_bits;
+		char value = data[byte_pos] << filled_bits;
 		value |= (data[byte_pos + 1] >> (8 - filled_bits));
 		bit_index += 8;
+		return value;
+	}
+	
+	unsigned char Packet::GetUChar() {
+#ifdef NETWORKING_READ_SAFE
+		if (byte_pos / 8 + 2 <= packet_size) {
+			throw std::range_error("Unable to read unsigned byte. Not enough bytes left to read.\n");
+			return 0;
+		}
+#endif
+		//A byte is 1 byte/8 bits
+		int byte_pos = bit_index / 8;
+		unsigned char filled_bits = bit_index % 8;
+		unsigned char remaining = 8 - filled_bits;
+
+		unsigned char value = data[byte_pos] << filled_bits;
+		value |= (data[byte_pos + 1] >> (8 - filled_bits));
+		bit_index += 8;
+		return value;
+		}
+
+
+	short Packet::GetShort() {
+#ifdef NETWORKING_READ_SAFE
+		if (byte_pos / 8 + 3 <= packet_size) {
+			throw std::range_error("Unable to read short. Not enough bytes left to read.\n");
+			return 0;
+		}
+#endif
+		//An short is 2 bytes
+		int byte_pos = bit_index / 8;
+		unsigned char filled_bits = bit_index % 8;
+		unsigned char remaining = 8 - filled_bits;
+
+		short value = (data[byte_pos]) << 16 << filled_bits;
+		value |= data[byte_pos + 1] << filled_bits;
+		value |= (data[byte_pos + 4] >> (8 - filled_bits));
+		bit_index += 16;
+		return value;
+	}
+	unsigned short Packet::GetUShort() {
+#ifdef NETWORKING_READ_SAFE
+		if (byte_pos / 8 + 3 <= packet_size) {
+			throw std::range_error("Unable to read unsigned. Not enough bytes left to read.\n");
+			return 0;
+		}
+#endif
+		//An unsigned short is 2 bytes
+		unsigned byte_pos = bit_index / 8;
+		unsigned char filled_bits = bit_index % 8;
+		unsigned char remaining = 8 - filled_bits;
+
+		int value = (data[byte_pos]) << 16 << filled_bits;
+		value |= data[byte_pos + 1] << filled_bits;
+		value |= (data[byte_pos + 4] >> (8 - filled_bits));
+		bit_index += 16;
 		return value;
 	}
 	int Packet::GetInt() {
@@ -179,11 +281,31 @@ namespace T1WD {
 		std::string string;
 		unsigned char byte = 0x00;
 		while (true) {
-			byte = GetByte();
+			byte = GetChar();
 			if (byte == 0x00 || bit_index / 8 >= packet_size)break;
 			string = string + (char)byte;
 		}
 
 		return string;
+	}
+	unsigned char* Packet::GetUCharArray(size_t* length) {
+		unsigned int size = GetUInt();
+		*length = size;
+		unsigned char* data = new unsigned char[size];
+		for (unsigned int i = 0; i < size; i++) {
+			data[i] = GetUChar();
+		}
+
+		return data;
+	}
+	char* Packet::GetCharArray(size_t* length) {
+		unsigned int size = GetUInt();
+		*length = size;
+		char* data = new char[size];
+		for (unsigned int i = 0; i < size; i++) {
+			data[i] = GetChar();
+		}
+
+		return data;
 	}
 }

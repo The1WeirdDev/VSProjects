@@ -1,16 +1,83 @@
 ﻿  Font.cpp
+D:\VSProjects\OGLEngine\src\OGLEngine\OGLEngine.h(4,1): warning C4005: 'OGLENGINE_STATIC': macro redefinition
+  (compiling source file 'Src/OGLEngine/Display/Font/Font.cpp')
+  D:\VSProjects\OGLEngine\src\OGLEngine\OGLEngine.h(4,1):
+  'OGLENGINE_STATIC' previously declared on the command line
+  
+  Texture.cpp
+D:\VSProjects\OGLEngine\src\OGLEngine\OGLEngine.h(4,1): warning C4005: 'OGLENGINE_STATIC': macro redefinition
+  (compiling source file 'Src/OGLEngine/Display/Texture.cpp')
+  D:\VSProjects\OGLEngine\src\OGLEngine\OGLEngine.h(4,1):
+  'OGLENGINE_STATIC' previously declared on the command line
+  
   Input.cpp
+D:\VSProjects\OGLEngine\src\OGLEngine\OGLEngine.h(4,1): warning C4005: 'OGLENGINE_STATIC': macro redefinition
+  (compiling source file 'Src/OGLEngine/Input/Input.cpp')
+  D:\VSProjects\OGLEngine\src\OGLEngine\OGLEngine.h(4,1):
+  'OGLENGINE_STATIC' previously declared on the command line
+  
   UIRenderer.cpp
+D:\VSProjects\OGLEngine\src\OGLEngine\OGLEngine.h(4,1): warning C4005: 'OGLENGINE_STATIC': macro redefinition
+  (compiling source file 'Src/OGLEngine/Display/Rendering/UIRenderer.cpp')
+  D:\VSProjects\OGLEngine\src\OGLEngine\OGLEngine.h(4,1):
+  'OGLENGINE_STATIC' previously declared on the command line
+  
   LibraryManager.cpp
+D:\VSProjects\OGLEngine\Src\OGLEngine\OGLEngine.h(4,1): warning C4005: 'OGLENGINE_STATIC': macro redefinition
+  (compiling source file 'Src/OGLEngine/LibraryManager.cpp')
+  D:\VSProjects\OGLEngine\Src\OGLEngine\OGLEngine.h(4,1):
+  'OGLENGINE_STATIC' previously declared on the command line
+  
   dllmain.cpp
   Display.cpp
+D:\VSProjects\OGLEngine\src\OGLENGINE\OGLEngine.h(4,1): warning C4005: 'OGLENGINE_STATIC': macro redefinition
+  (compiling source file 'Src/OGLEngine/Display/Display.cpp')
+  D:\VSProjects\OGLEngine\src\OGLENGINE\OGLEngine.h(4,1):
+  'OGLENGINE_STATIC' previously declared on the command line
+  
   UITexturedMesh.cpp
+D:\VSProjects\OGLEngine\src\OGLEngine\OGLEngine.h(4,1): warning C4005: 'OGLENGINE_STATIC': macro redefinition
+  (compiling source file 'Src/OGLEngine/Display/Mesh/UITexturedMesh.cpp')
+  D:\VSProjects\OGLEngine\src\OGLEngine\OGLEngine.h(4,1):
+  'OGLENGINE_STATIC' previously declared on the command line
+  
   Shader.cpp
+D:\VSProjects\OGLEngine\src\OGLEngine\OGLEngine.h(4,1): warning C4005: 'OGLENGINE_STATIC': macro redefinition
+  (compiling source file 'Src/OGLEngine/Display/Shader/Shader.cpp')
+  D:\VSProjects\OGLEngine\src\OGLEngine\OGLEngine.h(4,1):
+  'OGLENGINE_STATIC' previously declared on the command line
+  
   OGLEngine.cpp
+D:\VSProjects\OGLEngine\Src\OGLEngine\OGLEngine.h(4,1): warning C4005: 'OGLENGINE_STATIC': macro redefinition
+  (compiling source file 'Src/OGLEngine/OGLEngine.cpp')
+  D:\VSProjects\OGLEngine\Src\OGLEngine\OGLEngine.h(4,1):
+  'OGLENGINE_STATIC' previously declared on the command line
+  
   Time.cpp
+D:\VSProjects\OGLEngine\src\OGLEngine\OGLEngine.h(4,1): warning C4005: 'OGLENGINE_STATIC': macro redefinition
+  (compiling source file 'Src/OGLEngine/Time/Time.cpp')
+  D:\VSProjects\OGLEngine\src\OGLEngine\OGLEngine.h(4,1):
+  'OGLENGINE_STATIC' previously declared on the command line
+  
   UI.cpp
+D:\VSProjects\OGLEngine\src\OGLEngine\OGLEngine.h(4,1): warning C4005: 'OGLENGINE_STATIC': macro redefinition
+  (compiling source file 'Src/OGLEngine/UI/UI.cpp')
+  D:\VSProjects\OGLEngine\src\OGLEngine\OGLEngine.h(4,1):
+  'OGLENGINE_STATIC' previously declared on the command line
+  
   Frame.cpp
+D:\VSProjects\OGLEngine\src\OGLEngine\OGLEngine.h(4,1): warning C4005: 'OGLENGINE_STATIC': macro redefinition
+  (compiling source file 'Src/OGLEngine/UI/UIS/Frame.cpp')
+  D:\VSProjects\OGLEngine\src\OGLEngine\OGLEngine.h(4,1):
+  'OGLENGINE_STATIC' previously declared on the command line
+  
   pch.cpp
   TextLabel.cpp
+D:\VSProjects\OGLEngine\src\OGLEngine\OGLEngine.h(4,1): warning C4005: 'OGLENGINE_STATIC': macro redefinition
+  (compiling source file 'Src/OGLEngine/UI/UIS/TextLabel.cpp')
+  D:\VSProjects\OGLEngine\src\OGLEngine\OGLEngine.h(4,1):
+  'OGLENGINE_STATIC' previously declared on the command line
+  
   Generating Code...
-LINK : fatal error LNK1181: cannot open input file 'freetype.lib'
+freetype.lib(freetype.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in opengl32.lib(OPENGL32.dll); second definition ignored
+  OGLEngine.vcxproj -> D:\VSProjects\Libraries\OGLEngine\Debug\x64\OGLEngine.lib

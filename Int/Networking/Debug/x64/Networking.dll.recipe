@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>D:\Projects\C++\VSProjects\Libraries\Networking\Debug\x64\Networking.dll</FullPath>
+      <FullPath>D:\VSProjects\Libraries\Networking\Debug\x64\Networking.dll</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />
