@@ -6,6 +6,7 @@
 #include <system_error>
 #include <string>
 #include <vector>
+#include <thread>
 
 #include <Networking/framework.h>
 
@@ -22,14 +23,16 @@ namespace T1WD {
 
 		void NETWORKING_API Post(Packet* packet);
 
-		//Run in seperate thread
+		//Run in separate thread
 		void NETWORKING_API Run();
+
+		//Can be run from any thread
 		void NETWORKING_API Stop();
 
 #pragma region CALLBACKS
-		std::function<void(std::string) > on_connect_failed;
+		std::function<void(std::error_code) > on_connect_failed;
 		std::function<void()> on_connected;
-		std::function<void()> on_disconnected;
+		std::function<void(std::error_code)> on_disconnected;
 
 		std::function<void(Packet*, size_t)> on_packet_read;
 #pragma endregion
@@ -39,10 +42,16 @@ namespace T1WD {
 		bool is_attempting_connect = false;
 		bool is_connected = false;
 		bool is_disconnecting = false;
+		bool is_running = false;
+		bool created_thread = false;
 	private:
-		std::array<unsigned char, NETWORKING_PACKET_SIZE> read_buffer;
+		std::thread thread;
+		std::array<unsigned char, NETWORKING_MAX_PACKET_SIZE> read_buffer;
+		void Close(std::error_code ec = std::error_code(0, std::system_category()));
 		void AsyncRead();
 		void AsyncWrite();
+
+		void FreeMessages();
 
 		bool IsValidMessage();
 

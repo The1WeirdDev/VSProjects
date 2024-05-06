@@ -28,7 +28,7 @@ namespace T1WD {
 
 		unsigned short id = 0;
 	private:
-		std::array<unsigned char, NETWORKING_PACKET_SIZE> read_buffer;
+		std::array<unsigned char, NETWORKING_MAX_PACKET_SIZE> read_buffer;
 		std::vector<Message> messages;
 
 		bool is_writing = false;

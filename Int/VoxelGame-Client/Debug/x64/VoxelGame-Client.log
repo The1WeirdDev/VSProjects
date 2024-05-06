@@ -1,11 +1,3 @@
-﻿  Main.cpp
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
-  (compiling source file 'Src/Main.cpp')
-  D:\VSProjects\Libraries\GLFW3.4\include\x64\GLFW\glfw3.h(123,1):
-  see previous definition of 'APIENTRY'
-  
-D:\VSProjects\Networking\include\Networking\TCP\TCPClient.h(57,3): warning C4091: '__declspec(dllimport)': ignored on left of 'T1WD::TCPClient' when no variable is declared
-  (compiling source file 'Src/Main.cpp')
-  
-  VoxelGame-Client.vcxproj -> D:\VSProjects\Build\VoxelGame-Client\Debug\x64\VoxelGame-Client.exe
-  0 File(s) copied
+﻿  VoxelGame-Client.vcxproj -> D:\VSProjects\Build\VoxelGame-Client\Debug\x64\VoxelGame-Client.exe
+  D:\VSProjects\/Libraries\Networking\Debug\x64\Networking.dll
+  1 File(s) copied

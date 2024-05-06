@@ -19,7 +19,6 @@
 
 using namespace T1WD;
 using asio::ip::tcp;
-
 int main(int argc, char** argv) {
 	LibraryManager::InitializeGLFW();
 
@@ -29,6 +28,7 @@ int main(int argc, char** argv) {
 	Font::Init();
 
 	UIRenderer::Init();
+
 	
 	Frame frame;
 	frame.SetSize(0.5f, 0.5f);
@@ -43,19 +43,25 @@ int main(int argc, char** argv) {
 	client.on_connected = []() {
 		printf("Connected to server.\n");
 	};
-	client.on_connect_failed = [](std::string message) {
+	client.on_connect_failed = [](std::error_code error) {
 		printf("Failed to connect to server. Reason ");
-		std::cout << message << std::endl;
+		std::cout << error.message() << std::endl;
 	};
-	client.on_disconnected = []() {
-		printf("Disconnected from server.\n");
+	client.on_disconnected = [](std::error_code error) {
+		printf("Disconnected from server.");
+
+		if (error)printf(" Reason %s", error.message());
+
+		printf("\n");
 	};
 
 	client.on_packet_read = [](Packet* packet, size_t bytes_transferred) {
-		std::cout << "Packet says " << packet->GetString() << std::endl;
+		packet->GetString();
+		std::cout << "Packet says " << packet->GetFloat() << std::endl;
 	};
-	client.Connect("192.168.0.102", 8888);
-	std::thread t{[&client]() { client.Run(); }};
+	const char* ip = "192.168.0.38";
+	client.Connect(ip, 8888);
+	//std::thread t{ [&client]() { client.Run(); } };
 
 	Time::Init();
 	
@@ -67,16 +73,28 @@ int main(int argc, char** argv) {
 		Display::PollEvents();
 
 		if (Input::IsKeyPressed(GLFW_KEY_R)) {
-			printf("SENDING PACKET\n");
-			Packet* packet = new Packet(500);
-			packet->WriteString("Hello Server\n");
-			unsigned char data[10];
-			data[0] = 15;
-			data[1] = 212;
-			data[2] = 255;
-			data[3] = 127;
-			packet->WriteUCharArray(10, data);
-			client.Post(packet);
+			if (client.is_connected) {
+
+				printf("SENDING PACKET\n");
+				Packet* packet = new Packet(500);
+				packet->WriteString("Hello Server\n");
+				unsigned char data[10];
+				data[0] = 15;
+				data[1] = 212;
+				data[2] = 255;
+				data[3] = 127;
+				packet->WriteUCharArray(10, data);
+				client.Post(packet);
+			}
+		}
+
+		if (Input::IsKeyPressed(GLFW_KEY_G)) {
+			if (client.is_connected)client.Disconnect();
+			//client.Connect(ip, 8888);
+		}
+
+		if (Input::IsKeyPressed(GLFW_KEY_H)) {
+			client.Connect(ip, 8888);
 		}
 
 		//std::cout << (Input::IsKeyDown(GLFW_KEY_W) ? "true" : "false") << std::endl;
@@ -95,6 +113,6 @@ int main(int argc, char** argv) {
 	LibraryManager::TerminateGLFW();
 	client.Disconnect();
 	client.Stop();
-	t.join();
+	//t.join();
 	printf("Exited Program\n");
 }

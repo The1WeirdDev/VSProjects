@@ -108,6 +108,25 @@ namespace T1WD {
 
 		bit_index += 32;
 	}
+	void Packet::WriteFloat(float value) {
+		int byte_pos = bit_index / 8;
+		unsigned char filled_bits = bit_index % 8;
+		unsigned char remaining = 8 - filled_bits;
+
+		union hello {
+			float input;
+			int val;
+		};
+		hello f;
+		f.input = value;
+		data[byte_pos] |= (f.val >> 24) >> filled_bits;
+		data[byte_pos + 1] |= (f.val >> 16) >> filled_bits;
+		data[byte_pos + 2] |= (f.val >> 8) >> filled_bits;
+		data[byte_pos + 3] |= f.val >> filled_bits;
+		data[byte_pos + 4] |= (f.val & ((1 << remaining) - 1)) << remaining;
+
+		bit_index += 32;
+	}
 
 	void Packet::WriteBool(bool value) {
 		unsigned char index = bit_index % 8;
@@ -136,14 +155,14 @@ namespace T1WD {
 
 	void Packet::WriteUCharArray(unsigned int array_size, unsigned char* array) {
 		WriteUInt(array_size);
-		for (unsigned short i = 0; i < array_size; i++) {
+		for (size_t i = 0; i < array_size; i++) {
 			WriteUChar(array[i]);
 		}
 	}
 	void Packet::WriteCharArray(unsigned int array_size, char* array) {
 		WriteUInt(array_size);
-		for (unsigned short i = 0; i < array_size; i++) {
-			WriteUChar(array[i]);
+		for (size_t i = 0; i < array_size; i++) {
+			WriteChar(array[i]);
 		}
 	}
 
@@ -158,7 +177,6 @@ namespace T1WD {
 		int byte_pos = bit_index / 8;
 		unsigned char filled_bits = bit_index % 8;
 		unsigned char remaining = 8 - filled_bits;
-
 		char value = data[byte_pos] << filled_bits;
 		value |= (data[byte_pos + 1] >> (8 - filled_bits));
 		bit_index += 8;
@@ -249,17 +267,45 @@ namespace T1WD {
 		}
 #endif
 		//An integer is 4 bytes
-		unsigned char remaining = bit_index % 8;
-		unsigned char filled_bits = 8 - remaining;
 		int byte_pos = bit_index / 8;
+		unsigned char filled_bits = bit_index % 8;
+		unsigned char remaining = 8 - filled_bits;
 
-		unsigned int value = (data[byte_pos] & ((1 << (remaining)) - 1)) << 24;
+		unsigned int value = (data[byte_pos]) << 24 << filled_bits;
 		value |= (data[byte_pos + 1] << 16) << filled_bits;
 		value |= (data[byte_pos + 2] << 8) << filled_bits;
 		value |= (data[byte_pos + 3] << filled_bits);
-		value |= (data[byte_pos + 4] >> filled_bits);
+		value |= (data[byte_pos + 4] >> (8 - filled_bits));
 		bit_index += 32;
 		return value;
+	}
+
+	float Packet::GetFloat() {
+#ifdef NETWORKING_READ_SAFE
+		if (byte_pos / 8 + 5 <= packet_size) {
+			throw std::range_error("Unable to read float. Not enough bytes left to read.\n");
+			return 0;
+		}
+#endif
+		//An float is 4 bytes
+		int byte_pos = bit_index / 8;
+		unsigned char filled_bits = bit_index % 8;
+		unsigned char remaining = 8 - filled_bits;
+
+		int value = (data[byte_pos]) << 24 << filled_bits;
+		value |= (data[byte_pos + 1] << 16) << filled_bits;
+		value |= (data[byte_pos + 2] << 8) << filled_bits;
+		value |= (data[byte_pos + 3] << filled_bits);
+		value |= (data[byte_pos + 4] >> (8 - filled_bits));
+		bit_index += 32;
+		union hello {
+			int input;
+			float val;
+		};
+
+		hello f;
+		f.input = value;
+		return f.val;
 	}
 
 

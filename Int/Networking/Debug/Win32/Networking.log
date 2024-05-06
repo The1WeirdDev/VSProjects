@@ -1,6 +1,23 @@
-﻿  TCPServer.cpp
-D:\Projects\C++\VSProjects\Networking\include\Networking\TCP\TcpServer.h(36,3): warning C4091: '__declspec(dllexport)': ignored on left of 'T1WD::TCPConnection' when no variable is declared
-D:\Projects\C++\VSProjects\Networking\include\Networking\TCP\TcpServer.h(67,3): warning C4091: '__declspec(dllexport)': ignored on left of 'T1WD::TCPServer' when no variable is declared
-D:\Projects\C++\VSProjects\Networking\include\Networking\TCP\TCPServer.cpp(17,21): warning C4018: '<': signed/unsigned mismatch
-     Creating library D:\Projects\C++\VSProjects\\Libraries\Networking\Debug\Win32\Networking.lib and object D:\Projects\C++\VSProjects\\Libraries\Networking\Debug\Win32\Networking.exp
-  Networking.vcxproj -> D:\Projects\C++\VSProjects\Libraries\Networking\Debug\Win32\Networking.dll
+﻿  pch.cpp
+  dllmain.cpp
+  TCPClient.cpp
+F:\VSProjects\Networking\include\Networking\TCP\TCPClient.h(66,3): warning C4091: '__declspec(dllexport)': ignored on left of 'T1WD::TCPClient' when no variable is declared
+  (compiling source file 'include/Networking/TCP/TCPClient.cpp')
+  
+F:\VSProjects\Networking\include\Networking\TCP\TCPClient.cpp(134,21): warning C4018: '<': signed/unsigned mismatch
+  TCPServer.cpp
+F:\VSProjects\Networking\include\Networking\TCP\TcpServer.h(36,3): warning C4091: '__declspec(dllexport)': ignored on left of 'T1WD::TCPConnection' when no variable is declared
+  (compiling source file 'include/Networking/TCP/TCPServer.cpp')
+  
+F:\VSProjects\Networking\include\Networking\TCP\TcpServer.h(67,3): warning C4091: '__declspec(dllexport)': ignored on left of 'T1WD::TCPServer' when no variable is declared
+  (compiling source file 'include/Networking/TCP/TCPServer.cpp')
+  
+F:\VSProjects\Networking\include\Networking\TCP\TCPServer.cpp(17,21): warning C4018: '<': signed/unsigned mismatch
+  Packet.cpp
+F:\VSProjects\Networking\include\Networking\Packet.cpp(78,27): warning C4333: '>>': right shift by too large amount, data loss
+F:\VSProjects\Networking\include\Networking\Packet.cpp(138,21): warning C4018: '<': signed/unsigned mismatch
+F:\VSProjects\Networking\include\Networking\Packet.cpp(144,21): warning C4018: '<': signed/unsigned mismatch
+F:\VSProjects\Networking\include\Networking\Packet.cpp(150,21): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+     Creating library F:\VSProjects\\Libraries\Networking\Debug\Win32\Networking.lib and object F:\VSProjects\\Libraries\Networking\Debug\Win32\Networking.exp
+  Networking.vcxproj -> F:\VSProjects\Libraries\Networking\Debug\Win32\Networking.dll

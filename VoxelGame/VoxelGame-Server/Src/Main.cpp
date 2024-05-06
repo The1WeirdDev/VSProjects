@@ -26,8 +26,9 @@ int main(int argc, char** argv) {
 	};
 	TCPServer::on_client_connected = [](unsigned short id) {
 		printf("CLIENT %d CONNECTED\n", id);
-		Packet packet(500);
+		Packet packet;
 		packet.WriteString((std::string("HELLO Client ") + std::to_string(id)));
+		packet.WriteFloat(151.213123123);
 		TCPServer::SendPacket(id, &packet);
 	};
 	TCPServer::on_client_failed_connect = [](const char* message) {

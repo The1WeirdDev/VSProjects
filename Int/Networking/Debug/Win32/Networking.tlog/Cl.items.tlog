@@ -1,5 +1,5 @@
-D:\Projects\C++\VSProjects\Networking\include\Networking\dllmain.cpp;D:\Projects\C++\VSProjects\Int\Networking\Debug\Win32\dllmain.obj
-D:\Projects\C++\VSProjects\Networking\include\Networking\pch.cpp;D:\Projects\C++\VSProjects\Int\Networking\Debug\Win32\pch.obj
-D:\Projects\C++\VSProjects\Networking\include\Networking\TCP\TCPClient.cpp;D:\Projects\C++\VSProjects\Int\Networking\Debug\Win32\TCPClient.obj
-D:\Projects\C++\VSProjects\Networking\include\Networking\TCP\TCPServer.cpp;D:\Projects\C++\VSProjects\Int\Networking\Debug\Win32\TCPServer.obj
-D:\Projects\C++\VSProjects\Networking\include\Networking\Packet.cpp;D:\Projects\C++\VSProjects\Int\Networking\Debug\Win32\Packet.obj
+F:\VSProjects\Networking\include\Networking\dllmain.cpp;F:\VSProjects\Int\Networking\Debug\Win32\dllmain.obj
+F:\VSProjects\Networking\include\Networking\pch.cpp;F:\VSProjects\Int\Networking\Debug\Win32\pch.obj
+F:\VSProjects\Networking\include\Networking\TCP\TCPClient.cpp;F:\VSProjects\Int\Networking\Debug\Win32\TCPClient.obj
+F:\VSProjects\Networking\include\Networking\TCP\TCPServer.cpp;F:\VSProjects\Int\Networking\Debug\Win32\TCPServer.obj
+F:\VSProjects\Networking\include\Networking\Packet.cpp;F:\VSProjects\Int\Networking\Debug\Win32\Packet.obj

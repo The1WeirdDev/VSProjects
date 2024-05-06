@@ -1,6 +1,12 @@
 ﻿  Main.cpp
-D:\Projects\C++\VSProjects\Networking\include\Networking\TCP\TCPServer.h(36,3): warning C4091: '__declspec(dllimport)': ignored on left of 'T1WD::TCPConnection' when no variable is declared
-D:\Projects\C++\VSProjects\Networking\include\Networking\TCP\TCPServer.h(67,3): warning C4091: '__declspec(dllimport)': ignored on left of 'T1WD::TCPServer' when no variable is declared
-  VoxelGame-Server.vcxproj -> D:\Projects\C++\VSProjects\Build\VoxelGame-Server\Debug\Win32\VoxelGame-Server.exe
-  D:\Projects\C++\VSProjects\/Libraries\Networking\Debug\Win32\Networking.dll
+F:\VSProjects\Networking\include\Networking\TCP\TCPServer.h(36,3): warning C4091: '__declspec(dllimport)': ignored on left of 'T1WD::TCPConnection' when no variable is declared
+  (compiling source file 'Src/Main.cpp')
+  
+F:\VSProjects\Networking\include\Networking\TCP\TCPServer.h(67,3): warning C4091: '__declspec(dllimport)': ignored on left of 'T1WD::TCPServer' when no variable is declared
+  (compiling source file 'Src/Main.cpp')
+  
+F:\VSProjects\VoxelGame\VoxelGame-Server\Src\Main.cpp(31,21): warning C4305: 'argument': truncation from 'double' to 'float'
+F:\VSProjects\VoxelGame\VoxelGame-Server\Src\Main.cpp(45,21): warning C4018: '<': signed/unsigned mismatch
+  VoxelGame-Server.vcxproj -> F:\VSProjects\Build\VoxelGame-Server\Debug\Win32\VoxelGame-Server.exe
+  F:\VSProjects\/Libraries\Networking\Debug\Win32\Networking.dll
   1 File(s) copied
