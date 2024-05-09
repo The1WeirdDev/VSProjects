@@ -1,6 +1,9 @@
 .vs/
 Build/
 Int/
+.workspace/
 .vs/Projects/
 x64/
-ProjectTemplate/
+x86/
+ARM64/
+ARM/
