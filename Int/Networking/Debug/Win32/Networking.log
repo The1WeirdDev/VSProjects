@@ -1,6 +1,0 @@
-﻿  TCPClient.cpp
-D:\VSProjects\Networking\include\Networking\TCP\TCPClient.h(69,3): warning C4091: '__declspec(dllexport)': ignored on left of 'T1WD::TCPClient' when no variable is declared
-  (compiling source file 'include/Networking/TCP/TCPClient.cpp')
-  
-D:\VSProjects\Networking\include\Networking\TCP\TCPClient.cpp(134,21): warning C4018: '<': signed/unsigned mismatch
-  Networking.vcxproj -> D:\VSProjects\Libraries\Networking\Debug\Win32\Networking.dll
