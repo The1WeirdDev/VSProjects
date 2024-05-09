@@ -10,23 +10,22 @@ using asio::ip::tcp;
 
 namespace T1WD {
 #pragma region TCPConnection
+	std::mutex TCPConnection::mutex;
+
 	TCPConnection::TCPConnection(void* socket) {
 		this->socket = socket;
 	}
 	TCPConnection::~TCPConnection() {
-		for (int i = 0; i < messages.size(); i++) {
-			//if(messages[i]->)
-			//TODO: Delete messages if we decide to send them like this way(TYLER PLEASE DONT)
-		}
-	}
+		//This gets called after Disconnect()
 
+	}
 	void TCPConnection::Disconnect() {
 		std::error_code ec;
 		((tcp::socket*)socket)->close(ec);
 
 		if (ec) {
 			//Process Error
-			printf("Error closing socket\n");
+			//printf("Error closing socket\n");
 		}
 		try {
 			delete ((tcp::socket*)socket);
@@ -38,42 +37,51 @@ namespace T1WD {
 	}
 	void TCPConnection::AsyncRead() {
 		//socket->async_read_some(asio::buffer(this->read_buffer, NETWORKING_PACKET_SIZE), std::bind(&TCPClient::OnRead, shared_from_this(), std::placeholders::_1, std::placeholders::_2));
-
+		read_buffer.fill(0);
 		((tcp::socket*)socket)->async_read_some(asio::buffer(this->read_buffer, this->read_buffer.size()), [this](asio::error_code ec, size_t bytes_transferred) {
 			OnRead(ec, bytes_transferred);																																		
 		});
 	}
 	void TCPConnection::Post(Packet* packet, bool delete_packet_data) {
 		packet->WriteLength();
-		messages.push_back(Message(packet, delete_packet_data));
 
+		std::lock_guard<std::mutex> guard(mutex);
+		messages.push_back(Message(packet, delete_packet_data));
 		if (is_writing == false)
 			AsyncWrite();
 	}
-	bool TCPConnection::IsValidMessage() {
-		if (messages.size() < 1) return false;
+	bool TCPConnection::NoValidMessages() {
+		while (true) {
+			if (messages.size() < 1) {
+				return false;
+			}
 
-		if (messages[0].packet->GetData() == nullptr)return false;
+			if (messages[0].packet == nullptr) {
+				messages.erase(messages.begin());
+				continue;
+			}
 
-		return true;
+			if (messages[0].packet->GetData() == nullptr) {
+				messages.erase(messages.begin());
+				continue;
+			}
+
+			return true;
+		}
 	}
 	void TCPConnection::AsyncWrite() {
-		is_writing = true;
-		while (!IsValidMessage() && messages.size() > 0) {
-			messages.erase(messages.begin());
-		}
-
-		if (messages.size() < 1) return;
+		is_writing = NoValidMessages();
+		if (!is_writing)return;
 
 		Packet* packet = messages[0].packet;
-		//unsigned char* data = packet->GetData();
-		asio::async_write(*((tcp::socket*)socket), asio::buffer(packet->GetData(), packet->GetUsedSize()), [this, data = packet->GetData(),delete_data = messages[0].delete_packet_data](const asio::error_code& error, std::size_t bytes_transferred) {
+		bool delete_data = messages[0].delete_packet;
+
+		asio::async_write(*((tcp::socket*)socket), asio::buffer(packet->GetData(), packet->GetUsedSize()), [this, data = packet, delete_data](const asio::error_code& error, std::size_t bytes_transferred) {
 			if (delete_data) {
-				printf("Deleting packet data\n");
 				delete data;
 			}
 			OnWrite(error, bytes_transferred);
-			});
+		});
 	}
 	void TCPConnection::OnRead(const std::error_code& error, std::size_t bytes_transferred) {
 		if (error) {
@@ -84,32 +92,48 @@ namespace T1WD {
 		/*
 		We will create a new packet and destroy it but not its contents because its contents is the read buffer
 		*/
-		Packet* packet = new Packet(read_buffer.size(), read_buffer.data());
-		int length = packet->GetInt();
-		if (TCPServer::on_packet_read)TCPServer::on_packet_read(id, packet, bytes_transferred);
+		//Packet* packet = new Packet(read_buffer.size(), read_buffer.data());
+		//int length = packet->GetInt();
+		//if (TCPServer::on_packet_read)TCPServer::on_packet_read(id, packet, bytes_transferred);
 
-		AsyncRead();
+		//AsyncRead();
+		unsigned int offset = 0;
+
+		while (true) {
+			if (bytes_transferred < 4 || bytes_transferred > NETWORKING_MAX_PACKET_SIZE) {
+				AsyncRead();
+				break;
+			}
+
+			Packet packet(bytes_transferred, this->read_buffer.data() + offset);
+			int length = packet.GetInt() + 1;
+			if (length < 4 || length > NETWORKING_MAX_PACKET_SIZE) {
+				AsyncRead();
+				return;
+			}
+			if (TCPServer::on_packet_read)TCPServer::on_packet_read(id, &packet, bytes_transferred);
+
+			bytes_transferred -= length;
+		}
 	}
 
 	void TCPConnection::OnWrite(const std::error_code& error, std::size_t bytes_transferred) {
 		if (error) {
 			printf("Error writing to tcp clients.\n");
+			TCPServer::OnDisconnect(this);
+			return;
 		}
 		else {
 			printf("Transferred %d bytes.\n", (int)bytes_transferred);
 		}
 		messages.erase(messages.begin());
-		if (messages.size() > 0)
-			AsyncWrite();
-		else
-			is_writing = false;
+		AsyncWrite();
 	}
 
 #pragma endregion
 	int TCPServer::port = 8888;
 	unsigned short TCPServer::max_players = 20;
 	std::map<unsigned short, TCPConnection*> TCPServer::connections;
-
 	void* TCPServer::io_context;
 	void* TCPServer::acceptor;
 	void* TCPServer::socket;
@@ -154,6 +178,14 @@ namespace T1WD {
 	void TCPServer::SendPacket(unsigned short id, Packet* packet, bool delete_packet_data) {
 		std::map<unsigned short, TCPConnection*>::iterator connection = connections.find(id);
 		if (connection != connections.end()) {
+			connection->second->Post(packet, delete_packet_data);
+		}
+	}
+
+	void TCPServer::SendPacket(Packet* packet, bool delete_packet_data) {
+		std::map<unsigned short, TCPConnection*>::iterator connection;
+		for (connection = connections.begin(); connection != connections.end(); connection++) {
+
 			connection->second->Post(packet, delete_packet_data);
 		}
 	}

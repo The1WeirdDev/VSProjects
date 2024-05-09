@@ -132,24 +132,17 @@ namespace T1WD {
 
 	void TCPClient::FreeMessages() {
 		for (int i = 0; i < messages.size(); i++) {
-			if (messages[i] == nullptr)continue;
-			unsigned char* data = messages[i]->GetData();
+			if (messages[i].packet == nullptr)continue;
+			unsigned char* data = messages[i].packet->GetData();
 			if (data == nullptr)continue;
 			delete data;
+			delete messages[i].packet;
 		}
-	}
-
-	void TCPClient::Post(Packet* packet) {
-		packet->WriteLength();
-		messages.push_back(packet);
-
-		if (is_writing == false)
-			AsyncWrite();
 	}
 
 	//#ifdef NETWORKING_EXPORTS
 	void TCPClient::AsyncRead() {
-
+		read_buffer.fill(0);
 		((tcp::socket*)socket)->async_read_some(asio::buffer(this->read_buffer.data(), this->read_buffer.size()), [this](asio::error_code ec, size_t bytes_transferred) {
 			if (!is_disconnecting && is_connected) {
 				OnRead(ec, bytes_transferred);
@@ -165,56 +158,88 @@ namespace T1WD {
 		}
 		//We will create a new packet and destroy it but not its contents because its contents is the read buffer
 
-		Packet* packet = new Packet(this->read_buffer.size(), this->read_buffer.data());
-		int length = packet->GetInt();
-		if (on_packet_read)on_packet_read(packet, bytes_transferred);
-		AsyncRead();
-	}
-	bool TCPClient::IsValidMessage() {
-		if (messages.size() < 1) return false;
-
-		if (messages[0] == nullptr)return false;
-
-		if (messages[0]->GetData() == nullptr)return false;
-
-		return true;
-	}
-
-	void TCPClient::AsyncWrite() {
-		is_writing = true;
-		while (!IsValidMessage() && messages.size() > 0) {
-			messages.erase(messages.begin());
-		}
-
-		if (messages.size() < 1) {
-			is_writing = false;
+		if (bytes_transferred < 4) {
+			AsyncRead();
 			return;
 		}
-		
-		Packet* packet = messages[0];
-		unsigned char* data = packet->GetData();
-		asio::async_write(*((tcp::socket*)socket), asio::buffer(packet->GetData(), packet->GetUsedSize()), [this, data](const asio::error_code& error, std::size_t bytes_transferred) {
-			if (!is_disconnecting && is_connected) {
-				OnWrite(error, bytes_transferred);
+
+		//Packet packet(bytes_transferred, this->read_buffer.data());
+		//int length = packet.GetInt() + 1;
+		unsigned int offset = 0;
+
+		while (true) {
+			if (bytes_transferred < 4 || bytes_transferred > NETWORKING_MAX_PACKET_SIZE) {
+				AsyncRead();
+				break;
 			}
+
+			Packet packet(bytes_transferred, this->read_buffer.data() + offset);
+			int length = packet.GetInt() + 1;
+			if (length < 4 || length > NETWORKING_MAX_PACKET_SIZE) {
+				AsyncRead();
+				return;
+			}
+			if (on_packet_read)on_packet_read(&packet, bytes_transferred);
+
+			bytes_transferred -= length;
+		}
+
+		//read_buffer.fill(0);
+
+		//AsyncRead();
+	}
+	void TCPClient::Post(Packet* packet, bool delete_packet_data) {
+		packet->WriteLength();
+
+		std::lock_guard<std::mutex> guard(mutex);
+		messages.push_back(Message(packet, delete_packet_data));
+		if (is_writing == false)
+			AsyncWrite();
+	}
+	bool TCPClient::NoValidMessages() {
+		while (true) {
+			if (messages.size() < 1) {
+				return false;
+			}
+
+			if (messages[0].packet == nullptr) {
+				messages.erase(messages.begin());
+				continue;
+			}
+
+			if (messages[0].packet->GetData() == nullptr) {
+				messages.erase(messages.begin());
+				continue;
+			}
+
+			return true;
+		}
+	}
+	void TCPClient::AsyncWrite() {
+		is_writing = NoValidMessages();
+		if (!is_writing)return;
+
+		Packet* packet = messages[0].packet;
+		bool delete_data = messages[0].delete_packet;
+
+		asio::async_write(*((tcp::socket*)socket), asio::buffer(packet->GetData(), packet->GetUsedSize()), [this, data = packet, delete_data](const asio::error_code& error, std::size_t bytes_transferred) {
+			if (delete_data) {
+				delete data;
+			}
+			OnWrite(error, bytes_transferred);
 		});
 	}
+
 	void TCPClient::OnWrite(const std::error_code& error, std::size_t bytes_transferred) {
 		if (error) {
 			Close(error);
 			return;
 		}
-		delete messages[0]->GetData();
-		delete messages[0];
-		messages.erase(messages.begin());
-
-		if (messages.size() > 1) {
-			AsyncWrite();
-		}
 		else {
-			is_writing = false;
+			if (on_packet_wrote)on_packet_wrote(messages[0].packet, bytes_transferred);
 		}
-
+		messages.erase(messages.begin());
+		AsyncWrite();
 	}
 	//#endif
 }

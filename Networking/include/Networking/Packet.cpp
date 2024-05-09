@@ -15,10 +15,12 @@ namespace T1WD {
 	Packet::Packet(int size, unsigned char* data) {
 		packet_size = size;
 		this->data = data;
-		bit_index = 0;	//0 so we can read the length of the buffer
+		bit_index = 0;	//0 so we can read the length of the packet
+		//Ideally the first thing we read in a buffer is its length
 	}
 	Packet::~Packet() {
-
+		if (delete_data)
+			DeleteData();
 	}
 
 	void Packet::DeleteData() {
@@ -29,10 +31,12 @@ namespace T1WD {
 
 	void Packet::WriteLength() {
 		//The first 4 bytes are reserved just for packet length
-		int bit = bit_index;
+		unsigned int bit = bit_index;
 		bit_index = 0;
 
-		WriteInt(bit / 8);	//Write Size in bytes
+		//Get the bit index and divide it by 8 to get the last write pos in bytes
+		//Since this includes the first 4 bytes being the length of the vector the size will be the actual length the buffer used
+		WriteInt(bit / 8);
 
 		bit_index = bit;
 	}
@@ -51,7 +55,6 @@ namespace T1WD {
 		int byte_pos = bit_index / 8;
 		unsigned char filled_bits = bit_index % 8;
 		unsigned char remaining = 8 - filled_bits;
-
 
 		data[byte_pos] |= value >> filled_bits;
 		data[byte_pos + 1] |= (value & ((1 << remaining) - 1)) << remaining;

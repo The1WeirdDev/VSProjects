@@ -1,12 +1,14 @@
 ﻿  Main.cpp
-F:\VSProjects\Networking\include\Networking\TCP\TCPServer.h(36,3): warning C4091: '__declspec(dllimport)': ignored on left of 'T1WD::TCPConnection' when no variable is declared
+D:\VSProjects\Networking\include\Networking\TCP\TCPServer.h(38,3): warning C4091: '__declspec(dllimport)': ignored on left of 'T1WD::TCPConnection' when no variable is declared
   (compiling source file 'Src/Main.cpp')
   
-F:\VSProjects\Networking\include\Networking\TCP\TCPServer.h(67,3): warning C4091: '__declspec(dllimport)': ignored on left of 'T1WD::TCPServer' when no variable is declared
+D:\VSProjects\Networking\include\Networking\TCP\TCPServer.h(72,3): warning C4091: '__declspec(dllimport)': ignored on left of 'T1WD::TCPServer' when no variable is declared
   (compiling source file 'Src/Main.cpp')
   
-F:\VSProjects\VoxelGame\VoxelGame-Server\Src\Main.cpp(31,21): warning C4305: 'argument': truncation from 'double' to 'float'
-F:\VSProjects\VoxelGame\VoxelGame-Server\Src\Main.cpp(45,21): warning C4018: '<': signed/unsigned mismatch
-  VoxelGame-Server.vcxproj -> F:\VSProjects\Build\VoxelGame-Server\Debug\Win32\VoxelGame-Server.exe
-  F:\VSProjects\/Libraries\Networking\Debug\Win32\Networking.dll
-  1 File(s) copied
+D:\VSProjects\VoxelGame\VoxelGame-Server\Src\Main.cpp(30,22): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\VSProjects\VoxelGame\VoxelGame-Server\Src\Main.cpp(49,21): warning C4018: '<': signed/unsigned mismatch
+  VoxelGame-Server.vcxproj -> D:\VSProjects\Build\VoxelGame-Server\Debug\Win32\VoxelGame-Server.exe
+  D:\VSProjects\/Libraries\Networking\Debug\Win32\Networking.dll
+  Sharing violation
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: The command "xcopy /y /d "D:\VSProjects\/Libraries\Networking\Debug\Win32\Networking.dll" "D:\VSProjects\\Build\VoxelGame-Server\Debug\Win32\"
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(166,5): error MSB3073: :VCEnd" exited with code 4.

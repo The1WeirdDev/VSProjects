@@ -47,7 +47,7 @@ int main(int argc, char** argv) {
 		printf("Failed to connect to server. Reason ");
 		std::cout << error.message() << std::endl;
 	};
-	client.on_disconnected = [](std::error_code error) {
+	client.on_disconnected = [](std::error_code& error) {
 		printf("Disconnected from server.");
 
 		if (error)printf(" Reason %s", error.message());
@@ -59,7 +59,7 @@ int main(int argc, char** argv) {
 		packet->GetString();
 		std::cout << "Packet says " << packet->GetFloat() << std::endl;
 	};
-	const char* ip = "192.168.0.38";
+	const char* ip = "10.16.34.119";
 	client.Connect(ip, 8888);
 	//std::thread t{ [&client]() { client.Run(); } };
 
@@ -74,7 +74,6 @@ int main(int argc, char** argv) {
 
 		if (Input::IsKeyPressed(GLFW_KEY_R)) {
 			if (client.is_connected) {
-
 				printf("SENDING PACKET\n");
 				Packet* packet = new Packet(500);
 				packet->WriteString("Hello Server\n");

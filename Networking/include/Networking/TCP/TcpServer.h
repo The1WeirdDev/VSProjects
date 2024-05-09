@@ -5,6 +5,7 @@
 #include <functional>
 #include <array>
 #include <map>
+#include <mutex>
 
 #include <Networking/framework.h>
 #include <Networking/Packet.h>
@@ -23,11 +24,12 @@ namespace T1WD {
 
 		void OnRead(const std::error_code& error, std::size_t bytes_transferred);
 		void OnWrite(const std::error_code& error, std::size_t bytes_transferred);
-
-		bool IsValidMessage();
+		
+		bool NoValidMessages();
 
 		unsigned short id = 0;
 	private:
+		static std::mutex mutex;
 		std::array<unsigned char, NETWORKING_MAX_PACKET_SIZE> read_buffer;
 		std::vector<Message> messages;
 
@@ -40,7 +42,10 @@ namespace T1WD {
 		static NETWORKING_API void Stop();
 		static NETWORKING_API void Tick();
 
+		//Sends packet to certain client
 		static NETWORKING_API void SendPacket(unsigned short id, Packet* packet, bool delete_packet_data = true);
+		//Sends packet to all connected clients
+		static NETWORKING_API void SendPacket(Packet* packet, bool delete_packet_data = true);
 
 		static void OnDisconnect(TCPConnection* connection);
 

@@ -30,7 +30,7 @@ namespace T1WD {
 
 		NETWORKING_API void DeleteData();
 		NETWORKING_API void WriteLength();
-		NETWORKING_API int GetUsedSize() { return bit_index / 8 + 1; }
+		NETWORKING_API inline int GetUsedSize() { return bit_index / 8 + 1; }
 
 		//Maybe we can save some size in the library by having these writing functions-
 		//Maybe write only 1 2 3 or 4 bytes.
@@ -66,16 +66,18 @@ namespace T1WD {
 
 		unsigned char* data = nullptr;	//The actual data inside the packet
 		unsigned int bit_index = 0;	// The index that you can start writing or reading data at
-		unsigned int packet_size = 0;
+		unsigned int packet_size = 0; // The size when reading for data
+		bool delete_data = false; //On deconstructed should we delete packet data aswell?
 	};
 
 	struct Message {
 		Packet* packet = nullptr;
-		bool delete_packet_data = true;
+		bool delete_packet = true;
+		unsigned short amount_sent = 0;
 
-		Message(Packet* packet, bool delete_packet_data = true) {
+		Message(Packet* packet, bool delete_packet = true) {
 			this->packet = packet;
-			this->delete_packet_data = delete_packet_data;
+			this->delete_packet = delete_packet;
 		}
 	};
 }

@@ -6,7 +6,6 @@
 #define NETWORKING_READ_SAFE
 #include <Networking/Packet.h>
 
-
 using namespace T1WD;
 
 int main(int argc, char** argv) {
@@ -26,10 +25,14 @@ int main(int argc, char** argv) {
 	};
 	TCPServer::on_client_connected = [](unsigned short id) {
 		printf("CLIENT %d CONNECTED\n", id);
-		Packet packet;
-		packet.WriteString((std::string("HELLO Client ") + std::to_string(id)));
-		packet.WriteFloat(151.213123123);
-		TCPServer::SendPacket(id, &packet);
+		Packet* packet = new Packet();
+		packet->WriteString((std::string("HELLO Client ") + std::to_string(id)));
+		packet->WriteFloat(151.213123123);
+		packet->delete_data = true;
+		TCPServer::SendPacket(id, packet, false);
+		TCPServer::SendPacket(id, packet, false);
+		TCPServer::SendPacket(id, packet, false);
+		TCPServer::SendPacket(id, packet, true);
 	};
 	TCPServer::on_client_failed_connect = [](const char* message) {
 		printf("CLIENT failed to connect. Reason %s\n", message);
@@ -41,6 +44,7 @@ int main(int argc, char** argv) {
 		std::cout << "PACKET SAID " << packet->GetString() << std::endl;
 		size_t size = 0;
 		unsigned char* data = packet->GetUCharArray(&size);
+
 		std::cout << "SIZE: " << size << std::endl;
 		for (int i = 0; i < size; i++) {
 			printf("%d\n", (int)data[i]);

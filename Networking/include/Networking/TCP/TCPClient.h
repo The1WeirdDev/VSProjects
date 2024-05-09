@@ -7,6 +7,7 @@
 #include <string>
 #include <vector>
 #include <thread>
+#include <mutex>
 
 #include <Networking/framework.h>
 
@@ -21,7 +22,7 @@ namespace T1WD {
 		void NETWORKING_API Connect(const char* ip, int port);
 		void NETWORKING_API Disconnect();
 
-		void NETWORKING_API Post(Packet* packet);
+		void NETWORKING_API Post(Packet* packet, bool delete_packet = true);
 
 		//Run in separate thread
 		void NETWORKING_API Run();
@@ -32,11 +33,12 @@ namespace T1WD {
 #pragma region CALLBACKS
 		std::function<void(std::error_code) > on_connect_failed;
 		std::function<void()> on_connected;
-		std::function<void(std::error_code)> on_disconnected;
+		std::function<void(std::error_code&)> on_disconnected;
 
 		std::function<void(Packet*, size_t)> on_packet_read;
+		std::function<void(Packet*, size_t)> on_packet_wrote;
 #pragma endregion
-		std::vector<Packet*> messages;
+		std::vector<Message> messages;
 
 		bool is_writing = false;
 		bool is_attempting_connect = false;
@@ -45,6 +47,7 @@ namespace T1WD {
 		bool is_running = false;
 		bool created_thread = false;
 	private:
+		std::mutex mutex;
 		std::thread thread;
 		std::array<unsigned char, NETWORKING_MAX_PACKET_SIZE> read_buffer;
 		void Close(std::error_code ec = std::error_code(0, std::system_category()));
@@ -53,7 +56,7 @@ namespace T1WD {
 
 		void FreeMessages();
 
-		bool IsValidMessage();
+		bool NoValidMessages();
 
 		void OnConnect(const std::error_code& e);
 		void OnRead(const std::error_code& error, std::size_t bytes_transferred);

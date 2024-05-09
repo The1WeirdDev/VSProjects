@@ -5,6 +5,7 @@ d:\vsprojects\int\networking\debug\win32\pch.obj
 d:\vsprojects\int\networking\debug\win32\packet.obj
 d:\vsprojects\int\networking\debug\win32\tcpserver.obj
 d:\vsprojects\int\networking\debug\win32\tcpclient.obj
+d:\vsprojects\int\networking\debug\win32\errorcodes.obj
 d:\vsprojects\int\networking\debug\win32\dllmain.obj
 d:\vsprojects\libraries\networking\debug\win32\networking.dll
 d:\vsprojects\libraries\networking\debug\win32\networking.pdb
