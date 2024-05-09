@@ -1,0 +1,2 @@
+INDEX VERSION 1.127+F:\VSProjects\.workspace\.metadata\.plugins\org.eclipse.jdt.core
+2733129261.index

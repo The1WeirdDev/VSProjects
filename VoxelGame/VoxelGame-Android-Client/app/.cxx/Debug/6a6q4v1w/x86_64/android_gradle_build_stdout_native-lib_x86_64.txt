@@ -1,0 +1,3 @@
+ninja: Entering directory `F:\VSProjects\VoxelGame\VoxelGame-Android-Client\app\.cxx\Debug\6a6q4v1w\x86_64'
+[1/2] Building CXX object CMakeFiles/native-lib.dir/native-lib.cpp.o
+[2/2] Linking CXX shared library F:\VSProjects\VoxelGame\VoxelGame-Android-Client\app\build\intermediates\cxx\Debug\6a6q4v1w\obj\x86_64\libnative-lib.so

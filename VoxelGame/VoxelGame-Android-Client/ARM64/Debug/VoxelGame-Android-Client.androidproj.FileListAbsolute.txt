@@ -1,0 +1,2 @@
+F:\VSProjects\VoxelGame\VoxelGame-Android-Client\ARM64\Debug\VoxelGame_Android_Client.apk.recipe
+F:\VSProjects\VoxelGame\VoxelGame-Android-Client\ARM64\Debug\VoxelGame_Android_Client.apk

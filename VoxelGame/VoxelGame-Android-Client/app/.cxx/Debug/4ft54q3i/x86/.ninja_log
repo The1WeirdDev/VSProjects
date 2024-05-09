@@ -1,0 +1,21 @@
+# ninja log v5
+14	1244	7369841520000000	CMakeFiles/native-lib.dir/native-lib.cpp.o	60d9ecb35f072be5
+1247	1555	7369841520000000	F:/VSProjects/VoxelGame/VoxelGame-Android-Client/app/build/intermediates/cxx/Debug/4ft54q3i/obj/x86/libnative-lib.so	be964c3eef323719
+7	1336	7369848460000000	CMakeFiles/native-lib.dir/native-lib.cpp.o	60d9ecb35f072be5
+1338	1633	7369848460000000	F:/VSProjects/VoxelGame/VoxelGame-Android-Client/app/build/intermediates/cxx/Debug/4ft54q3i/obj/x86/libnative-lib.so	be964c3eef323719
+7	1609	7369850120000000	CMakeFiles/native-lib.dir/native-lib.cpp.o	60d9ecb35f072be5
+1612	2135	7369850120000000	F:/VSProjects/VoxelGame/VoxelGame-Android-Client/app/build/intermediates/cxx/Debug/4ft54q3i/obj/x86/libnative-lib.so	be964c3eef323719
+18	1425	7369851200000000	CMakeFiles/native-lib.dir/native-lib.cpp.o	60d9ecb35f072be5
+1428	1769	7369851200000000	F:/VSProjects/VoxelGame/VoxelGame-Android-Client/app/build/intermediates/cxx/Debug/4ft54q3i/obj/x86/libnative-lib.so	be964c3eef323719
+17	1361	7369852140000000	CMakeFiles/native-lib.dir/native-lib.cpp.o	60d9ecb35f072be5
+1363	1784	7369852140000000	F:/VSProjects/VoxelGame/VoxelGame-Android-Client/app/build/intermediates/cxx/Debug/4ft54q3i/obj/x86/libnative-lib.so	be964c3eef323719
+21	1508	7369854020000000	CMakeFiles/native-lib.dir/native-lib.cpp.o	60d9ecb35f072be5
+1510	1947	7369854020000000	F:/VSProjects/VoxelGame/VoxelGame-Android-Client/app/build/intermediates/cxx/Debug/4ft54q3i/obj/x86/libnative-lib.so	be964c3eef323719
+47	1484	7369856940000000	CMakeFiles/native-lib.dir/native-lib.cpp.o	60d9ecb35f072be5
+1485	1957	7369856940000000	F:/VSProjects/VoxelGame/VoxelGame-Android-Client/app/build/intermediates/cxx/Debug/4ft54q3i/obj/x86/libnative-lib.so	be964c3eef323719
+19	1303	7369858360000000	CMakeFiles/native-lib.dir/native-lib.cpp.o	60d9ecb35f072be5
+1305	1682	7369858360000000	F:/VSProjects/VoxelGame/VoxelGame-Android-Client/app/build/intermediates/cxx/Debug/4ft54q3i/obj/x86/libnative-lib.so	be964c3eef323719
+12	1309	7369859180000000	CMakeFiles/native-lib.dir/native-lib.cpp.o	60d9ecb35f072be5
+1310	1597	7369859180000000	F:/VSProjects/VoxelGame/VoxelGame-Android-Client/app/build/intermediates/cxx/Debug/4ft54q3i/obj/x86/libnative-lib.so	be964c3eef323719
+21	3372	7369905860000000	CMakeFiles/native-lib.dir/native-lib.cpp.o	60d9ecb35f072be5
+3374	3881	7369905860000000	F:/VSProjects/VoxelGame/VoxelGame-Android-Client/app/build/intermediates/cxx/Debug/4ft54q3i/obj/x86/libnative-lib.so	be964c3eef323719

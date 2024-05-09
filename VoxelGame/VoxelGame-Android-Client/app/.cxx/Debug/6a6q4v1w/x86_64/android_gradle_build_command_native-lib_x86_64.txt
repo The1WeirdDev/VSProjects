@@ -1,0 +1,7 @@
+Executable : C:\Users\1weir\AppData\Local\Android\Sdk\cmake\3.18.1\bin\ninja.exe
+arguments : 
+-C
+F:\VSProjects\VoxelGame\VoxelGame-Android-Client\app\.cxx\Debug\6a6q4v1w\x86_64
+native-lib
+jvmArgs : 
+

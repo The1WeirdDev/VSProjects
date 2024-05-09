@@ -1,0 +1,10 @@
+ninja: Entering directory `F:\VSProjects\VoxelGame\VoxelGame-Android-Client\app\.cxx\Debug\4ft54q3i\x86'
+[1/2] Building CXX object CMakeFiles/native-lib.dir/native-lib.cpp.o
+F:/VSProjects/VoxelGame/VoxelGame-Android-Client/app/src/main/cpp/native-lib.cpp:11:12: warning: attribute 'visibility' is ignored, place it after "class" to apply attribute to type declaration [-Wignored-attributes]
+extern "C" JNIEXPORT class Java_com_VoxelGame_1Android_1Client_Hello {
+           ^
+C:/Users/1weir/AppData/Local/Android/Sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include\jni.h:1106:36: note: expanded from macro 'JNIEXPORT'
+#define JNIEXPORT  __attribute__ ((visibility ("default")))
+                                   ^
+1 warning generated.
+[2/2] Linking CXX shared library F:\VSProjects\VoxelGame\VoxelGame-Android-Client\app\build\intermediates\cxx\Debug\4ft54q3i\obj\x86\libnative-lib.so

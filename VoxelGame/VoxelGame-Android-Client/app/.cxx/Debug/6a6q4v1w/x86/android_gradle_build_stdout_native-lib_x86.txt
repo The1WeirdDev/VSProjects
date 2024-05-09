@@ -1,0 +1,13 @@
+ninja: Entering directory `F:\VSProjects\VoxelGame\VoxelGame-Android-Client\app\.cxx\Debug\6a6q4v1w\x86'
+[1/2] Building CXX object CMakeFiles/native-lib.dir/native-lib.cpp.o
+FAILED: CMakeFiles/native-lib.dir/native-lib.cpp.o 
+C:\Users\1weir\AppData\Local\Android\Sdk\ndk\21.4.7075529\toolchains\llvm\prebuilt\windows-x86_64\bin\clang++.exe --target=i686-none-linux-android29 --gcc-toolchain=C:/Users/1weir/AppData/Local/Android/Sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/1weir/AppData/Local/Android/Sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dnative_lib_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC -MD -MT CMakeFiles/native-lib.dir/native-lib.cpp.o -MF CMakeFiles\native-lib.dir\native-lib.cpp.o.d -o CMakeFiles/native-lib.dir/native-lib.cpp.o -c F:/VSProjects/VoxelGame/VoxelGame-Android-Client/app/src/main/cpp/native-lib.cpp
+F:/VSProjects/VoxelGame/VoxelGame-Android-Client/app/src/main/cpp/native-lib.cpp:6:70: error: unknown type name 'jobect'; did you mean 'jobject'?
+Java_edu_ppu_VoxelGame_VoxelGame_Android_Client_Method(JNIEnv * env, jobect obj) {
+                                                                     ^~~~~~
+                                                                     jobject
+C:/Users/1weir/AppData/Local/Android/Sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include\jni.h:62:25: note: 'jobject' declared here
+typedef _jobject*       jobject;
+                        ^
+1 error generated.
+ninja: build stopped: subcommand failed.

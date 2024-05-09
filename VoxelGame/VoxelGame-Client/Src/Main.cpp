@@ -76,6 +76,7 @@ int main(int argc, char** argv) {
 			if (client.is_connected) {
 				printf("SENDING PACKET\n");
 				Packet* packet = new Packet(500);
+				packet->delete_data = true;
 				packet->WriteString("Hello Server\n");
 				unsigned char data[10];
 				data[0] = 15;
