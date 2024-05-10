@@ -16,8 +16,8 @@
 namespace T1WD {
 	extern "C" NETWORKING_API class TCPClient : public std::enable_shared_from_this<TCPClient> {
 	public:
-		NETWORKING_API TCPClient();
-		NETWORKING_API ~TCPClient();
+		TCPClient();
+		~TCPClient();
 
 		void NETWORKING_API Connect(const char* ip, int port);
 		void NETWORKING_API Disconnect();

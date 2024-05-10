@@ -14,9 +14,12 @@
 * limitations under the License.
 *
 */
-
+#include "pch.h"
 #include <malloc.h>
-
+#define NETWORKING_STATIC_BUILD
+#define ANDROID_BUILD
+#include "Networking/TCP/TCPClient.h"
+using namespace T1WD;
 #define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, "AndroidProject1.NativeActivity", __VA_ARGS__))
 #define LOGW(...) ((void)__android_log_print(ANDROID_LOG_WARN, "AndroidProject1.NativeActivity", __VA_ARGS__))
 
@@ -221,6 +224,10 @@ static void engine_handle_cmd(struct android_app* app, int32_t cmd) {
 void android_main(struct android_app* state) {
 	struct engine engine;
 
+	TCPClient client;
+	const char* p = "192.168.0.246";
+	client.Connect(p, 8888);
+
 	memset(&engine, 0, sizeof(engine));
 	state->userData = &engine;
 	state->onAppCmd = engine_handle_cmd;
@@ -276,6 +283,8 @@ void android_main(struct android_app* state) {
 			// Check if we are exiting.
 			if (state->destroyRequested != 0) {
 				engine_term_display(&engine);
+				client.Disconnect();
+				client.Stop();
 				return;
 			}
 		}

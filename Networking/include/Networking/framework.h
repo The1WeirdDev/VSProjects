@@ -1,11 +1,23 @@
 #pragma once
-
-#define WIN32_LEAN_AND_MEAN             // Exclude rarely-used stuff from Windows headers
-// Windows Header Files
-#include <windows.h>
-
-#ifdef NETWORKING_EXPORT
-#define NETWORKING_API __declspec(dllexport)
+#ifdef NETWORKING_STATIC_BUILD
+	#define NETWORKING_API
 #else
-#define NETWORKING_API __declspec(dllimport)
+	#ifdef ANDROID_BUILD
+		#define fdeclspec
+		#ifdef NETWORKING_EXPORT
+			#define NETWORKING_API __declspec(dllexport)
+		#else
+			#define NETWORKING_API __declspec(dllimport)
+		#endif
+	#else
+		#define WIN32_LEAN_AND_MEAN             // Exclude rarely-used stuff from Windows headers
+		// Windows Header Files
+		#include <windows.h>
+
+		#ifdef NETWORKING_EXPORT
+		#define NETWORKING_API __declspec(dllexport)
+		#else
+		#define NETWORKING_API __declspec(dllimport)
+		#endif
+	#endif
 #endif
