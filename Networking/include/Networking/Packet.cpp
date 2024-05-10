@@ -4,6 +4,8 @@
 #include <iostream>
 #include <math.h>
 #include <stdexcept>
+#include <string>
+#include <cstring>
 
 namespace T1WD {
 	Packet::Packet(int packet_size) {

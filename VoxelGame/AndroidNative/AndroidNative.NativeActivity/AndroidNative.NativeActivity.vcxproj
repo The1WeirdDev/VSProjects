@@ -156,8 +156,9 @@
     </ClCompile>
     <Link>
       <LibraryDependencies>%(LibraryDependencies);GLESv1_CM;EGL;</LibraryDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Libraries\Networking\$(Configuration)\$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Networking.lib;</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Networking\bin\;$(SolutionDir)Libraries\Networking\$(Configuration)\$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(SolutionDir)Networking\bin\Networking.a;%(AdditionalDependencies)</AdditionalDependencies>
+      <VerboseOutput>false</VerboseOutput>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
@@ -170,8 +171,9 @@
     </ClCompile>
     <Link>
       <LibraryDependencies>%(LibraryDependencies);GLESv1_CM;EGL;</LibraryDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Libraries\Networking\$(Configuration)\$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Networking.lib;</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Networking\bin\;$(SolutionDir)Libraries\Networking\$(Configuration)\$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(SolutionDir)Networking\bin\Networking.a;%(AdditionalDependencies)</AdditionalDependencies>
+      <VerboseOutput>false</VerboseOutput>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
@@ -184,8 +186,9 @@
     </ClCompile>
     <Link>
       <LibraryDependencies>%(LibraryDependencies);GLESv1_CM;EGL;</LibraryDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Libraries\Networking\$(Configuration)\$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Networking.lib;</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Networking\bin\;$(SolutionDir)Libraries\Networking\$(Configuration)\$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(SolutionDir)Networking\bin\Networking.a;%(AdditionalDependencies)</AdditionalDependencies>
+      <VerboseOutput>false</VerboseOutput>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
@@ -198,8 +201,9 @@
     </ClCompile>
     <Link>
       <LibraryDependencies>%(LibraryDependencies);GLESv1_CM;EGL;</LibraryDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Libraries\Networking\$(Configuration)\$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Networking.lib;</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Networking\bin\;$(SolutionDir)Libraries\Networking\$(Configuration)\$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(SolutionDir)Networking\bin\Networking.a;%(AdditionalDependencies)</AdditionalDependencies>
+      <VerboseOutput>false</VerboseOutput>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -212,8 +216,9 @@
     </ClCompile>
     <Link>
       <LibraryDependencies>%(LibraryDependencies);GLESv1_CM;EGL;</LibraryDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Libraries\Networking\$(Configuration)\$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Networking.lib;</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Networking\bin\;$(SolutionDir)Libraries\Networking\$(Configuration)\$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(SolutionDir)Networking\bin\Networking.a;%(AdditionalDependencies)</AdditionalDependencies>
+      <VerboseOutput>false</VerboseOutput>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -226,8 +231,9 @@
     </ClCompile>
     <Link>
       <LibraryDependencies>%(LibraryDependencies);GLESv1_CM;EGL;</LibraryDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Libraries\Networking\$(Configuration)\$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Networking.lib;</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Networking\bin\;$(SolutionDir)Libraries\Networking\$(Configuration)\$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(SolutionDir)Networking\bin\Networking.a;%(AdditionalDependencies)</AdditionalDependencies>
+      <VerboseOutput>false</VerboseOutput>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
@@ -239,9 +245,10 @@
       <CppLanguageStandard>gnu++1z</CppLanguageStandard>
     </ClCompile>
     <Link>
-      <LibraryDependencies>%(LibraryDependencies);GLESv1_CM;EGL;Networking</LibraryDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Libraries\Networking\$(Configuration)\Win32\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>F:\VSProjects\Libraries\Networking\Debug\Win32\Networking.lib</AdditionalDependencies>
+      <LibraryDependencies>%(LibraryDependencies);GLESv1_CM;EGL;</LibraryDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Networking\bin\;$(SolutionDir)Libraries\Networking\$(Configuration)\Win32\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(SolutionDir)Networking\bin\Networking.a;%(AdditionalDependencies)</AdditionalDependencies>
+      <VerboseOutput>false</VerboseOutput>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
@@ -253,9 +260,10 @@
       <CppLanguageStandard>gnu++1z</CppLanguageStandard>
     </ClCompile>
     <Link>
-      <LibraryDependencies>%(LibraryDependencies);GLESv1_CM;EGL;Networking</LibraryDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Libraries\Networking\$(Configuration)\Win32\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>F:\VSProjects\Libraries\Networking\Debug\Win32\Networking.lib</AdditionalDependencies>
+      <LibraryDependencies>%(LibraryDependencies);GLESv1_CM;EGL;</LibraryDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Networking\bin\;$(SolutionDir)Libraries\Networking\$(Configuration)\Win32\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(SolutionDir)Networking\bin\Networking.a;%(AdditionalDependencies)</AdditionalDependencies>
+      <VerboseOutput>false</VerboseOutput>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

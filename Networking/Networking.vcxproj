@@ -90,7 +90,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>ANDROID_BUILD;NETWORKING_STATIC_BUILD;ASIO_STANDALONE;BOOST_ALL_NO_LIB;DBOOST_ALL_NO_LIB;NETWORKING_EXPORT;WIN32;_DEBUG;NETWORKING_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NETWORKING_STATIC_BUILD;ASIO_STANDALONE;BOOST_ALL_NO_LIB;DBOOST_ALL_NO_LIB;NETWORKING_EXPORT;WIN32;_DEBUG;NETWORKING_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -110,7 +110,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>ANDROID_BUILD;NETWORKING_STATIC_BUILD;ASIO_STANDALONE;BOOST_ALL_NO_LIB;DBOOST_ALL_NO_LIB;NETWORKING_EXPORT;WIN32;NDEBUG;NETWORKING_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NETWORKING_STATIC_BUILD;ASIO_STANDALONE;BOOST_ALL_NO_LIB;DBOOST_ALL_NO_LIB;NETWORKING_EXPORT;WIN32;NDEBUG;NETWORKING_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -130,7 +130,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>ANDROID_BUILD;NETWORKING_STATIC_BUILD;ASIO_STANDALONE;BOOST_ALL_NO_LIB;DBOOST_ALL_NO_LIB;NETWORKING_EXPORT;_DEBUG;NETWORKING_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NETWORKING_STATIC_BUILD;ASIO_STANDALONE;BOOST_ALL_NO_LIB;DBOOST_ALL_NO_LIB;NETWORKING_EXPORT;_DEBUG;NETWORKING_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -150,7 +150,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>ANDROID_BUILD;NETWORKING_STATIC_BUILD;ASIO_STANDALONE;BOOST_ALL_NO_LIB;DBOOST_ALL_NO_LIB;NETWORKING_EXPORT;NDEBUG;NETWORKING_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NETWORKING_STATIC_BUILD;ASIO_STANDALONE;BOOST_ALL_NO_LIB;DBOOST_ALL_NO_LIB;NETWORKING_EXPORT;NDEBUG;NETWORKING_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -190,6 +190,9 @@
   <ItemGroup>
     <Text Include="build\CMakeLists.txt" />
     <Text Include="CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="BuildSharedLibraries.bat" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

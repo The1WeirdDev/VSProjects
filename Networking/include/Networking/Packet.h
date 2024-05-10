@@ -62,8 +62,8 @@ namespace T1WD {
 		NETWORKING_API unsigned char* GetUCharArray(size_t* length);
 		NETWORKING_API char* GetCharArray(size_t* length);
 
-		NETWORKING_API unsigned char* GetData() { return data; }
-
+		//NETWORKING_API unsigned char* GetData() { return data; }
+		unsigned char* GetData() { return data; }
 		unsigned char* data = nullptr;	//The actual data inside the packet
 		unsigned int bit_index = 0;	// The index that you can start writing or reading data at
 		unsigned int packet_size = 0; // The size when reading for data
