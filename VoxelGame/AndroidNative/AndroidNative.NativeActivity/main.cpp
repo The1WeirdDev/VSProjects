@@ -18,8 +18,9 @@
 #include <malloc.h>
 #define NETWORKING_STATIC_BUILD
 #define ANDROID_BUILD
-//#include "Networking/Packet.h"
-//using namespace T1WD;
+//$(SolutionDir)Libraries\Networking\Shared\Networking.a
+#include "Networking/Packet.h"
+using namespace T1WD;
 #define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, "AndroidProject1.NativeActivity", __VA_ARGS__))
 #define LOGW(...) ((void)__android_log_print(ANDROID_LOG_WARN, "AndroidProject1.NativeActivity", __VA_ARGS__))
 
@@ -227,9 +228,9 @@ void android_main(struct android_app* state) {
 	//TCPClient client;
 	//const char* p = "192.168.0.246";
 	//client.Connect(p, 8888);
-	//Packet packet;
-	//packet.delete_data = true;
-	//packet.WriteString("HELLO\n");
+	Packet packet;
+	packet.delete_data = true;
+	packet.WriteString("HELLO\n");
 	memset(&engine, 0, sizeof(engine));
 	state->userData = &engine;
 	state->onAppCmd = engine_handle_cmd;

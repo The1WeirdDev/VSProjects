@@ -334,7 +334,7 @@ namespace T1WD {
 		while (true) {
 			byte = GetChar();
 			if (byte == 0x00 || bit_index / 8 >= packet_size)break;
-			string = string + (char)byte;
+			string += (char)byte;
 		}
 
 		return string;
