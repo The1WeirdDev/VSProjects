@@ -19,7 +19,7 @@ namespace T1WD {
 		TCPClient();
 		~TCPClient();
 
-		void NETWORKING_API Connect(const char* ip, int port);
+		void NETWORKING_API Connect(const char* ip, int port, bool close_existing = false);
 		void NETWORKING_API Disconnect();
 
 		void NETWORKING_API Post(Packet* packet, bool delete_packet = true);

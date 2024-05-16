@@ -18,8 +18,9 @@ namespace T1WD {
 	TCPClient::~TCPClient() {
 		delete ((asio::io_context*)io_context);
 	}
-	void TCPClient::Connect(const char* ip, int port) {
+	void TCPClient::Connect(const char* ip, int port, bool close_existing) {
 		if (socket != nullptr) {
+			if (!close_existing)return;
 			Close();
 		}
 		socket = (void*)new tcp::socket(*(asio::io_context*)io_context);
@@ -51,7 +52,7 @@ namespace T1WD {
 
 	void TCPClient::Close(std::error_code error) {
 		try {
-			if ((is_connected || is_attempting_connect) && !is_disconnecting) {
+			if ((is_connected || is_attempting_connect) && !is_disconnecting && socket != nullptr) {
 				is_disconnecting = true;
 
 				asio::error_code ec;

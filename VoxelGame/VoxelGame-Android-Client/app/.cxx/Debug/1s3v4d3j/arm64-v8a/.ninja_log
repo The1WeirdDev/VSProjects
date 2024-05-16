@@ -1,7 +1,0 @@
-# ninja log v5
-3	1927	7369759580000000	CMakeFiles/native-lib.dir/native-lib.cpp.o	539157f96947d294
-1959	2788	7369759580000000	F:/VSProjects/VoxelGame/VoxelGame-Android-Client/app/build/intermediates/cxx/Debug/1s3v4d3j/obj/arm64-v8a/libnative-lib.so	e2593bea098d0078
-9	1059	7369805540000000	build.ninja	40a0eea6ec1598e
-0	16	0	clean	12eb88c992d9508b
-10	3763	7369805600000000	CMakeFiles/native-lib.dir/native-lib.cpp.o	539157f96947d294
-3765	4214	7369805600000000	F:/VSProjects/VoxelGame/VoxelGame-Android-Client/app/build/intermediates/cxx/Debug/1s3v4d3j/obj/arm64-v8a/libnative-lib.so	e2593bea098d0078

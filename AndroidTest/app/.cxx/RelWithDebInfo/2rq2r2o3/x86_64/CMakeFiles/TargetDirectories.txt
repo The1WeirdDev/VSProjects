@@ -1,0 +1,3 @@
+F:/VSProjects/AndroidTest/app/.cxx/RelWithDebInfo/2rq2r2o3/x86_64/CMakeFiles/native-lib.dir
+F:/VSProjects/AndroidTest/app/.cxx/RelWithDebInfo/2rq2r2o3/x86_64/CMakeFiles/edit_cache.dir
+F:/VSProjects/AndroidTest/app/.cxx/RelWithDebInfo/2rq2r2o3/x86_64/CMakeFiles/rebuild_cache.dir

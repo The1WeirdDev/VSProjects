@@ -90,13 +90,14 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NETWORKING_STATIC_BUILD;ASIO_STANDALONE;BOOST_ALL_NO_LIB;DBOOST_ALL_NO_LIB;NETWORKING_EXPORT;WIN32;_DEBUG;NETWORKING_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NETWORKING_STATIC_BUILD;ASIO_STANDALONE;BOOST_ALL_NO_LIB;DBOOST_ALL_NO_LIB;NETWORKING_EXPORTS;WIN32;_DEBUG;NETWORKING_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(SolutionDir)Libraries\Asio-1.30.2\include\;$(ProjectDir)include\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <LanguageStandard_C>Default</LanguageStandard_C>
+      <UndefinePreprocessorDefinitions>ANDROID_BUILD</UndefinePreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -110,13 +111,14 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NETWORKING_STATIC_BUILD;ASIO_STANDALONE;BOOST_ALL_NO_LIB;DBOOST_ALL_NO_LIB;NETWORKING_EXPORT;WIN32;NDEBUG;NETWORKING_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NETWORKING_STATIC_BUILD;ASIO_STANDALONE;BOOST_ALL_NO_LIB;DBOOST_ALL_NO_LIB;NETWORKING_EXPORTS;WIN32;NDEBUG;NETWORKING_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(SolutionDir)Libraries\Asio-1.30.2\include\;$(ProjectDir)include\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <LanguageStandard_C>Default</LanguageStandard_C>
+      <UndefinePreprocessorDefinitions>ANDROID_BUILD</UndefinePreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -130,13 +132,14 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NETWORKING_STATIC_BUILD;ASIO_STANDALONE;BOOST_ALL_NO_LIB;DBOOST_ALL_NO_LIB;NETWORKING_EXPORT;_DEBUG;NETWORKING_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NETWORKING_STATIC_BUILD;ASIO_STANDALONE;BOOST_ALL_NO_LIB;DBOOST_ALL_NO_LIB;NETWORKING_EXPORTS;_DEBUG;NETWORKING_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(SolutionDir)Libraries\Asio-1.30.2\include\;$(ProjectDir)include\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <LanguageStandard_C>Default</LanguageStandard_C>
+      <UndefinePreprocessorDefinitions>ANDROID_BUILD</UndefinePreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -150,13 +153,14 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NETWORKING_STATIC_BUILD;ASIO_STANDALONE;BOOST_ALL_NO_LIB;DBOOST_ALL_NO_LIB;NETWORKING_EXPORT;NDEBUG;NETWORKING_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NETWORKING_STATIC_BUILD;ASIO_STANDALONE;BOOST_ALL_NO_LIB;DBOOST_ALL_NO_LIB;NETWORKING_EXPORTS;NDEBUG;NETWORKING_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(SolutionDir)Libraries\Asio-1.30.2\include\;$(ProjectDir)include\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <LanguageStandard_C>Default</LanguageStandard_C>
+      <UndefinePreprocessorDefinitions>ANDROID_BUILD</UndefinePreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -169,7 +173,6 @@
   <ItemGroup>
     <ClInclude Include="include\Networking\ErrorCodes.h" />
     <ClInclude Include="include\Networking\framework.h" />
-    <ClInclude Include="include\Networking\pch.h" />
     <ClInclude Include="include\Networking\TCP\TCPClient.h" />
     <ClInclude Include="include\Networking\TCP\TCPServer.h" />
     <ClInclude Include="include\Networking\Packet.h" />
@@ -177,12 +180,6 @@
   <ItemGroup>
     <ClCompile Include="include\Networking\dllmain.cpp" />
     <ClCompile Include="include\Networking\ErrorCodes.cpp" />
-    <ClCompile Include="include\Networking\pch.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="include\Networking\TCP\TCPClient.cpp" />
     <ClCompile Include="include\Networking\TCP\TCPServer.cpp" />
     <ClCompile Include="include\Networking\Packet.cpp" />

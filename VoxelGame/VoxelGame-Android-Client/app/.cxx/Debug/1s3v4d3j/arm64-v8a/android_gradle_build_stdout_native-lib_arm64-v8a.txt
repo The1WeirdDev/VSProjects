@@ -1,2 +1,0 @@
-ninja: Entering directory `F:\VSProjects\VoxelGame\VoxelGame-Android-Client\app\.cxx\Debug\1s3v4d3j\arm64-v8a'
-ninja: no work to do.

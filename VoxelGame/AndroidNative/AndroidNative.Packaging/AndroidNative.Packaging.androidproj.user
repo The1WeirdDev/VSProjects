@@ -2,10 +2,14 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <DebuggerFlavor>AndroidDebugger</DebuggerFlavor>
-    <AndroidDeviceID>emulator-5554;Pixel_3a_API_34</AndroidDeviceID>
+    <AndroidDeviceID>emulator-5554;pixel_6_-_api_30</AndroidDeviceID>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <DebuggerFlavor>AndroidDebugger</DebuggerFlavor>
-    <AndroidDeviceID>emulator-####;Pixel_8_API_31</AndroidDeviceID>
+    <AndroidDeviceID>emulator-5554;pixel_4_xl_-_api_34</AndroidDeviceID>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <DebuggerFlavor>AndroidDebugger</DebuggerFlavor>
+    <AndroidDeviceID>emulator-####;pixel_6_-_api_30</AndroidDeviceID>
   </PropertyGroup>
 </Project>

@@ -1,3 +1,0 @@
-F:/VSProjects/VoxelGame/VoxelGame-Android-Client/app/.cxx/Debug/1s3v4d3j/x86_64/CMakeFiles/native-lib.dir
-F:/VSProjects/VoxelGame/VoxelGame-Android-Client/app/.cxx/Debug/1s3v4d3j/x86_64/CMakeFiles/edit_cache.dir
-F:/VSProjects/VoxelGame/VoxelGame-Android-Client/app/.cxx/Debug/1s3v4d3j/x86_64/CMakeFiles/rebuild_cache.dir

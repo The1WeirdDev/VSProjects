@@ -1,38 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Src\OGLEngine\Display\Font\Font.cpp" />
-    <ClCompile Include="Src\OGLEngine\Display\Texture.cpp" />
-    <ClCompile Include="Src\OGLEngine\Input\Input.cpp" />
-    <ClCompile Include="Src\OGLEngine\Display\Rendering\UIRenderer.cpp" />
-    <ClCompile Include="Src\OGLEngine\LibraryManager.cpp" />
-    <ClCompile Include="Src\dllmain.cpp" />
-    <ClCompile Include="Src\OGLEngine\Display\Display.cpp" />
-    <ClCompile Include="Src\OGLEngine\Display\Mesh\UITexturedMesh.cpp" />
-    <ClCompile Include="Src\OGLEngine\Display\Shader\Shader.cpp" />
-    <ClCompile Include="Src\OGLEngine\OGLEngine.cpp" />
-    <ClCompile Include="Src\OGLEngine\Time\Time.cpp" />
-    <ClCompile Include="Src\OGLEngine\UI\UI.cpp" />
-    <ClCompile Include="Src\OGLEngine\UI\UIS\Frame.cpp" />
-    <ClCompile Include="Src\pch.cpp" />
-    <ClCompile Include="Src\OGLEngine\UI\UIS\TextLabel.cpp" />
+    <ClCompile Include="include\OGLEngine\Display\Font\Font.cpp" />
+    <ClCompile Include="include\OGLEngine\Display\Texture.cpp" />
+    <ClCompile Include="include\OGLEngine\Input\Input.cpp" />
+    <ClCompile Include="include\OGLEngine\Display\Rendering\UIRenderer.cpp" />
+    <ClCompile Include="include\OGLEngine\LibraryManager.cpp" />
+    <ClCompile Include="include\dllmain.cpp" />
+    <ClCompile Include="include\OGLEngine\Display\Display.cpp" />
+    <ClCompile Include="include\OGLEngine\Display\Mesh\UITexturedMesh.cpp" />
+    <ClCompile Include="include\OGLEngine\Display\Shader\Shader.cpp" />
+    <ClCompile Include="include\OGLEngine\OGLEngine.cpp" />
+    <ClCompile Include="include\OGLEngine\Time\Time.cpp" />
+    <ClCompile Include="include\OGLEngine\UI\UI.cpp" />
+    <ClCompile Include="include\OGLEngine\UI\UIS\Frame.cpp" />
+    <ClCompile Include="include\pch.cpp" />
+    <ClCompile Include="include\OGLEngine\UI\UIS\TextLabel.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Src\OGLEngine\Display\Font\Font.h" />
-    <ClInclude Include="Src\OGLEngine\Display\Display.h" />
-    <ClInclude Include="Src\OGLEngine\Display\Texture.h" />
+    <ClInclude Include="include\OGLEngine\Display\Font\Font.h" />
+    <ClInclude Include="include\OGLEngine\Display\Display.h" />
+    <ClInclude Include="include\OGLEngine\Display\Texture.h" />
     <ClInclude Include="Src\OGLEngine\Display\UI.h" />
-    <ClInclude Include="Src\OGLEngine\Input\Input.h" />
-    <ClInclude Include="Src\OGLEngine\Display\Rendering\UIRenderer.h" />
-    <ClInclude Include="Src\OGLEngine\LibraryManager.h" />
-    <ClInclude Include="Src\framework.h" />
-    <ClInclude Include="Src\OGLEngine\Display\Mesh\UITexturedMesh.h" />
-    <ClInclude Include="Src\OGLEngine\Display\Shader\Shader.h" />
-    <ClInclude Include="Src\OGLEngine\OGLEngine.h" />
-    <ClInclude Include="Src\OGLEngine\Time\Time.h" />
-    <ClInclude Include="Src\OGLEngine\UI\UI.h" />
-    <ClInclude Include="Src\OGLEngine\UI\UIS\Frame.h" />
-    <ClInclude Include="Src\pch.h" />
-    <ClInclude Include="Src\OGLEngine\UI\UIS\TextLabel.h" />
+    <ClInclude Include="include\OGLEngine\Input\Input.h" />
+    <ClInclude Include="include\OGLEngine\Display\Rendering\UIRenderer.h" />
+    <ClInclude Include="include\OGLEngine\LibraryManager.h" />
+    <ClInclude Include="include\framework.h" />
+    <ClInclude Include="include\OGLEngine\Display\Mesh\UITexturedMesh.h" />
+    <ClInclude Include="include\OGLEngine\Display\Shader\Shader.h" />
+    <ClInclude Include="include\OGLEngine\OGLEngine.h" />
+    <ClInclude Include="include\OGLEngine\Time\Time.h" />
+    <ClInclude Include="include\OGLEngine\UI\UI.h" />
+    <ClInclude Include="include\OGLEngine\UI\UIS\Frame.h" />
+    <ClInclude Include="include\pch.h" />
+    <ClInclude Include="include\OGLEngine\UI\UIS\TextLabel.h" />
   </ItemGroup>
 </Project>

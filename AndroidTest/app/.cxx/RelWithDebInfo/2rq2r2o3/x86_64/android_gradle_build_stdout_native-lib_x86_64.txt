@@ -1,0 +1,3 @@
+ninja: Entering directory `F:\VSProjects\AndroidTest\app\.cxx\RelWithDebInfo\2rq2r2o3\x86_64'
+[1/2] Building CXX object CMakeFiles/native-lib.dir/NativeLib.cpp.o
+[2/2] Linking CXX shared library F:\VSProjects\AndroidTest\app\build\intermediates\cxx\RelWithDebInfo\2rq2r2o3\obj\x86_64\libnative-lib.so

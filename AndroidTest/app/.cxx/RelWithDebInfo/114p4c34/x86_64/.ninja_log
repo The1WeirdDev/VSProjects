@@ -1,0 +1,9 @@
+# ninja log v5
+4	320	737249806	CMakeFiles/native-lib.dir/NativeLib.cpp.o	989a3556f3ff83a9
+321	588	737249806	F:/VSProjects/AndroidTest/app/build/intermediates/cxx/RelWithDebInfo/114p4c34/obj/x86_64/libnative-lib.so	1b6d0f8d210c14f2
+5	503	737249872	CMakeFiles/native-lib.dir/NativeLib.cpp.o	989a3556f3ff83a9
+504	704	737249872	F:/VSProjects/AndroidTest/app/build/intermediates/cxx/RelWithDebInfo/114p4c34/obj/x86_64/libnative-lib.so	1b6d0f8d210c14f2
+7	1447	737249902	CMakeFiles/native-lib.dir/NativeLib.cpp.o	989a3556f3ff83a9
+1449	1667	737249904	F:/VSProjects/AndroidTest/app/build/intermediates/cxx/RelWithDebInfo/114p4c34/obj/x86_64/libnative-lib.so	1b6d0f8d210c14f2
+12	462	737250306	CMakeFiles/native-lib.dir/NativeLib.cpp.o	989a3556f3ff83a9
+463	701	737250308	F:/VSProjects/AndroidTest/app/build/intermediates/cxx/RelWithDebInfo/114p4c34/obj/x86_64/libnative-lib.so	1b6d0f8d210c14f2

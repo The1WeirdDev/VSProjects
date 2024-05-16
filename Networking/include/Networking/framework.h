@@ -4,7 +4,7 @@
 #else
 	#ifdef ANDROID_BUILD
 		#define fdeclspec
-		#ifdef NETWORKING_EXPORT
+		#ifdef NETWORKING_EXPORTS
 			#define NETWORKING_API __declspec(dllexport)
 		#else
 			#define NETWORKING_API __declspec(dllimport)
@@ -14,7 +14,7 @@
 		// Windows Header Files
 		#include <windows.h>
 
-		#ifdef NETWORKING_EXPORT
+		#ifdef NETWORKING_EXPORTS
 		#define NETWORKING_API __declspec(dllexport)
 		#else
 		#define NETWORKING_API __declspec(dllimport)

@@ -1,0 +1,65 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 33
+    buildToolsVersion '35.0.0-rc3'
+    ndkVersion "25.2.9519653"
+    defaultConfig.with {
+        applicationId = "com.VoxelGame_Android_Client"
+        minSdkVersion 29
+        targetSdkVersion 32
+        
+        externalNativeBuild{
+            cmake{
+                cppFlags "-std=c++17"
+                targets "native-lib"
+            }
+        }
+        
+    }
+
+    compileOptions.with {
+        sourceCompatibility=JavaVersion.VERSION_1_7
+        targetCompatibility=JavaVersion.VERSION_1_7
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                    'proguard-rules.pro'
+        }
+    }
+    
+    externalNativeBuild {
+
+        // Encapsulates your CMake build configurations.
+        cmake {
+
+            // Provides a relative path to your CMake build script.
+            path "src/main/cpp/CMakeLists.txt"
+            version "3.22.1"
+        }
+    }
+    flavorDimensions 'cpuArch'
+    productFlavors {
+        create("arm7") {
+            ndk.abiFilters.add("armeabi-v7a")
+        }
+        create("arm8") {
+            ndk.abiFilters.add("arm64-v8a")
+        }
+        create("x86") {
+            ndk.abiFilters.add("x86")
+        }
+        create("x86-64") {
+            ndk.abiFilters.add("x86_64")
+        }
+        create("all")
+    }
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    
+}

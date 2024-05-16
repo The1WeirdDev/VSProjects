@@ -1,0 +1,7 @@
+Executable : C:\Users\1weir\AppData\Local\Android\Sdk\cmake\3.22.1\bin\ninja.exe
+arguments : 
+-C
+F:\VSProjects\AndroidTest\app\.cxx\RelWithDebInfo\2rq2r2o3\x86_64
+native-lib
+jvmArgs : 
+

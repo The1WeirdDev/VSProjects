@@ -12,7 +12,8 @@ namespace T1WD {
 #pragma region TCPConnection
 	std::mutex TCPConnection::mutex;
 
-	TCPConnection::TCPConnection(void* socket) {
+	TCPConnection::TCPConnection(TCPServer* server, void* socket) {
+		this->server = server;
 		this->socket = socket;
 	}
 	TCPConnection::~TCPConnection() {
@@ -23,12 +24,13 @@ namespace T1WD {
 		std::error_code ec;
 		((tcp::socket*)socket)->close(ec);
 
-		if (ec) {
+		//if (ec) {
 			//Process Error
 			//printf("Error closing socket\n");
-		}
+		//}
 		try {
 			delete ((tcp::socket*)socket);
+			socket = nullptr;
 		}
 		catch (std::exception& e) {
 			printf("Failed to delete socket. Reason :");
@@ -85,7 +87,7 @@ namespace T1WD {
 	}
 	void TCPConnection::OnRead(const std::error_code& error, std::size_t bytes_transferred) {
 		if (error) {
-			TCPServer::OnDisconnect(this);
+			server->OnDisconnect(this);
 			//TODO: Disconnect client
 			return;
 		}
@@ -111,7 +113,7 @@ namespace T1WD {
 				AsyncRead();
 				return;
 			}
-			if (TCPServer::on_packet_read)TCPServer::on_packet_read(id, &packet, bytes_transferred);
+			if (server->on_packet_read)server->on_packet_read(id, &packet, bytes_transferred);
 
 			bytes_transferred -= length;
 		}
@@ -119,38 +121,44 @@ namespace T1WD {
 
 	void TCPConnection::OnWrite(const std::error_code& error, std::size_t bytes_transferred) {
 		if (error) {
-			printf("Error writing to tcp clients.\n");
-			TCPServer::OnDisconnect(this);
+			//printf("Error writing to tcp clients.\n");
+			server->OnDisconnect(this);
 			return;
 		}
 		else {
-			printf("Transferred %d bytes.\n", (int)bytes_transferred);
+			//printf("Transferred %d bytes.\n", (int)bytes_transferred);
+			if (server->on_packet_wrote)server->on_packet_wrote(id, bytes_transferred);
 		}
 		messages.erase(messages.begin());
 		AsyncWrite();
 	}
 
 #pragma endregion
-	int TCPServer::port = 8888;
-	unsigned short TCPServer::max_players = 20;
-	std::map<unsigned short, TCPConnection*> TCPServer::connections;
-	void* TCPServer::io_context;
-	void* TCPServer::acceptor;
-	void* TCPServer::socket;
+	TCPServer::TCPServer() {
+		port = 8888;
+		max_players = 20;
+		io_context = nullptr;
+		acceptor = nullptr;
+		socket = nullptr;
 
-	std::function<void(unsigned short)> TCPServer::on_client_connected = nullptr;
-	std::function<void(bool, const char*)> TCPServer::on_server_stopped = nullptr;
+		on_client_connected = nullptr;
+		on_client_failed_connect = nullptr;
+		on_client_disconnected = nullptr;
 
-	std::function<void(const char*) > TCPServer::on_client_failed_connect;
-	std::function<void(unsigned short)> TCPServer::on_client_disconnected = nullptr;
-	std::function<void()> TCPServer::on_server_started = nullptr;
-	std::function<void(std::error_code)> TCPServer::on_server_start_failed = nullptr;
+		on_server_started = nullptr;
+		on_server_start_failed = nullptr;
+		on_server_stopped = nullptr;
 
-	std::function<void(unsigned short, Packet*, size_t)> TCPServer::on_packet_read = nullptr;
+		on_packet_read = nullptr;
+		on_packet_wrote = nullptr;
+	}
+	TCPServer::~TCPServer() {
+
+	}
 
 	void TCPServer::Start(int port, unsigned short max_players) {
-		TCPServer::port = port;
-		TCPServer::max_players = max_players;
+		this->port = port;
+		this->max_players = max_players;
 		connections.clear();
 
 		io_context = new asio::io_context();
@@ -191,7 +199,9 @@ namespace T1WD {
 	}
 	void TCPServer::StartAccept() {
 		socket = new tcp::socket(*(asio::io_context*)io_context);
-		((tcp::acceptor*)acceptor)->async_accept(*((tcp::socket*)socket), &TCPServer::OnAccept);
+		((tcp::acceptor*)acceptor)->async_accept(*((tcp::socket*)socket), [this](const std::error_code& e) {
+			OnAccept(e);
+		});
 	}
 
 	void TCPServer::OnAccept(const std::error_code& e) {
@@ -201,7 +211,7 @@ namespace T1WD {
 			if (on_server_stopped)on_server_stopped(true, e.message().c_str());
 			return;
 		}
-		TCPConnection* connection = new TCPConnection(socket);
+		TCPConnection* connection = new TCPConnection(this, socket);
 		for (int i = 0; i < max_players; i++) {
 			if (connections.find(i) == connections.end()) {
 				connections.emplace(i, connection);

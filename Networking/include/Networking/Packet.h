@@ -39,7 +39,7 @@ namespace T1WD {
 		NETWORKING_API void WriteUChar(unsigned char value);
 		NETWORKING_API void WriteShort(short value);
 		NETWORKING_API void WriteUShort(unsigned short value);
-		NETWORKING_API void WriteInt(int value);
+		NETWORKING_API void WriteInt(int value);	//Will always be 4 bytes
 		NETWORKING_API void WriteUInt(unsigned int value);
 		NETWORKING_API void WriteFloat(float value);
 		NETWORKING_API void WriteBool(bool value);
