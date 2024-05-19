@@ -17,5 +17,6 @@ namespace T1WD {
 		virtual void CleanUp() {}
 
 		GameObject* gameobject = nullptr;
+		const char* name = nullptr;
 	};
 }

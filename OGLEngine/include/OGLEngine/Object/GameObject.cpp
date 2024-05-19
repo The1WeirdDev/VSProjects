@@ -2,9 +2,12 @@
 
 #include "Component/Component.h"
 #include <iostream>
+#include <glm/gtc/matrix_transform.hpp>
 
 using namespace T1WD;
-GameObject::GameObject() {}
+GameObject::GameObject() {
+	GenerateTransformationMatrix();
+}
 GameObject::~GameObject() {
 	for (size_t i = 0; i < components.size(); i++) {
 		components[i]->CleanUp();
@@ -27,6 +30,14 @@ Component* GameObject::AddComponent(Component* component) {
 	component->Awake();
 	component->Start();
 	return component;
+}
+Component* GameObject::GetComponent(const char* component_name) {
+	for (Component* component : components) {
+		if (component->name == component_name)
+			return component;
+	}
+
+	return nullptr;
 }
 void GameObject::Awake() {
 	for (Component* component : components) {
@@ -84,13 +95,38 @@ void GameObject::SetPosition(glm::vec3 position) {
 	this->position = position;
 }
 void GameObject::SetGlobalPosition(glm::vec3 position) {
-	glm::vec3 accumulated_position;
+	this->position = position - GetParentsGlobalPosition();
+	CalculateGlobalPosition();
+	GenerateTransformationMatrix();
+	UpdateChildrenTransformations();
 
-	GameObject* current_object = this;
-	while (current_object != nullptr) {
-		accumulated_position += current_object->position;
-		current_object = current_object->parent;
-	}
-	this->position = accumulated_position - position;
+}
+void GameObject::Translate(glm::vec3 position) {
+	this->position += position;
+	CalculateGlobalPosition();
+	GenerateTransformationMatrix();
+	UpdateChildrenTransformations();
+}
+
+glm::vec3 GameObject::CalculateGlobalPosition() {
 	this->global_position = position;
+	if (this->parent)
+		global_position += this->parent->global_position;
+	return global_position;
+}
+
+glm::vec3 GameObject::GetParentsGlobalPosition() {
+	if (this->parent)
+		return this->parent->global_position;
+	return glm::vec3(0.0);
+}
+void GameObject::UpdateChildrenTransformations() {
+	for (GameObject* object : children) {
+		object->CalculateGlobalPosition();
+		object->GenerateTransformationMatrix();
+	}
+}
+void GameObject::GenerateTransformationMatrix() {
+	transformation_matrix = glm::mat4x4(1.0f);
+	transformation_matrix = glm::translate(transformation_matrix, this->global_position);
 }

@@ -46,7 +46,8 @@ void Display::AddWindowCallbacks() {
 				Input::keys[key] = 0;
 			}
 
-			Input::on_key_callback(key, action == GLFW_PRESS);
+			if(Input::on_key_callback)
+				Input::on_key_callback(key, action == GLFW_PRESS);
 		}
 	});
 }
@@ -63,6 +64,9 @@ void Display::SetTitle(const char* title) {
 	glfwSetWindowTitle(window, title);
 }
 
+void Display::SetSwapInterval(int interval) {
+	glfwSwapInterval(interval);
+}
 void Display::PollEvents() {
 	glfwPollEvents();
 }

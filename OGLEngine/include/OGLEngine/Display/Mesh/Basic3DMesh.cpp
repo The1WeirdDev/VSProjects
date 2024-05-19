@@ -21,7 +21,7 @@ void Basic3DMesh::Create(float* vertex_data, size_t vertex_count, unsigned int* 
 	glBindBuffer(GL_ARRAY_BUFFER, vbo_id);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * vertex_count, vertex_data, GL_STATIC_DRAW);
 
-	glVertexAttribPointer(0, 2, GL_FLOAT, false, 0, nullptr);
+	glVertexAttribPointer(0, 3, GL_FLOAT, false, 0, nullptr);
 
 	glEnableVertexAttribArray(0);
 

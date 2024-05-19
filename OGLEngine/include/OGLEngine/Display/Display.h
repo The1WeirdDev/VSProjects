@@ -17,6 +17,7 @@ namespace T1WD {
 		static OGLENGINE_API void CenterWindow();
 
 		static OGLENGINE_API void SetTitle(const char* title);
+		static OGLENGINE_API void SetSwapInterval(int interval);
 
 		static OGLENGINE_API void ClearColors();	//Clears color buffer
 		static OGLENGINE_API void ClearDepth();//Clears depth buffer. Things drawn after this will overwrite existing pixels on screen
@@ -25,15 +26,15 @@ namespace T1WD {
 
 		static OGLENGINE_API void PollEvents();//Updates events like key events, mouse events, window events, etc
 		static OGLENGINE_API void SwapBuffers();//Actually updates the screen buffer and swaps it out with what we have drawn
-
-		static OGLENGINE_API void OnWindowResize(GLFWwindow* window, int width, int height);
 	public:
 		static GLFWwindow* window;
 		static int width, height;
 		static float aspect_ratio, inverse_aspect_ratio;
 
 	public:
-		//Callback
+		//Callbacks
 		static std::function<void(int, int)> window_resize_callback;
+	private:
+		static void OnWindowResize(GLFWwindow* window, int width, int height);
 	};
 }

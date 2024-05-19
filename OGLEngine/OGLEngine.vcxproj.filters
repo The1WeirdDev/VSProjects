@@ -23,7 +23,6 @@
     <ClCompile Include="include\OGLEngine\Display\Mesh\Mesh.cpp" />
     <ClCompile Include="include\OGLEngine\Display\Mesh\Basic3DMesh.cpp" />
     <ClCompile Include="include\OGLEngine\Display\Shader\Shaders.cpp" />
-    <ClCompile Include="include\OGLEngine\Display\Shader\Shaders\BasicMesh3DShader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\OGLEngine\Display\Font\Font.h" />
@@ -49,6 +48,5 @@
     <ClInclude Include="include\OGLEngine\Display\Mesh\Mesh.h" />
     <ClInclude Include="include\OGLEngine\Display\Mesh\Basic3DMesh.h" />
     <ClInclude Include="include\OGLEngine\Display\Shader\Shaders.h" />
-    <ClInclude Include="include\OGLEngine\Display\Shader\Shaders\BasicMesh3DShader.h" />
   </ItemGroup>
 </Project>

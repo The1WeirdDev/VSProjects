@@ -8,6 +8,7 @@
 #include <OGLEngine/Display/Font/Font.h>
 #include <OGLEngine/Display/Display.h>
 #include <OGLEngine/Display/Mesh/UITexturedMesh.h>
+#include <OGLEngine/Display/Shader/Shaders.h>
 #include <OGLEngine/LibraryManager.h>
 #include <OGLEngine/Time/Time.h>
 #include <OGLEngine/Input/Input.h>
@@ -47,7 +48,6 @@ int main(int argc, char** argv) {
 	text_label.height = 0.5;
 	//TCPServer::Start(8888);
 
-
 	TCPClient client;
 
 	client.on_connected = []() {
@@ -70,28 +70,21 @@ int main(int argc, char** argv) {
 	client.Connect(ip, 8888);
 
 	//std::thread t{ [&client]() { client.Run(); } };
-
+	Shaders::Init();
 	Time::Init();
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	Input::on_key_callback = [](int key, bool is_pressed) {
-		if (is_pressed) {
-			printf("Key %d was pressed\n", key);
-		}
-		else {
-			printf("Key %d was released\n", key);
-		}
-	};
+
 	Scene scene;
 	scene.Awake();
 	scene.Start();
 
 	float* vertices = new float[12] {
-		0, 0,
-			0, 1,
-			1, 0,
-			1, 1
+		0, 0, -5,
+			0, 1, -5,
+			1, 0, -5,
+			1, 1, -5
 		};
 	unsigned int* indices = new unsigned int[6] {
 			0, 1, 2, 2, 1, 3
@@ -99,11 +92,19 @@ int main(int argc, char** argv) {
 	GameObject* object = scene.CreateGameObject();
 	GameObject* child = object->CreateChild();
 	MeshRenderer3D* mesh_renderer = (MeshRenderer3D*)child->AddComponent(new MeshRenderer3D());
-	mesh_renderer->mesh.Create(vertices, 8, indices, 6);
-	object->SetGlobalPosition(glm::vec3(0, 0, 0));
-
-	//object->AddComponent(new PlayerController());
 	object->AddComponent(new Camera());
+	object->AddComponent(new PlayerController());
+
+	mesh_renderer->mesh.Create(vertices, 12, indices, 6);
+	object->SetGlobalPosition(glm::vec3(-2,-2,-2));
+	child->SetGlobalPosition(glm::vec3(-5, -5, -5));
+	glm::vec3 global_position = child->GetPosition();
+
+	std::cout << global_position.x << " " << global_position.y << " " << global_position.z << std::endl;
+
+	glClearColor(0, 0.8f, 1.0f, 1.0f);
+
+	Display::SetSwapInterval(0);
 	printf("Initialized\n");
 	while (Display::ShouldUpdateWindow()) {
 		Display::PollEvents();
@@ -124,6 +125,9 @@ int main(int argc, char** argv) {
 			}
 		}
 
+		//object->Translate(glm::vec3(0, 0, -1 * Time::delta_time));
+		//glm::vec3& pos = child->GetGlobalPosition();
+		//std::cout << pos.x << " " << pos.y << " " << pos.z << std::endl;
 		if (Input::IsKeyPressed(GLFW_KEY_G)) {
 			if (client.is_connected || client.is_attempting_connect)client.Disconnect();
 			//client.Connect(ip, 8888);
@@ -133,24 +137,23 @@ int main(int argc, char** argv) {
 			client.Connect(ip, 8888);
 		}
 
-		//std::cout << (Input::IsKeyDown(GLFW_KEY_W) ? "true" : "false") << std::endl;
 		Time::Update();
 		Input::Update();
-		//if (world)world->Update();
-		//frame.y -= 0.001f;
+
 		scene.Update();
+
 		Display::ClearColors();
-		//if (world)world->Draw();
 		scene.Draw();
+
 		Display::ClearDepth();
-		//UIRenderer::RenderFrame(frame);
 		scene.LateDraw();
-		UIRenderer::RenderTextLabel(text_label);
+		//UIRenderer::RenderTextLabel(text_label);
 		Display::SwapBuffers();
 	}
 
 	scene.CleanUp();
 
+	Shaders::CleanUp();
 	Display::Destroy();
 	client.Disconnect();
 	client.Stop();

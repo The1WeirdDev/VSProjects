@@ -19,7 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\OGLEngine\Display\Shader\Shaders\BasicMesh3DShader.h" />
     <ClInclude Include="include\OGLEngine\Display\Mesh\Basic3DMesh.h" />
     <ClInclude Include="include\OGLEngine\Object\Components\Camera.h" />
     <ClInclude Include="include\OGLEngine\Object\Component\Component.h" />
@@ -45,7 +44,6 @@
     <ClInclude Include="include\OGLEngine\UI\UIS\TextLabel.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="include\OGLEngine\Display\Shader\Shaders\BasicMesh3DShader.cpp" />
     <ClCompile Include="include\OGLEngine\Display\Mesh\Basic3DMesh.cpp" />
     <ClCompile Include="include\OGLEngine\Object\Components\Camera.cpp" />
     <ClCompile Include="include\OGLEngine\Object\Component\Component.cpp" />

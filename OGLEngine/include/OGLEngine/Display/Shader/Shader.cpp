@@ -13,18 +13,24 @@ Shader::Shader() {
 }
 
 Shader::~Shader() {
-	glDeleteShader(vertex_shader_id);
-	glDeleteShader(fragment_shader_id);
-	glDeleteProgram(program_id);
-	vertex_shader_id = 0;
-	fragment_shader_id = 0;
-	program_id = 0;
+	CleanUp();
 }
 void Shader::Start() {
 	glUseProgram(program_id);
 }
 void Shader::Stop() {
 	glUseProgram(0);
+}
+
+void Shader::CleanUp() {
+	if (is_created == false)return;
+	glDeleteShader(vertex_shader_id);
+	glDeleteShader(fragment_shader_id);
+	glDeleteProgram(program_id);
+	vertex_shader_id = 0;
+	fragment_shader_id = 0;
+	program_id = 0;
+	is_created = false;
 }
 void Shader::BindAttribute(int position, const char* name) {
 	glBindAttribLocation(program_id, position, name);
@@ -46,6 +52,7 @@ void Shader::CreateShader(const char* vertex_shader_source, const char* fragment
 
 	glDetachShader(program_id, vertex_shader_id);
 	glDetachShader(program_id, fragment_shader_id);
+	is_created = true;
 }
 int Shader::CreateShader(const char* shader_data, int shader_type) {
 	int shader = glCreateShader(shader_type);
@@ -77,4 +84,7 @@ void Shader::LoadVec2(int location, float x, float y){
 }
 void Shader::LoadVec3(int location, float x, float y, float z) {
 	glUniform3f(location, x, y, z);
+}
+void Shader::LoadMat4x4(int location, glm::mat4x4& matrix) {
+	glUniformMatrix4fv(location, 1, false, &matrix[0][0]);
 }
