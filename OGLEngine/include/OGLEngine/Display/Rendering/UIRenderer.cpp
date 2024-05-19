@@ -7,6 +7,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
+using namespace T1WD;
 Shader UIRenderer::frame_shader;
 UITexturedMesh UIRenderer::texture_mesh;
 Shader UIRenderer::text_label_shader;

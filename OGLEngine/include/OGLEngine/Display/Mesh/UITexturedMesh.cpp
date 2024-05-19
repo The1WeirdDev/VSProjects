@@ -4,7 +4,7 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
-
+using namespace T1WD;
 UITexturedMesh::UITexturedMesh() {
 
 }

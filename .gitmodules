@@ -1,0 +1,6 @@
+[submodule "Libraries/ttf2"]
+	path = Libraries/ttf2
+	url = https://github.com/fetisov/ttf2mesh
+[submodule "Libraries/ttf2mesh/include"]
+	path = Libraries/ttf2mesh/include
+	url = https://github.com/fetisov/ttf2mesh

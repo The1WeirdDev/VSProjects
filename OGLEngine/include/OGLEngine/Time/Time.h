@@ -2,12 +2,14 @@
 
 #include <OGLEngine/OGLEngine.h>
 
-extern "C" OGLENGINE_API class Time {
-public:
-	static OGLENGINE_API void Init();
-	static OGLENGINE_API void Update();
+namespace T1WD {
+	extern "C" OGLENGINE_API class Time {
+	public:
+		static OGLENGINE_API void Init();
+		static OGLENGINE_API void Update();
 
-	static double time;
-	static double last_time;
-	static double delta_time;
-};
+		static double time;
+		static double last_time;
+		static double delta_time;
+	};
+}

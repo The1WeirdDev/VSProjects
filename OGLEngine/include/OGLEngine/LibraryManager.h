@@ -2,13 +2,15 @@
 
 #include "OGLEngine.h"
 
-class LibraryManager{
-public:
-	static OGLENGINE_API void InitializeGLFW();
-	static OGLENGINE_API void InitializeGLEW();
+namespace T1WD {
+	class LibraryManager {
+	public:
+		static OGLENGINE_API void InitializeGLFW();
+		static OGLENGINE_API void InitializeGLEW();
 
-	static OGLENGINE_API void TerminateGLFW();
+		static OGLENGINE_API void TerminateGLFW();
 
-	static bool is_glfw_initialized;
-	static bool is_glew_initialized;
-};
+		static bool is_glfw_initialized;
+		static bool is_glew_initialized;
+	};
+}

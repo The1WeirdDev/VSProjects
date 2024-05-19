@@ -14,8 +14,14 @@
     <ClCompile Include="include\OGLEngine\Time\Time.cpp" />
     <ClCompile Include="include\OGLEngine\UI\UI.cpp" />
     <ClCompile Include="include\OGLEngine\UI\UIS\Frame.cpp" />
-    <ClCompile Include="include\pch.cpp" />
     <ClCompile Include="include\OGLEngine\UI\UIS\TextLabel.cpp" />
+    <ClCompile Include="include\OGLEngine\Scene\Scene.cpp" />
+    <ClCompile Include="include\OGLEngine\Object\GameObject.cpp" />
+    <ClCompile Include="include\OGLEngine\Object\Component\Component.cpp" />
+    <ClCompile Include="include\OGLEngine\Object\Components\Camera.cpp" />
+    <ClCompile Include="include\OGLEngine\Object\Components\MeshRenderer3D.cpp" />
+    <ClCompile Include="include\OGLEngine\Display\Mesh\Mesh.cpp" />
+    <ClCompile Include="include\OGLEngine\Display\Mesh\Basic3DMesh.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\OGLEngine\Display\Font\Font.h" />
@@ -32,7 +38,13 @@
     <ClInclude Include="include\OGLEngine\Time\Time.h" />
     <ClInclude Include="include\OGLEngine\UI\UI.h" />
     <ClInclude Include="include\OGLEngine\UI\UIS\Frame.h" />
-    <ClInclude Include="include\pch.h" />
     <ClInclude Include="include\OGLEngine\UI\UIS\TextLabel.h" />
+    <ClInclude Include="include\OGLEngine\Scene\Scene.h" />
+    <ClInclude Include="include\OGLEngine\Object\GameObject.h" />
+    <ClInclude Include="include\OGLEngine\Object\Component\Component.h" />
+    <ClInclude Include="include\OGLEngine\Object\Components\Camera.h" />
+    <ClInclude Include="include\OGLEngine\Object\Components\MeshRenderer3D.h" />
+    <ClInclude Include="include\OGLEngine\Display\Mesh\Mesh.h" />
+    <ClInclude Include="include\OGLEngine\Display\Mesh\Basic3DMesh.h" />
   </ItemGroup>
 </Project>

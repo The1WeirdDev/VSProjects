@@ -5,6 +5,8 @@
 
 #include <OGLEngine/Display/Display.h>
 
+using namespace T1WD;
+std::function<void(int key, bool is_key_down)> Input::on_key_callback = nullptr;
 std::array<unsigned char, OGLENGINE_KEY_MAP_SIZE> Input::keys;
 std::vector<int> Input::keys_to_update;
 
@@ -28,8 +30,7 @@ bool Input::IsKeyDown(int key) {
 bool Input::IsKeyPressed(int key) {
 	return keys[key] > 1;
 }
-
-#ifdef OGLENGINE_STATIC
+/*
 void Input::KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
 	if (key < 0 || key > OGLENGINE_KEY_MAP_SIZE)return;
 
@@ -40,5 +41,4 @@ void Input::KeyCallback(GLFWwindow* window, int key, int scancode, int action, i
 	}else if(action == GLFW_RELEASE) {
 		keys[key] = 0;
 	}
-}
-#endif
+}*/

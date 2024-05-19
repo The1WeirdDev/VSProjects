@@ -13,6 +13,8 @@
 #include <OGLEngine/Input/Input.h>
 
 #include <Networking/TCP/TCPClient.h>
+
+#include "World/World.h"
 using namespace T1WD;
 //#include "Game/World.h"
 
@@ -29,25 +31,24 @@ int main(int argc, char** argv) {
 	Frame frame;
 	frame.SetSize(0.5f, 0.5f);
 	frame.screen_size_restraint = ScreenSizeRestraint::InverseAspectX;
-	/*
+
 	TextLabel text_label;
 	text_label.SetText("HELLO WORLD");
 	text_label.GenerateMesh();
-	*/
 
 	//TCPServer::Start(8888);
 
-
+	World world;
 	TCPClient client;
-	
-	client.on_connected = []() {
+
+	client.on_connected = [&world]() {
 		printf("Connected to server.\n");
 		//world = new World();
-	};
+		};
 	client.on_connect_failed = [](std::error_code error) {
 		printf("Failed to connect to server. Reason ");
 		std::cout << error.message() << std::endl;
-	};
+		};
 	client.on_disconnected = [](std::error_code& error) {
 		printf("Disconnected from server.");
 
@@ -57,22 +58,29 @@ int main(int argc, char** argv) {
 
 		//delete world;
 		//world = nullptr;
-	};
+		};
 
 	client.on_packet_read = [](Packet* packet, size_t bytes_transferred) {
 		packet->GetString();
 		std::cout << "Packet says " << packet->GetFloat() << std::endl;
-	};
+		};
 	const char* ip = "10.16.32.13";
 	client.Connect(ip, 8888);
-	
+
 	//std::thread t{ [&client]() { client.Run(); } };
 
 	Time::Init();
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
+	Input::on_key_callback = [](int key, bool is_pressed) {
+		if (is_pressed){
+			printf("Key %d was pressed\n", key);
+		}
+		else {
+			printf("Key %d was released\n", key);
+		}
+	};
 	printf("Initialized\n");
 	while (Display::ShouldUpdateWindow()) {
 		Display::PollEvents();
@@ -94,7 +102,7 @@ int main(int argc, char** argv) {
 		}
 
 		if (Input::IsKeyPressed(GLFW_KEY_G)) {
-			if (client.is_connected)client.Disconnect();
+			if (client.is_connected || client.is_attempting_connect)client.Disconnect();
 			//client.Connect(ip, 8888);
 		}
 
@@ -111,15 +119,13 @@ int main(int argc, char** argv) {
 		//if (world)world->Draw();
 		Display::ClearDepth();
 		//UIRenderer::RenderFrame(frame);
-		//UIRenderer::RenderTextLabel(text_label);
+		UIRenderer::RenderTextLabel(text_label);
 		Display::SwapBuffers();
-		//TCPServer::Tick();
 	}
 
 	Display::Destroy();
-	LibraryManager::TerminateGLFW();
 	client.Disconnect();
 	client.Stop();
-	//t.join();
+	LibraryManager::TerminateGLFW();
 	printf("Exited Program\n");
 }

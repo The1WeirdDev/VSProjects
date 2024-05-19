@@ -2,6 +2,10 @@
 
 #include <OGLEngine/Display/Rendering/UIRenderer.h>
 
+#include "ttf2mesh.h"
+
+using namespace T1WD;
+
 TextLabel::TextLabel() : UI() {
 
 }
@@ -12,5 +16,5 @@ void TextLabel::SetText(const char* text) {
 	this->text = text;
 }
 void TextLabel::GenerateMesh() {
-
+	
 }

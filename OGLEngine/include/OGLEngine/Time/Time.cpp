@@ -2,7 +2,7 @@
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-
+using namespace T1WD;
 void Time::Init() {
 	time = glfwGetTime();
 	last_time = time;

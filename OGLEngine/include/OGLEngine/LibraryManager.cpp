@@ -4,6 +4,7 @@
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+using namespace T1WD;
 
 bool LibraryManager::is_glfw_initialized = false;
 bool LibraryManager::is_glew_initialized = false;

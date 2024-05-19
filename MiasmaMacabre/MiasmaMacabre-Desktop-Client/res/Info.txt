@@ -1,0 +1,6 @@
+Project started on 5/17/2024
+PROJECT IDEA:
+//
+//Procedually generated survival game
+//Lots of fog
+//Caves, witch houses

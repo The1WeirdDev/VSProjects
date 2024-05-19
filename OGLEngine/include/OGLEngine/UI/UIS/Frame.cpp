@@ -1,6 +1,7 @@
 #include "Frame.h"
 
 #include <OGLEngine/Display/Rendering/UIRenderer.h>
+using namespace T1WD;
 
 Frame::Frame() : UI() {
 

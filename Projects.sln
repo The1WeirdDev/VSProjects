@@ -27,6 +27,13 @@ Project("{39E2626F-3545-4960-A6E8-258AD8476CE5}") = "VoxelGame-Android-Client", 
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VoxelGame-Desktop-Client", "VoxelGame\VoxelGame-Desktop-Client\VoxelGame-Desktop-Client.vcxproj", "{937DFA12-4945-4A79-9AB6-FB68B07DED39}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MiasmaMacabre", "MiasmaMacabre", "{2C243639-2088-4089-B49C-F2197FA68D3E}"
+	ProjectSection(SolutionItems) = preProject
+		MiasmaMacabre\MiasmaMacabre-Desktop-Client\res\Info.txt = MiasmaMacabre\MiasmaMacabre-Desktop-Client\res\Info.txt
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MiasmaMacabre-Desktop-Client", "MiasmaMacabre\MiasmaMacabre-Desktop-Client\MiasmaMacabre-Desktop-Client.vcxproj", "{C582CB1F-12E7-4C52-B221-258052BEACFF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -261,6 +268,26 @@ Global
 		{937DFA12-4945-4A79-9AB6-FB68B07DED39}.Release|x64.Build.0 = Release|x64
 		{937DFA12-4945-4A79-9AB6-FB68B07DED39}.Release|x86.ActiveCfg = Release|Win32
 		{937DFA12-4945-4A79-9AB6-FB68B07DED39}.Release|x86.Build.0 = Release|Win32
+		{C582CB1F-12E7-4C52-B221-258052BEACFF}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{C582CB1F-12E7-4C52-B221-258052BEACFF}.Debug|Any CPU.Build.0 = Debug|x64
+		{C582CB1F-12E7-4C52-B221-258052BEACFF}.Debug|ARM.ActiveCfg = Debug|x64
+		{C582CB1F-12E7-4C52-B221-258052BEACFF}.Debug|ARM.Build.0 = Debug|x64
+		{C582CB1F-12E7-4C52-B221-258052BEACFF}.Debug|ARM64.ActiveCfg = Debug|x64
+		{C582CB1F-12E7-4C52-B221-258052BEACFF}.Debug|ARM64.Build.0 = Debug|x64
+		{C582CB1F-12E7-4C52-B221-258052BEACFF}.Debug|x64.ActiveCfg = Debug|x64
+		{C582CB1F-12E7-4C52-B221-258052BEACFF}.Debug|x64.Build.0 = Debug|x64
+		{C582CB1F-12E7-4C52-B221-258052BEACFF}.Debug|x86.ActiveCfg = Debug|Win32
+		{C582CB1F-12E7-4C52-B221-258052BEACFF}.Debug|x86.Build.0 = Debug|Win32
+		{C582CB1F-12E7-4C52-B221-258052BEACFF}.Release|Any CPU.ActiveCfg = Release|x64
+		{C582CB1F-12E7-4C52-B221-258052BEACFF}.Release|Any CPU.Build.0 = Release|x64
+		{C582CB1F-12E7-4C52-B221-258052BEACFF}.Release|ARM.ActiveCfg = Release|x64
+		{C582CB1F-12E7-4C52-B221-258052BEACFF}.Release|ARM.Build.0 = Release|x64
+		{C582CB1F-12E7-4C52-B221-258052BEACFF}.Release|ARM64.ActiveCfg = Release|x64
+		{C582CB1F-12E7-4C52-B221-258052BEACFF}.Release|ARM64.Build.0 = Release|x64
+		{C582CB1F-12E7-4C52-B221-258052BEACFF}.Release|x64.ActiveCfg = Release|x64
+		{C582CB1F-12E7-4C52-B221-258052BEACFF}.Release|x64.Build.0 = Release|x64
+		{C582CB1F-12E7-4C52-B221-258052BEACFF}.Release|x86.ActiveCfg = Release|Win32
+		{C582CB1F-12E7-4C52-B221-258052BEACFF}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -273,6 +300,7 @@ Global
 		{36912122-E7CD-4EE7-819C-3E915DE10841} = {65D56205-09A7-45A7-BE9D-74BBFA8BB048}
 		{C788F5CC-2DC7-4579-AA3B-82D6E57E97DE} = {6C44944D-F93A-4DD2-9E30-AEC17D2B03D6}
 		{937DFA12-4945-4A79-9AB6-FB68B07DED39} = {6C44944D-F93A-4DD2-9E30-AEC17D2B03D6}
+		{C582CB1F-12E7-4C52-B221-258052BEACFF} = {2C243639-2088-4089-B49C-F2197FA68D3E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8FBCCA4F-9220-46F9-A92D-4D75A441CA53}

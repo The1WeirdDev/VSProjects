@@ -4,6 +4,7 @@
 #include <OGLEngine/LibraryManager.h>
 
 #include <OGLEngine/Input/Input.h>
+using namespace T1WD;
 
 GLFWwindow* Display::window = nullptr;
 int Display::width = 0;
@@ -32,7 +33,22 @@ void Display::Create(int width, int height, const char* title){
 
 void Display::AddWindowCallbacks() {
 	glfwSetWindowSizeCallback(window, Display::OnWindowResize);
-	glfwSetKeyCallback(window, Input::KeyCallback);
+	glfwSetKeyCallback(window, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
+		if (key < 0 || key > OGLENGINE_KEY_MAP_SIZE)return;
+
+		if (action != GLFW_REPEAT) {
+			if (action == GLFW_PRESS) {
+				Input::keys[key] = 2;
+				Input::keys_to_update.push_back(key);
+
+			}
+			else if (action == GLFW_RELEASE) {
+				Input::keys[key] = 0;
+			}
+
+			Input::on_key_callback(key, action == GLFW_PRESS);
+		}
+	});
 }
 void Display::Destroy() {
 	glfwDestroyWindow(window);

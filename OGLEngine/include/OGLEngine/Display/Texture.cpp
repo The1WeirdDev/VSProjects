@@ -5,6 +5,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
+using namespace T1WD;
 
 int Texture::CreateTexture(const char* location) {
 	std::ifstream file(location);
