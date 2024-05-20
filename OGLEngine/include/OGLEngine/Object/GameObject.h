@@ -3,8 +3,7 @@
 #include <iostream>
 #include <vector>
 
-#include <glm/vec3.hpp>
-#include <glm/mat4x4.hpp>
+#include "OGLEngine/Math/Transform.h"
 
 namespace T1WD {
 	class Component;
@@ -32,6 +31,32 @@ namespace T1WD {
 		void SetGlobalPosition(glm::vec3 position);
 		void Translate(glm::vec3 position);
 
+		glm::vec3& GetPosition() { return position; }
+		glm::vec3& GetGlobalPosition() { return global_position; }
+		glm::vec3 GetParentsGlobalPosition();
+
+		glm::mat4& GetTransformationMatrix() { return transformation_matrix; }
+
+		std::vector<Component*> components;
+		std::vector<GameObject*> children;
+		GameObject* parent = nullptr;
+		Scene* scene = nullptr;
+	private:
+		glm::vec3 CalculateGlobalPosition();
+
+		void UpdateChildrenTransformations();
+		void GenerateTransformationMatrix();
+	private:
+		glm::vec3 position;	//Relative Position
+		glm::vec3 global_position;
+
+		glm::mat4 transformation_matrix;
+
+		/*
+		
+		void SetPosition(glm::vec3 position);
+		void SetGlobalPosition(glm::vec3 position);
+		void Translate(glm::vec3 position);
 
 		glm::vec3& GetPosition() { return position; }
 		glm::vec3& GetGlobalPosition() { return global_position; }
@@ -53,5 +78,6 @@ namespace T1WD {
 		glm::vec3 global_position;
 
 		glm::mat4 transformation_matrix;
+		*/
 	};
 }

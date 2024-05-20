@@ -89,10 +89,12 @@ void GameObject::LateDraw() {
 	}
 }
 
-
 void GameObject::SetPosition(glm::vec3 position) {
 	//Relative Position
 	this->position = position;
+	CalculateGlobalPosition();
+	GenerateTransformationMatrix();
+	UpdateChildrenTransformations();
 }
 void GameObject::SetGlobalPosition(glm::vec3 position) {
 	this->position = position - GetParentsGlobalPosition();
@@ -110,7 +112,7 @@ void GameObject::Translate(glm::vec3 position) {
 
 glm::vec3 GameObject::CalculateGlobalPosition() {
 	this->global_position = position;
-	if (this->parent)
+	if (this->parent != nullptr)
 		global_position += this->parent->global_position;
 	return global_position;
 }
@@ -130,3 +132,50 @@ void GameObject::GenerateTransformationMatrix() {
 	transformation_matrix = glm::mat4x4(1.0f);
 	transformation_matrix = glm::translate(transformation_matrix, this->global_position);
 }
+
+/*
+
+void GameObject::SetPosition(glm::vec3 position) {
+	//Relative Position
+	this->position = position;
+	CalculateGlobalPosition();
+	GenerateTransformationMatrix();
+	UpdateChildrenTransformations();
+}
+void GameObject::SetGlobalPosition(glm::vec3 position) {
+	this->position = position - GetParentsGlobalPosition();
+	CalculateGlobalPosition();
+	GenerateTransformationMatrix();
+	UpdateChildrenTransformations();
+
+}
+void GameObject::Translate(glm::vec3 position) {
+	this->position += position;
+	CalculateGlobalPosition();
+	GenerateTransformationMatrix();
+	UpdateChildrenTransformations();
+}
+
+glm::vec3 GameObject::CalculateGlobalPosition() {
+	this->global_position = position;
+	if (this->parent != nullptr)
+		global_position += this->parent->global_position;
+	return global_position;
+}
+
+glm::vec3 GameObject::GetParentsGlobalPosition() {
+	if (this->parent)
+		return this->parent->global_position;
+	return glm::vec3(0.0);
+}
+void GameObject::UpdateChildrenTransformations() {
+	for (GameObject* object : children) {
+		object->CalculateGlobalPosition();
+		object->GenerateTransformationMatrix();
+	}
+}
+void GameObject::GenerateTransformationMatrix() {
+	transformation_matrix = glm::mat4x4(1.0f);
+	transformation_matrix = glm::translate(transformation_matrix, this->global_position);
+}
+*/

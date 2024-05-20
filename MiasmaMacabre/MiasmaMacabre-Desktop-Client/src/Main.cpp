@@ -89,21 +89,16 @@ int main(int argc, char** argv) {
 	unsigned int* indices = new unsigned int[6] {
 			0, 1, 2, 2, 1, 3
 			};
-	GameObject* object = scene.CreateGameObject();
-	GameObject* child = object->CreateChild();
-	MeshRenderer3D* mesh_renderer = (MeshRenderer3D*)child->AddComponent(new MeshRenderer3D());
-	object->AddComponent(new Camera());
-	object->AddComponent(new PlayerController());
+	GameObject* mesh_object = scene.CreateGameObject();
+	MeshRenderer3D* mesh_renderer = (MeshRenderer3D*)mesh_object->AddComponent(new MeshRenderer3D());
+
+	GameObject* player = scene.CreateGameObject();
+	player->AddComponent(new Camera());
+	player->AddComponent(new PlayerController());
+
 
 	mesh_renderer->mesh.Create(vertices, 12, indices, 6);
-	object->SetGlobalPosition(glm::vec3(-2,-2,-2));
-	child->SetGlobalPosition(glm::vec3(-5, -5, -5));
-	glm::vec3 global_position = child->GetPosition();
-
-	std::cout << global_position.x << " " << global_position.y << " " << global_position.z << std::endl;
-
 	glClearColor(0, 0.8f, 1.0f, 1.0f);
-
 	Display::SetSwapInterval(0);
 	printf("Initialized\n");
 	while (Display::ShouldUpdateWindow()) {
@@ -124,7 +119,6 @@ int main(int argc, char** argv) {
 				client.Post(packet);
 			}
 		}
-
 		//object->Translate(glm::vec3(0, 0, -1 * Time::delta_time));
 		//glm::vec3& pos = child->GetGlobalPosition();
 		//std::cout << pos.x << " " << pos.y << " " << pos.z << std::endl;
@@ -138,16 +132,15 @@ int main(int argc, char** argv) {
 		}
 
 		Time::Update();
-		Input::Update();
-
 		scene.Update();
+		Input::Update();
 
 		Display::ClearColors();
 		scene.Draw();
 
 		Display::ClearDepth();
 		scene.LateDraw();
-		//UIRenderer::RenderTextLabel(text_label);
+		UIRenderer::RenderTextLabel(text_label);
 		Display::SwapBuffers();
 	}
 

@@ -42,6 +42,7 @@
     <ClInclude Include="include\OGLEngine\UI\UI.h" />
     <ClInclude Include="include\OGLEngine\UI\UIS\Frame.h" />
     <ClInclude Include="include\OGLEngine\UI\UIS\TextLabel.h" />
+    <ClInclude Include="include\OGLEngine\Math\Transform.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\OGLEngine\Display\Mesh\Basic3DMesh.cpp" />
@@ -66,6 +67,7 @@
     <ClCompile Include="include\OGLEngine\Object\Components\MeshRenderer3D.cpp" />
     <ClCompile Include="include\OGLEngine\Display\Mesh\Mesh.cpp" />
     <ClCompile Include="include\OGLEngine\Display\Shader\Shaders.cpp" />
+    <ClCompile Include="include\OGLEngine\Math\Transform.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -143,7 +145,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\glm\include;$(SolutionDir)Libraries\ttf2mesh\include;$(ProjectDir)include;$(SolutionDir)\Libraries\GLEW2.1.0\include;$(SolutionDir)Libraries\GLFW3.4\include\$(Platform)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\stb\include;$(SolutionDir)Libraries\glm\include;$(ProjectDir)include;$(SolutionDir)\Libraries\GLEW2.1.0\include;$(SolutionDir)Libraries\GLFW3.4\include\$(Platform)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -166,7 +168,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\glm\include;$(SolutionDir)Libraries\ttf2mesh\include;$(ProjectDir)include;$(SolutionDir)\Libraries\GLEW2.1.0\include;$(SolutionDir)Libraries\GLFW3.4\include\$(Platform)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\stb\include;$(SolutionDir)Libraries\glm\include;$(ProjectDir)include;$(SolutionDir)\Libraries\GLEW2.1.0\include;$(SolutionDir)Libraries\GLFW3.4\include\$(Platform)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -189,7 +191,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\glm\include;$(SolutionDir)Libraries\ttf2mesh\include;$(ProjectDir)include;$(SolutionDir)\Libraries\GLEW2.1.0\include;$(SolutionDir)Libraries\GLFW3.4\include\$(Platform)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\stb\include;$(SolutionDir)Libraries\glm\include;$(ProjectDir)include;$(SolutionDir)\Libraries\GLEW2.1.0\include;$(SolutionDir)Libraries\GLFW3.4\include\$(Platform)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -212,7 +214,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\glm\include;$(SolutionDir)Libraries\ttf2mesh\include;$(ProjectDir)include;$(SolutionDir)\Libraries\GLEW2.1.0\include;$(SolutionDir)Libraries\GLFW3.4\include\$(Platform)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\stb\include;$(SolutionDir)Libraries\glm\include;$(ProjectDir)include;$(SolutionDir)\Libraries\GLEW2.1.0\include;$(SolutionDir)Libraries\GLFW3.4\include\$(Platform)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>

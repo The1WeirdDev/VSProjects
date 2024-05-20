@@ -14,6 +14,9 @@ namespace T1WD {
 	extern "C" OGLENGINE_API class Input {
 	public:
 		static OGLENGINE_API void Init();
+
+		//Call this update after you update your game
+		//Doing it this way will let you check for IsKeyPressed
 		static OGLENGINE_API void Update();
 
 		static OGLENGINE_API bool IsKeyDown(int key);
