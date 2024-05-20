@@ -19,12 +19,11 @@ namespace T1WD {
 		glm::vec3& GetPosition() { return position; }
 		glm::vec3& GetGlobalPosition() { return global_position; }
 		glm::mat4& GetTransformationMatrix() { return transformation_matrix; }
-		GameObject* gameobject;
+		GameObject* gameobject = nullptr;
 	private:
 		glm::vec3 CalculateGlobalPosition();
 
 		void UpdateChildrenTransformations();
-		void GenerateTransformationMatrix();
 
 		glm::vec3 position;
 		glm::vec3 rotation;

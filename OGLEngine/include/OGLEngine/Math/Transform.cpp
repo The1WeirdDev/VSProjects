@@ -2,6 +2,8 @@
 
 #include "OGLEngine/Object/GameObject.h"
 
+#include <glm/gtc/matrix_transform.hpp>
+
 using namespace T1WD;
 Transform::Transform() {
 
@@ -17,7 +19,11 @@ void Transform::SetPosition(glm::vec3 position) {
 	UpdateChildrenTransformations();
 }
 void Transform::SetGlobalPosition(glm::vec3 position) {
-	this->position = position - GetParentsGlobalPosition();
+	glm::vec3 parents_global_pos(0.0);
+	if (gameobject->parent)
+		parents_global_pos = gameobject->parent->GetGlobalPosition();
+
+	this->position = position - parents_global_pos;
 	CalculateGlobalPosition();
 	GenerateTransformationMatrix();
 	UpdateChildrenTransformations();
@@ -32,20 +38,16 @@ void Transform::Translate(glm::vec3 position) {
 
 glm::vec3 Transform::CalculateGlobalPosition() {
 	this->global_position = position;
-	if (this->parent != nullptr)
-		global_position += this->parent->global_position;
+	if (gameobject->parent != nullptr)
+		global_position += gameobject->parent->GetGlobalPosition();
 	return global_position;
 }
 
-glm::vec3 Transform::GetParentsGlobalPosition() {
-	if (gameobject->parent)
-		return gameobject->parent->global_position;
-	return glm::vec3(0.0);
-}
 void Transform::UpdateChildrenTransformations() {
-	for (GameObject* object : children) {
-		object->CalculateGlobalPosition();
-		object->GenerateTransformationMatrix();
+	for (GameObject* object : gameobject->children) {
+		Transform transform = object->transform;
+		transform.CalculateGlobalPosition();
+		transform.GenerateTransformationMatrix();
 	}
 }
 void Transform::GenerateTransformationMatrix() {
