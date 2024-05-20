@@ -124,7 +124,7 @@ int main(int argc, char** argv) {
 		//std::cout << pos.x << " " << pos.y << " " << pos.z << std::endl;
 		if (Input::IsKeyPressed(GLFW_KEY_G)) {
 			if (client.is_connected || client.is_attempting_connect)client.Disconnect();
-			//client.Connect(ip, 8888);
+			//client.Connect(ip, 8888);w
 		}
 
 		if (Input::IsKeyPressed(GLFW_KEY_H)) {
