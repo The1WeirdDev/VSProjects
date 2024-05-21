@@ -1,14 +1,10 @@
 #pragma once
 
-#include "OGLEngine/OGLEngine.h"
-#include "OGLEngine/UI/UIS/Frame.h"
-#include "OGLEngine/UI/UIS/TextLabel.h"
-#include "OGLEngine/Display/Shader/Shader.h"
-#include "OGLEngine/Display/Mesh/UITexturedMesh.h"
 /*
 MUST CALL INIT TO RENDER
 */
 namespace T1WD {
+	/*
 	extern "C" OGLENGINE_API class UIRenderer {
 	public:
 		static OGLENGINE_API void Init();
@@ -18,6 +14,8 @@ namespace T1WD {
 	private:
 		static Shader frame_shader;
 		static Shader text_label_shader;
+		static Shader text_shader;
 		static UITexturedMesh texture_mesh;
 	};
+	*/
 }

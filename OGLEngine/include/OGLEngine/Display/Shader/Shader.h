@@ -18,6 +18,10 @@ namespace T1WD {
 		OGLENGINE_API void BindAttribute(int position, const char* name);
 		OGLENGINE_API int GetUniformLocation(const char* name);
 
+		//Adds it to the vector of uniforms and returns its index in the array
+		OGLENGINE_API int AddUniform(const char* name);
+		OGLENGINE_API int Get(int index);
+
 		OGLENGINE_API void CreateShader(const char* vertex_shader_source, const char* fragment_shader_source);
 		static OGLENGINE_API int CreateShader(const char* shader_data, int shader_type);
 

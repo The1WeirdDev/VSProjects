@@ -39,6 +39,14 @@ int Shader::GetUniformLocation(const char* name) {
 	return glGetUniformLocation(program_id, name);
 }
 
+int Shader::AddUniform(const char* name) {
+	uniforms.push_back(GetUniformLocation(name));
+	return uniforms.size() - 1;
+}
+int Shader::Get(int index) {
+	return uniforms[index];
+}
+
 void Shader::CreateShader(const char* vertex_shader_source, const char* fragment_shader_source) {
 	vertex_shader_id = CreateShader(vertex_shader_source, GL_VERTEX_SHADER);
 	fragment_shader_id = CreateShader(fragment_shader_source, GL_FRAGMENT_SHADER);

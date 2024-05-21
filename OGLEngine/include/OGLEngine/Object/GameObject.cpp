@@ -101,6 +101,17 @@ void GameObject::Translate(glm::vec3 position) {
 	transform.Translate(position);
 }
 
+
+void GameObject::SetScale(glm::vec3 scale) {
+	transform.SetScale(scale);
+}
+void GameObject::SetGlobalScale(glm::vec3 scale) {
+	transform.SetGlobalScale(scale);
+}
+void GameObject::Scale(glm::vec3 scale) {
+	transform.Scale(scale);
+}
+
 /*
 
 void GameObject::SetPosition(glm::vec3 position) {

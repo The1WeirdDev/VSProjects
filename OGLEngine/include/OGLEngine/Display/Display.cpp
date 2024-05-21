@@ -63,6 +63,9 @@ void Display::CenterWindow() {
 void Display::SetTitle(const char* title) {
 	glfwSetWindowTitle(window, title);
 }
+void Display::SetBackgroundColor(float r, float g, float b, float a) {
+	glClearColor(r, g, b, a);
+}
 
 void Display::SetSwapInterval(int interval) {
 	glfwSwapInterval(interval);

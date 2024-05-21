@@ -123,6 +123,7 @@ namespace T1WD {
 	}
 
 	void TCPClient::Stop() {
+		Disconnect();
 		if (is_running == false)return;
 		is_running = false;
 		if (is_connected || is_attempting_connect)

@@ -1,14 +1,12 @@
 #include "Camera.h"
 
 #include <iostream>
+#include <glm/gtc/matrix_transform.hpp>
 
 #include "../GameObject.h"
 #include "../../Scene/Scene.h"
 
 #include "OGLEngine/Display/Display.h"
-
-#include <glm/gtc/matrix_transform.hpp>
-
 #include "OGLEngine/Display/Shader/Shaders.h"
 
 using namespace T1WD;

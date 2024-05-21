@@ -31,9 +31,16 @@ namespace T1WD {
 		void SetGlobalPosition(glm::vec3 position);
 		void Translate(glm::vec3 position);
 
+		void SetScale(glm::vec3 position);
+		void SetGlobalScale(glm::vec3 position);
+		void Scale(glm::vec3 scale);
+		void OnScaleUpdate();
+
 		glm::vec3& GetPosition() { return transform.GetPosition(); }
 		glm::vec3& GetGlobalPosition() { return transform.GetGlobalPosition(); }
-		glm::vec3 GetParentsGlobalPosition();
+
+		glm::vec3& GetScale() { return transform.GetScale(); }
+		glm::vec3& GetGlobalScale() { return transform.GetGlobalScale(); }
 
 		glm::mat4& GetTransformationMatrix() { return transform.GetTransformationMatrix(); }
 

@@ -1,7 +1,7 @@
 #pragma once
 #include "../Component/Component.h"
 
-#include "OGLEngine/Display/Mesh/Basic3DMesh.h"
+#include "OGLEngine/Display/Mesh/BasicMesh.h"
 
 namespace T1WD {
 	class MeshRenderer3D : public Component {
@@ -13,6 +13,6 @@ namespace T1WD {
 
 		void Draw() override;
 
-		Basic3DMesh mesh;
+		BasicMesh mesh;
 	};
 }

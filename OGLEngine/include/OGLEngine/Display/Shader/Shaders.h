@@ -10,5 +10,6 @@ namespace T1WD {
 		static void CleanUp();
 
 		static Shader basic_mesh_3d_shader;
+		static Shader ui_frame_shader;
 	};
 }

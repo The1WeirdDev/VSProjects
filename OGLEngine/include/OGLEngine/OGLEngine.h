@@ -4,7 +4,6 @@
 /*
 INTENDED PLATFORMS
 WINDOWS
-ANDROID
 */
 
 //Its more of a framework

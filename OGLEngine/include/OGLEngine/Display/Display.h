@@ -18,6 +18,7 @@ namespace T1WD {
 
 		static OGLENGINE_API void SetTitle(const char* title);
 		static OGLENGINE_API void SetSwapInterval(int interval);
+		static OGLENGINE_API void SetBackgroundColor(float r, float g, float b, float a);
 
 		static OGLENGINE_API void ClearColors();	//Clears color buffer
 		static OGLENGINE_API void ClearDepth();//Clears depth buffer. Things drawn after this will overwrite existing pixels on screen

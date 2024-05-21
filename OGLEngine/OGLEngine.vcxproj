@@ -19,7 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\OGLEngine\Display\Mesh\Basic3DMesh.h" />
+    <ClInclude Include="include\OGLEngine\Object\Components\UI\Frame.h" />
+    <ClInclude Include="include\OGLEngine\Display\Mesh\BasicMesh.h" />
     <ClInclude Include="include\OGLEngine\Object\Components\Camera.h" />
     <ClInclude Include="include\OGLEngine\Object\Component\Component.h" />
     <ClInclude Include="include\OGLEngine\Object\GameObject.h" />
@@ -39,13 +40,12 @@
     <ClInclude Include="include\OGLEngine\Display\Shader\Shader.h" />
     <ClInclude Include="include\OGLEngine\OGLEngine.h" />
     <ClInclude Include="include\OGLEngine\Time\Time.h" />
-    <ClInclude Include="include\OGLEngine\UI\UI.h" />
-    <ClInclude Include="include\OGLEngine\UI\UIS\Frame.h" />
-    <ClInclude Include="include\OGLEngine\UI\UIS\TextLabel.h" />
     <ClInclude Include="include\OGLEngine\Math\Transform.h" />
+    <ClInclude Include="include\OGLEngine\Object\Components\UI\UI.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="include\OGLEngine\Display\Mesh\Basic3DMesh.cpp" />
+    <ClCompile Include="include\OGLEngine\Object\Components\UI\Frame.cpp" />
+    <ClCompile Include="include\OGLEngine\Display\Mesh\BasicMesh.cpp" />
     <ClCompile Include="include\OGLEngine\Object\Components\Camera.cpp" />
     <ClCompile Include="include\OGLEngine\Object\Component\Component.cpp" />
     <ClCompile Include="include\OGLEngine\Object\GameObject.cpp" />
@@ -60,14 +60,12 @@
     <ClCompile Include="include\OGLEngine\Display\Shader\Shader.cpp" />
     <ClCompile Include="include\OGLEngine\OGLEngine.cpp" />
     <ClCompile Include="include\OGLEngine\Time\Time.cpp" />
-    <ClCompile Include="include\OGLEngine\UI\UI.cpp" />
-    <ClCompile Include="include\OGLEngine\UI\UIS\Frame.cpp" />
-    <ClCompile Include="include\OGLEngine\UI\UIS\TextLabel.cpp" />
     <ClCompile Include="include\OGLEngine\Scene\Scene.cpp" />
     <ClCompile Include="include\OGLEngine\Object\Components\MeshRenderer3D.cpp" />
     <ClCompile Include="include\OGLEngine\Display\Mesh\Mesh.cpp" />
     <ClCompile Include="include\OGLEngine\Display\Shader\Shaders.cpp" />
     <ClCompile Include="include\OGLEngine\Math\Transform.cpp" />
+    <ClCompile Include="include\OGLEngine\Object\Components\UI\UI.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -145,7 +143,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\stb\include;$(SolutionDir)Libraries\glm\include;$(ProjectDir)include;$(SolutionDir)\Libraries\GLEW2.1.0\include;$(SolutionDir)Libraries\GLFW3.4\include\$(Platform)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\freetype-2.10.0\include;$(SolutionDir)Libraries\stb\include;$(SolutionDir)Libraries\glm\include;$(ProjectDir)include;$(SolutionDir)\Libraries\GLEW2.1.0\include;$(SolutionDir)Libraries\GLFW3.4\include\$(Platform)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -154,8 +152,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)\Libraries\GLFW3.4\lib-vc2022\$(Platform);$(SolutionDir)\Libraries\GLEW2.1.0\lib\$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32s.lib;</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Libraries\freetype-2.10.0\libs\Static\$(Configuration)\$(Platform);$(SolutionDir)Libraries\GLFW3.4\lib-vc2022\$(Platform);$(SolutionDir)Libraries\GLEW2.1.0\lib\$(Platform)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32s.lib;freetype.lib;</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -168,7 +166,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\stb\include;$(SolutionDir)Libraries\glm\include;$(ProjectDir)include;$(SolutionDir)\Libraries\GLEW2.1.0\include;$(SolutionDir)Libraries\GLFW3.4\include\$(Platform)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\freetype-2.10.0\include;$(SolutionDir)Libraries\stb\include;$(SolutionDir)Libraries\glm\include;$(ProjectDir)include;$(SolutionDir)\Libraries\GLEW2.1.0\include;$(SolutionDir)Libraries\GLFW3.4\include\$(Platform)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -179,8 +177,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)\Libraries\GLFW3.4\lib-vc2022\$(Platform);$(SolutionDir)\Libraries\GLEW2.1.0\lib\$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32s.lib;</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Libraries\freetype-2.10.0\libs\Static\$(Configuration)\$(Platform);$(SolutionDir)Libraries\GLFW3.4\lib-vc2022\$(Platform);$(SolutionDir)Libraries\GLEW2.1.0\lib\$(Platform)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32s.lib;freetype.lib;</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -191,7 +189,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\stb\include;$(SolutionDir)Libraries\glm\include;$(ProjectDir)include;$(SolutionDir)\Libraries\GLEW2.1.0\include;$(SolutionDir)Libraries\GLFW3.4\include\$(Platform)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\freetype-2.10.0\include;$(SolutionDir)Libraries\stb\include;$(SolutionDir)Libraries\glm\include;$(ProjectDir)include;$(SolutionDir)\Libraries\GLEW2.1.0\include;$(SolutionDir)Libraries\GLFW3.4\include\$(Platform)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -200,8 +198,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)\Libraries\GLFW3.4\lib-vc2022\$(Platform);$(SolutionDir)\Libraries\GLEW2.1.0\lib\$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32s.lib;</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Libraries\freetype-2.10.0\libs\Static\$(Configuration)\$(Platform);$(SolutionDir)Libraries\GLFW3.4\lib-vc2022\$(Platform);$(SolutionDir)Libraries\GLEW2.1.0\lib\$(Platform)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32s.lib;freetype.lib;</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -214,7 +212,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\stb\include;$(SolutionDir)Libraries\glm\include;$(ProjectDir)include;$(SolutionDir)\Libraries\GLEW2.1.0\include;$(SolutionDir)Libraries\GLFW3.4\include\$(Platform)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\freetype-2.10.0\include;$(SolutionDir)Libraries\stb\include;$(SolutionDir)Libraries\glm\include;$(ProjectDir)include;$(SolutionDir)\Libraries\GLEW2.1.0\include;$(SolutionDir)Libraries\GLFW3.4\include\$(Platform)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -225,8 +223,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)\Libraries\GLFW3.4\lib-vc2022\$(Platform);$(SolutionDir)\Libraries\GLEW2.1.0\lib\$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32s.lib;</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Libraries\freetype-2.10.0\libs\Static\$(Configuration)\$(Platform);$(SolutionDir)Libraries\GLFW3.4\lib-vc2022\$(Platform);$(SolutionDir)Libraries\GLEW2.1.0\lib\$(Platform)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32s.lib;freetype.lib;</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
