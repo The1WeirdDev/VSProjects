@@ -21,7 +21,7 @@ void PlayerController::CleanUp() {
 }
 
 void PlayerController::Update() {
-	float speed = Time::delta_time;
+	float speed = Time::delta_time * 10.0f;
 	glm::vec3 direction(0);
 
 	if (Input::IsKeyDown(GLFW_KEY_A)) {
@@ -36,7 +36,15 @@ void PlayerController::Update() {
 	if (Input::IsKeyDown(GLFW_KEY_S)) {
 		direction.z += 1;
 	}
+	if (Input::IsKeyDown(GLFW_KEY_SPACE)) {
+		direction.y += 1;
+	}
+	if (Input::IsKeyDown(GLFW_KEY_LEFT_SHIFT)) {
+		direction.y -= 1;
+	}
+
 	gameobject->transform.Translate(direction * speed);
+	glm::vec3 pos = gameobject->GetGlobalPosition();
 }
 void PlayerController::Draw() {
 }

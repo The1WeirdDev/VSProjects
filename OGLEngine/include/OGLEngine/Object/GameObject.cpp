@@ -59,9 +59,7 @@ void GameObject::CleanUp() {
 		children[i]->CleanUp();
 		delete children[i];
 	}
-
-	children.resize(0);
-	components.resize(0);
+	//No need to resize vector because gameobject is getting resized
 }
 
 void GameObject::Update() {

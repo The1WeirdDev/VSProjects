@@ -21,7 +21,7 @@ void Camera::Awake() {
 	if (gameobject->scene->camera == nullptr) {
 		gameobject->scene->camera = this;
 
-		projection_matrix = glm::perspective(glm::radians(fov), Display::aspect_ratio, near, far);
+		projection_matrix = glm::perspective(glm::radians(fov), Display::aspect_ratio, frustum_near, frustum_far);
 		return;
 	}
 
@@ -32,11 +32,11 @@ void Camera::Update() {
 	CreateViewMatrix();
 	Shaders::basic_mesh_3d_shader.Start();
 	Shaders::basic_mesh_3d_shader.LoadMat4x4(Shaders::basic_mesh_3d_shader.uniforms[0], projection_matrix);
-	Shaders::basic_mesh_3d_shader.LoadMat4x4(Shaders::basic_mesh_3d_shader.uniforms[2], view_matrix);
+	Shaders::basic_mesh_3d_shader.LoadMat4x4(Shaders::basic_mesh_3d_shader.uniforms[1], view_matrix);
 
 }
 void Camera::CreateProjectionMatrix() {
-	projection_matrix = glm::perspective(glm::radians(fov), Display::aspect_ratio, near, far);
+	projection_matrix = glm::perspective(glm::radians(fov), Display::aspect_ratio, frustum_near, frustum_far);
 }
 
 void Camera::CreateViewMatrix() {

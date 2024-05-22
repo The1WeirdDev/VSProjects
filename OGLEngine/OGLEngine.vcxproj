@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\OGLEngine\File\FileReader.h" />
     <ClInclude Include="include\OGLEngine\Object\Components\UI\Frame.h" />
     <ClInclude Include="include\OGLEngine\Display\Mesh\BasicMesh.h" />
     <ClInclude Include="include\OGLEngine\Object\Components\Camera.h" />
@@ -28,9 +29,10 @@
     <ClInclude Include="include\OGLEngine\Display\Display.h" />
     <ClInclude Include="include\OGLEngine\Display\Texture.h" />
     <ClInclude Include="include\OGLEngine\Scene\Scene.h" />
-    <ClInclude Include="include\OGLEngine\Object\Components\MeshRenderer3D.h" />
+    <ClInclude Include="include\OGLEngine\Object\Components\BasicMeshRenderer.h" />
     <ClInclude Include="include\OGLEngine\Display\Mesh\Mesh.h" />
     <ClInclude Include="include\OGLEngine\Display\Shader\Shaders.h" />
+    <ClInclude Include="include\OGLEngine\Object\Components\BasicMeshImpersonator.h" />
     <ClInclude Include="Src\OGLEngine\Display\UI.h" />
     <ClInclude Include="include\OGLEngine\Input\Input.h" />
     <ClInclude Include="include\OGLEngine\Display\Rendering\UIRenderer.h" />
@@ -44,6 +46,7 @@
     <ClInclude Include="include\OGLEngine\Object\Components\UI\UI.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="include\OGLEngine\File\FileReader.cpp" />
     <ClCompile Include="include\OGLEngine\Object\Components\UI\Frame.cpp" />
     <ClCompile Include="include\OGLEngine\Display\Mesh\BasicMesh.cpp" />
     <ClCompile Include="include\OGLEngine\Object\Components\Camera.cpp" />
@@ -61,11 +64,12 @@
     <ClCompile Include="include\OGLEngine\OGLEngine.cpp" />
     <ClCompile Include="include\OGLEngine\Time\Time.cpp" />
     <ClCompile Include="include\OGLEngine\Scene\Scene.cpp" />
-    <ClCompile Include="include\OGLEngine\Object\Components\MeshRenderer3D.cpp" />
+    <ClCompile Include="include\OGLEngine\Object\Components\BasicMeshRenderer.cpp" />
     <ClCompile Include="include\OGLEngine\Display\Mesh\Mesh.cpp" />
     <ClCompile Include="include\OGLEngine\Display\Shader\Shaders.cpp" />
     <ClCompile Include="include\OGLEngine\Math\Transform.cpp" />
     <ClCompile Include="include\OGLEngine\Object\Components\UI\UI.cpp" />
+    <ClCompile Include="include\OGLEngine\Object\Components\BasicMeshImpersonator.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -153,7 +157,7 @@
     </Link>
     <Lib>
       <AdditionalLibraryDirectories>$(SolutionDir)Libraries\freetype-2.10.0\libs\Static\$(Configuration)\$(Platform);$(SolutionDir)Libraries\GLFW3.4\lib-vc2022\$(Platform);$(SolutionDir)Libraries\GLEW2.1.0\lib\$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32s.lib;freetype.lib;</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32s.lib;freetype.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -178,7 +182,7 @@
     </Link>
     <Lib>
       <AdditionalLibraryDirectories>$(SolutionDir)Libraries\freetype-2.10.0\libs\Static\$(Configuration)\$(Platform);$(SolutionDir)Libraries\GLFW3.4\lib-vc2022\$(Platform);$(SolutionDir)Libraries\GLEW2.1.0\lib\$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32s.lib;freetype.lib;</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32s.lib;freetype.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -199,7 +203,7 @@
     </Link>
     <Lib>
       <AdditionalLibraryDirectories>$(SolutionDir)Libraries\freetype-2.10.0\libs\Static\$(Configuration)\$(Platform);$(SolutionDir)Libraries\GLFW3.4\lib-vc2022\$(Platform);$(SolutionDir)Libraries\GLEW2.1.0\lib\$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32s.lib;freetype.lib;</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32s.lib;freetype.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -224,7 +228,7 @@
     </Link>
     <Lib>
       <AdditionalLibraryDirectories>$(SolutionDir)Libraries\freetype-2.10.0\libs\Static\$(Configuration)\$(Platform);$(SolutionDir)Libraries\GLFW3.4\lib-vc2022\$(Platform);$(SolutionDir)Libraries\GLEW2.1.0\lib\$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32s.lib;freetype.lib;</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32s.lib;freetype.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -20,17 +20,22 @@ namespace T1WD {
 		static OGLENGINE_API void SetSwapInterval(int interval);
 		static OGLENGINE_API void SetBackgroundColor(float r, float g, float b, float a);
 
+		static OGLENGINE_API void ToggleFullscreen();
+
 		static OGLENGINE_API void ClearColors();	//Clears color buffer
 		static OGLENGINE_API void ClearDepth();//Clears depth buffer. Things drawn after this will overwrite existing pixels on screen
 
-		static OGLENGINE_API bool ShouldUpdateWindow();
+		static OGLENGINE_API bool ShouldUpdateWindow() { return should_update; }
 
 		static OGLENGINE_API void PollEvents();//Updates events like key events, mouse events, window events, etc
 		static OGLENGINE_API void SwapBuffers();//Actually updates the screen buffer and swaps it out with what we have drawn
 	public:
 		static GLFWwindow* window;
 		static int width, height;
+		static int not_fullscreen_width, not_fullscreen_height;
 		static float aspect_ratio, inverse_aspect_ratio;
+		static bool should_update;
+		static bool is_fullscreen;
 
 	public:
 		//Callbacks

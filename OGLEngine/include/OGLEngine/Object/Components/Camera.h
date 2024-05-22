@@ -18,8 +18,8 @@ namespace T1WD {
 		void CreateViewMatrix();
 
 		float fov = 75.0f;
-		float near = 0.01f;
-		float far = 1000.0f;
+		float frustum_near = 0.01f;
+		float frustum_far = 1000.0f;
 		glm::mat4 projection_matrix;
 		glm::mat4 view_matrix;
 	};

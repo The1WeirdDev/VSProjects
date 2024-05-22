@@ -34,7 +34,6 @@ namespace T1WD {
 		void SetScale(glm::vec3 position);
 		void SetGlobalScale(glm::vec3 position);
 		void Scale(glm::vec3 scale);
-		void OnScaleUpdate();
 
 		glm::vec3& GetPosition() { return transform.GetPosition(); }
 		glm::vec3& GetGlobalPosition() { return transform.GetGlobalPosition(); }

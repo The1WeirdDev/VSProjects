@@ -38,6 +38,12 @@ void Transform::Translate(glm::vec3 position) {
 }
 
 
+void Transform::OnPositionUpdate() {
+
+	CalculateGlobalPosition();
+	GenerateTransformationMatrix();
+	UpdateChildrenTransformations();
+}
 
 void Transform::SetScale(glm::vec3 scale) {
 	this->scale = scale;
@@ -56,10 +62,7 @@ void Transform::SetGlobalScale(glm::vec3 scale) {
 	UpdateChildrenTransformations();
 }
 void Transform::Scale(glm::vec3 scale) {
-	std::cout << this->scale.x << " " << this->scale.y << " " << this->scale.z << std::endl;
 	this->scale *= scale;
-	std::cout << scale.x << " " << scale.y << " " << scale.z << std::endl;
-	std::cout << this->scale.x << " " << this->scale.y << " " << this->scale.z << std::endl;
 	CalculateGlobalScale();
 	GenerateTransformationMatrix();
 	UpdateChildrenTransformations();
@@ -71,18 +74,16 @@ void Transform::OnScaleUpdate() {
 	UpdateChildrenTransformations();
 }
 
-glm::vec3 Transform::CalculateGlobalPosition() {
+void Transform::CalculateGlobalPosition() {
 	this->global_position = position;
 	if (gameobject->parent != nullptr)
 		global_position += gameobject->parent->GetGlobalPosition();
-	return global_position;
 }
 
-glm::vec3 Transform::CalculateGlobalScale() {
+void Transform::CalculateGlobalScale() {
 	this->global_scale = scale;
 	if (gameobject->parent != nullptr)
 		global_scale += gameobject->parent->GetGlobalScale();
-	return global_scale;
 }
 
 void Transform::UpdateChildrenTransformations() {

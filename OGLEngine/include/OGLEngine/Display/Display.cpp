@@ -9,8 +9,12 @@ using namespace T1WD;
 GLFWwindow* Display::window = nullptr;
 int Display::width = 0;
 int Display::height = 0;
+int Display::not_fullscreen_width = 0;
+int Display::not_fullscreen_height = 0;
 float Display::aspect_ratio = 1.0f;
 float Display::inverse_aspect_ratio = 1.0f;
+bool Display::should_update = false;
+bool Display::is_fullscreen = false;
 
 std::function<void(int, int)> Display::window_resize_callback;
 
@@ -29,6 +33,7 @@ void Display::Create(int width, int height, const char* title){
 	inverse_aspect_ratio = (float)height / (float)width;
 
 	glViewport(0, 0, width, height);
+	should_update = true;
 }
 
 void Display::AddWindowCallbacks() {
@@ -50,6 +55,10 @@ void Display::AddWindowCallbacks() {
 				Input::on_key_callback(key, action == GLFW_PRESS);
 		}
 	});
+
+	glfwSetWindowCloseCallback(window, [](GLFWwindow*) {
+		Display::should_update = false;
+	});
 }
 void Display::Destroy() {
 	glfwDestroyWindow(window);
@@ -67,6 +76,22 @@ void Display::SetBackgroundColor(float r, float g, float b, float a) {
 	glClearColor(r, g, b, a);
 }
 
+void Display::ToggleFullscreen() {
+	is_fullscreen = !is_fullscreen;
+	if (is_fullscreen) {
+		GLFWmonitor* monitor = glfwGetPrimaryMonitor();
+		const GLFWvidmode* mode = glfwGetVideoMode(monitor);
+		not_fullscreen_width = width;
+		not_fullscreen_height = height;
+
+		glfwSetWindowMonitor(window, monitor, 0, 0, mode->width, mode->height, mode->refreshRate);
+	}
+	else {
+		GLFWmonitor* monitor = glfwGetPrimaryMonitor();
+		const GLFWvidmode* mode = glfwGetVideoMode(monitor);
+		glfwSetWindowMonitor(window, nullptr, (mode->width - not_fullscreen_width) / 2, (mode->height - not_fullscreen_height) / 2, not_fullscreen_width, not_fullscreen_height, GLFW_DONT_CARE);
+	}
+}
 void Display::SetSwapInterval(int interval) {
 	glfwSwapInterval(interval);
 }
@@ -82,7 +107,6 @@ void Display::ClearColors() {
 void Display::ClearDepth() {
 	glClear(GL_DEPTH_BUFFER_BIT);
 }
-bool Display::ShouldUpdateWindow() { return glfwWindowShouldClose(window) == false; }
 
 void Display::OnWindowResize(GLFWwindow* window, int width, int height){
 	glViewport(0, 0, width, height);

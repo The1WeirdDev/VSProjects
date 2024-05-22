@@ -3,7 +3,6 @@
 #define OGLENGINE_STATIC
 #define NETWORKING_STATIC_BUILD
 #include <OGLEngine/Display/Shader/Shader.h>
-//#include <OGLEngine/UI/UIS/Frame.h>
 #include <OGLEngine/Display/Rendering/UIRenderer.h>
 #include <OGLEngine/Display/Font/Font.h>
 #include <OGLEngine/Display/Display.h>
@@ -15,8 +14,10 @@
 #include <OGLEngine/Scene/Scene.h>
 #include <OGLEngine/Object/Component/Component.h>
 #include <OGLEngine/Object/Components/Camera.h>
-#include <OGLEngine/Object/Components/MeshRenderer3D.h>
+#include <OGLEngine/Object/Components/BasicMeshRenderer.h>
+#include <OGLEngine/Object/Components/BasicMeshImpersonator.h>
 #include <OGLEngine/Object/Components/UI/Frame.h>
+#include <OGLEngine/File/FileReader.h>
 
 #include <Networking/TCP/TCPClient.h>
 
@@ -25,8 +26,19 @@
 #include <glm/vec3.hpp>
 
 using namespace T1WD;
+#ifdef RELEASE_BUILD
+#include <windows.h>
+#define _WIN32_WINNT_WIN10                  0x0A00 // Windows 10
+int WINAPI wWinMain(
+	HINSTANCE   hInstance,
+	HINSTANCE   hPrevInstance,
+	PWSTR       lpCmdLine,
+	int         nCmdShow
+){
+#else
+int main(int argc, char** argv){
+#endif
 
-int main(int argc, char** argv) {
 	LibraryManager::InitializeGLFW();
 
 	Display::Create(1280, 720, "VoxelGame");
@@ -39,6 +51,7 @@ int main(int argc, char** argv) {
 	Shaders::Init();
 	UI::Init();
 	Time::Init();
+	FileReader::Init();
 
 	Scene scene;
 	scene.Awake();
@@ -67,17 +80,23 @@ int main(int argc, char** argv) {
 
 	//std::thread t{ [&client]() { client.Run(); } };
 
-	float* vertices = new float[12] {
+	float* vertices = new float[15] {
 		0, 0, 0,
 			0, 1, 0,
 			1, 0, 0,
-			1, 1, 0
+			1, 1, 0,
+			1,1,1
 		};
-	unsigned int* indices = new unsigned int[6] {
-			0, 1, 2, 2, 1, 3
+	unsigned int* indices = new unsigned int[9] {
+			0, 1, 2, 2, 1, 3,
+				2,3, 4
 			};
 	GameObject* mesh_object = scene.CreateGameObject();
-	MeshRenderer3D* mesh_renderer = (MeshRenderer3D*)mesh_object->AddComponent(new MeshRenderer3D());
+	BasicMeshRenderer* mesh_renderer = (BasicMeshRenderer*)mesh_object->AddComponent(new BasicMeshRenderer());
+	GameObject* impersonator = mesh_object->CreateChild();
+	BasicMeshImpersonator* mesh_impersonator = new BasicMeshImpersonator();
+	mesh_impersonator->SetMesh(&mesh_renderer->mesh);
+	impersonator->AddComponent(mesh_impersonator);
 	GameObject* canvas = scene.CreateGameObject();
 	canvas->AddComponent(new Frame());
 
@@ -85,10 +104,14 @@ int main(int argc, char** argv) {
 	player->AddComponent(new Camera());
 	player->AddComponent(new PlayerController());
 
-	mesh_renderer->mesh.Create(3, vertices, 12, indices, 6);
+	//mesh_renderer->mesh.Create(3, vertices, 15, indices, 9);
 	mesh_renderer->gameobject->Translate(glm::vec3(0, 0, -5));
 
-	Display::SetSwapInterval(0);
+	FileReader::GenerateMeshFromFBXFile("res/test.fbx", mesh_renderer->mesh);
+	mesh_object->Scale(glm::vec3(0.05f, 0.05f, 0.05f));
+	impersonator->Scale(glm::vec3(0.05f, 0.05f, 0.05f));
+
+	Display::SetSwapInterval(1);
 	while (Display::ShouldUpdateWindow()) {
 		Display::PollEvents();
 
@@ -115,14 +138,16 @@ int main(int argc, char** argv) {
 			client.Connect(ip, 8888);
 		}
 
+		if (Input::IsKeyPressed(GLFW_KEY_I)) {
+			Display::ToggleFullscreen();
+		}
+
 		Time::Update();
 
-		
-
 		float amount = 1.01f * Time::delta_time;
-		glm::vec3 scale = mesh_object->GetScale();
-		scale.x += amount;
-		mesh_object->transform.OnScaleUpdate();
+		glm::vec3& scale = mesh_object->GetScale();
+		//scale.x += amount;
+		///mesh_object->transform.OnScaleUpdate();
 
 		canvas->Translate(glm::vec3(0.2 * Time::delta_time, 0, 0));
 		scene.Update();
@@ -139,6 +164,7 @@ int main(int argc, char** argv) {
 	scene.CleanUp();
 	client.Stop();
 	UI::CleanUp();
+	FileReader::CleanUp();
 	Shaders::CleanUp();
 	Display::Destroy();
 	LibraryManager::TerminateGLFW();
