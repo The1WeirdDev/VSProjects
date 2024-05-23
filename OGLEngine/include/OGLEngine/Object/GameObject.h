@@ -38,6 +38,9 @@ namespace T1WD {
 		glm::vec3& GetPosition() { return transform.GetPosition(); }
 		glm::vec3& GetGlobalPosition() { return transform.GetGlobalPosition(); }
 
+		glm::quat& GetRotation() { return transform.GetRotation(); }
+		glm::quat& GetGlobalRotation() { return transform.GetGlobalRotation(); }
+
 		glm::vec3& GetScale() { return transform.GetScale(); }
 		glm::vec3& GetGlobalScale() { return transform.GetGlobalScale(); }
 
@@ -49,33 +52,5 @@ namespace T1WD {
 		Scene* scene = nullptr;
 		Transform transform;
 	private:
-
-		/*
-		
-		void SetPosition(glm::vec3 position);
-		void SetGlobalPosition(glm::vec3 position);
-		void Translate(glm::vec3 position);
-
-		glm::vec3& GetPosition() { return position; }
-		glm::vec3& GetGlobalPosition() { return global_position; }
-		glm::vec3 GetParentsGlobalPosition();
-
-		glm::mat4& GetTransformationMatrix() { return transformation_matrix; }
-
-		std::vector<Component*> components;
-		std::vector<GameObject*> children;
-		GameObject* parent = nullptr;
-		Scene* scene = nullptr;
-	private:
-		glm::vec3 CalculateGlobalPosition();
-
-		void UpdateChildrenTransformations();
-		void GenerateTransformationMatrix();
-	private:
-		glm::vec3 position;	//Relative Position
-		glm::vec3 global_position;
-
-		glm::mat4 transformation_matrix;
-		*/
 	};
 }

@@ -13,11 +13,19 @@ namespace T1WD {
 
 		void GenerateTransformationMatrix();
 
+		//Position
 		void SetPosition(glm::vec3 position);
 		void SetGlobalPosition(glm::vec3 position);
 		void Translate(glm::vec3 position);
 		void OnPositionUpdate();
 
+		//Rotation
+		void SetRotation(glm::quat rotation);
+		void SetGlobalRotation(glm::quat rotation);
+		void Rotate(glm::quat rotation);
+		void OnRotationUpdate();
+
+		//Scale
 		void SetScale(glm::vec3 scale);
 		void SetGlobalScale(glm::vec3 scale);
 		void Scale(glm::vec3 scale);
@@ -28,12 +36,18 @@ namespace T1WD {
 		*/
 		glm::vec3& GetPosition() { return position; }
 		glm::vec3& GetGlobalPosition() { return global_position; }
+
+		glm::quat& GetRotation() { return rotation; }
+		glm::quat& GetGlobalRotation() { return global_rotation; }
+
 		glm::vec3& GetScale() { return scale; }
 		glm::vec3& GetGlobalScale() { return global_scale; }
+
 		glm::mat4& GetTransformationMatrix() { return transformation_matrix; }
 		GameObject* gameobject = nullptr;
 	private:
 		void CalculateGlobalPosition();
+		void CalculateGlobalRotation();
 		void CalculateGlobalScale();
 
 		void UpdateChildrenTransformations();
@@ -43,6 +57,7 @@ namespace T1WD {
 		glm::vec3 scale;
 
 		glm::vec3 global_position;
+		glm::quat global_rotation;
 		glm::vec3 global_scale;
 
 		glm::mat4 transformation_matrix;

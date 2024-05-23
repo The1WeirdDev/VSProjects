@@ -8,6 +8,7 @@ WINDOWS
 
 //Its more of a framework
 
+#define GLM_FORCE_RADIANS 
 #ifndef OGLENGINE_STATIC
 	#ifdef OGLENGINE_EXPORT
 	#define OGLENGINE_API __declspec(dllexport)

@@ -6,6 +6,7 @@
 
 #include <GL/Glew.h>
 #include <GLFW/glfw3.h>
+#include <glm/gtx/euler_angles.hpp>
 
 using namespace T1WD;
 PlayerController::PlayerController() {
@@ -19,32 +20,36 @@ void PlayerController::Awake() {
 }
 void PlayerController::CleanUp() {
 }
-
+float getYawFromQuaternion(const glm::quat& q) {
+	// Extract the yaw angle from the quaternion
+	return atan2(2.0f * (q.y * q.z + q.w * q.x), q.w * q.w - q.x * q.x - q.y * q.y + q.z * q.z);
+}
 void PlayerController::Update() {
 	float speed = Time::delta_time * 10.0f;
-	glm::vec3 direction(0);
 
-	if (Input::IsKeyDown(GLFW_KEY_A)) {
-		direction.x -= 1;
-	}
-	if (Input::IsKeyDown(GLFW_KEY_D)) {
-		direction.x += 1;
-	}
+	glm::quat q = gameobject->GetRotation();
+	float new_Yaw = glm::eulerAngles(q).y;
+
+	//Not giving correct values
+	std::cout << new_Yaw << " " << suppose_yaw << std::endl;
+	float yaw = glm::yaw(q);
+	glm::vec3 dir(0.0f);
+	//std::cout << (yaw * (180.0f / 3.14159f)) << std::endl;
+
 	if (Input::IsKeyDown(GLFW_KEY_W)) {
-		direction.z -= 1;
+		dir.x -= sin(yaw);
+		dir.z += cos(yaw);
+	}else if (Input::IsKeyDown(GLFW_KEY_S)) {
+		dir.x += sin(yaw);
+		dir.z -= cos(yaw);
 	}
-	if (Input::IsKeyDown(GLFW_KEY_S)) {
-		direction.z += 1;
-	}
-	if (Input::IsKeyDown(GLFW_KEY_SPACE)) {
-		direction.y += 1;
-	}
-	if (Input::IsKeyDown(GLFW_KEY_LEFT_SHIFT)) {
-		direction.y -= 1;
-	}
+	gameobject->transform.Translate(dir * speed);
+	
 
-	gameobject->transform.Translate(direction * speed);
-	glm::vec3 pos = gameobject->GetGlobalPosition();
+	float turn_x = Time::delta_time * Input::delta_x;
+	float turn_y = Time::delta_time * Input::delta_y;
+	suppose_yaw += turn_x;
+	gameobject->transform.Rotate(glm::quat(glm::vec3(0.0f, turn_x, 0.0f)));
 }
 void PlayerController::Draw() {
 }

@@ -51,9 +51,30 @@ void Display::AddWindowCallbacks() {
 				Input::keys[key] = 0;
 			}
 
-			if(Input::on_key_callback)
+			if (Input::on_key_callback)
 				Input::on_key_callback(key, action == GLFW_PRESS);
 		}
+	});
+
+	glfwSetMouseButtonCallback(window, [](GLFWwindow* window, int button, int action, int mods) {
+		if (action == GLFW_PRESS) {
+			Input::buttons[button] = 2;
+			Input::mouse_buttons_to_update.push_back(button);
+		}else if (action == GLFW_PRESS) {
+			Input::buttons[button] = 0;
+		}
+
+		if (Input::on_mouse_button_callback)
+			Input::on_mouse_button_callback(button, action == GLFW_PRESS);
+	});
+
+	glfwSetCursorPosCallback(window, [](GLFWwindow* window, double xpos, double ypos) {
+		Input::mouse_pos_x = xpos;
+		Input::mouse_pos_y = ypos;
+		Input::delta_x = Input::mouse_pos_x - Input::last_mouse_pos_x;
+		Input::delta_y = -(Input::mouse_pos_y - Input::last_mouse_pos_y);
+		Input::last_mouse_pos_x = xpos;
+		Input::last_mouse_pos_y = ypos;
 	});
 
 	glfwSetWindowCloseCallback(window, [](GLFWwindow*) {

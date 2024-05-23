@@ -3,11 +3,15 @@
 #include "OGLEngine/Object/GameObject.h"
 
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/quaternion.hpp>
+#include "glm/glm.hpp"
 
 using namespace T1WD;
 Transform::Transform() {
 	global_scale = glm::vec3(1.0f, 1.0f, 1.0f);
 	scale = glm::vec3(1.0f, 1.0f, 1.0f);
+	rotation = glm::angleAxis(glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	global_rotation = rotation;
 }
 Transform::~Transform() {
 
@@ -41,6 +45,35 @@ void Transform::Translate(glm::vec3 position) {
 void Transform::OnPositionUpdate() {
 
 	CalculateGlobalPosition();
+	GenerateTransformationMatrix();
+	UpdateChildrenTransformations();
+}
+
+void Transform::SetRotation(glm::quat rotation) {
+	this->rotation = rotation;
+	CalculateGlobalRotation();
+	GenerateTransformationMatrix();
+	UpdateChildrenTransformations();
+}
+void Transform::SetGlobalRotation(glm::quat rotation) {
+	glm::quat parent_global_rotation(1.0f, 0.0f, 0.0f, 0.0f);
+	if (gameobject->parent)
+		parent_global_rotation = gameobject->parent->GetGlobalRotation();
+
+	this->rotation = rotation - parent_global_rotation;
+	CalculateGlobalRotation();
+	GenerateTransformationMatrix();
+	UpdateChildrenTransformations();
+}
+void Transform::Rotate(glm::quat rotation) {
+	this->rotation = rotation * this->rotation;
+	CalculateGlobalRotation();
+	GenerateTransformationMatrix();
+	UpdateChildrenTransformations();
+}
+void Transform::OnRotationUpdate() {
+
+	CalculateGlobalRotation();
 	GenerateTransformationMatrix();
 	UpdateChildrenTransformations();
 }
@@ -79,6 +112,11 @@ void Transform::CalculateGlobalPosition() {
 	if (gameobject->parent != nullptr)
 		global_position += gameobject->parent->GetGlobalPosition();
 }
+void Transform::CalculateGlobalRotation() {
+	this->global_rotation = rotation;
+	//if (gameobject->parent != nullptr)
+		//global_rotation *= gameobject->parent->GetGlobalRotation();
+}
 
 void Transform::CalculateGlobalScale() {
 	this->global_scale = scale;
@@ -90,6 +128,7 @@ void Transform::UpdateChildrenTransformations() {
 	for (GameObject* object : gameobject->children) {
 		Transform transform = object->transform;
 		transform.CalculateGlobalPosition();
+		transform.CalculateGlobalRotation();
 		transform.CalculateGlobalScale();
 		transform.GenerateTransformationMatrix();
 	}
@@ -97,5 +136,7 @@ void Transform::UpdateChildrenTransformations() {
 void Transform::GenerateTransformationMatrix() {
 	transformation_matrix = glm::mat4x4(1.0f);
 	transformation_matrix = glm::translate(transformation_matrix, global_position);
+
+	transformation_matrix *= glm::toMat4(global_rotation);
 	transformation_matrix = glm::scale(transformation_matrix, global_scale);
 }

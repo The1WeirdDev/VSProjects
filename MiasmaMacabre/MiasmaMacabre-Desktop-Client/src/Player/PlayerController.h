@@ -16,4 +16,5 @@ public:
 	void Draw() override;
 
 	T1WD::Camera* camera = nullptr;
+	float suppose_yaw = 0.0f;
 };

@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/quaternion.hpp>
 
 #include "../GameObject.h"
 #include "../../Scene/Scene.h"
@@ -41,5 +42,6 @@ void Camera::CreateProjectionMatrix() {
 
 void Camera::CreateViewMatrix() {
 	view_matrix = glm::mat4(1.0f);
+	view_matrix *= glm::toMat4(gameobject->GetGlobalRotation());
 	view_matrix = glm::translate(view_matrix, -gameobject->GetGlobalPosition());
 }

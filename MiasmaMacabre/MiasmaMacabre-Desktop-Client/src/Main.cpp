@@ -2,6 +2,9 @@
 
 #define OGLENGINE_STATIC
 #define NETWORKING_STATIC_BUILD
+
+#define GLM_FORCE_RADIANS 
+
 #include <OGLEngine/Display/Shader/Shader.h>
 #include <OGLEngine/Display/Rendering/UIRenderer.h>
 #include <OGLEngine/Display/Font/Font.h>
@@ -111,6 +114,8 @@ int main(int argc, char** argv){
 	mesh_object->Scale(glm::vec3(0.05f, 0.05f, 0.05f));
 	impersonator->Scale(glm::vec3(0.05f, 0.05f, 0.05f));
 
+	float angle = 0.0f;
+
 	Display::SetSwapInterval(1);
 	while (Display::ShouldUpdateWindow()) {
 		Display::PollEvents();
@@ -142,10 +147,12 @@ int main(int argc, char** argv){
 			Display::ToggleFullscreen();
 		}
 
+		angle += 2.0f * Time::delta_time;
+
 		Time::Update();
 
 		float amount = 1.01f * Time::delta_time;
-		glm::vec3& scale = mesh_object->GetScale();
+		//impersonator->transform.SetRotation(glm::vec3(0, angle, 0));
 		//scale.x += amount;
 		///mesh_object->transform.OnScaleUpdate();
 
