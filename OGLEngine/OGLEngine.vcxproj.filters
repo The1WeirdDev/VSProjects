@@ -20,11 +20,12 @@
     <ClCompile Include="include\OGLEngine\Display\Mesh\Mesh.cpp" />
     <ClCompile Include="include\OGLEngine\Display\Mesh\BasicMesh.cpp" />
     <ClCompile Include="include\OGLEngine\Display\Shader\Shaders.cpp" />
-    <ClCompile Include="include\OGLEngine\Math\Transform.cpp" />
+    <ClCompile Include="include\OGLEngine\Object\Transform.cpp" />
     <ClCompile Include="include\OGLEngine\Object\Components\UI\UI.cpp" />
     <ClCompile Include="include\OGLEngine\Object\Components\UI\Frame.cpp" />
     <ClCompile Include="include\OGLEngine\Object\Components\BasicMeshImpersonator.cpp" />
     <ClCompile Include="include\OGLEngine\File\FileReader.cpp" />
+    <ClCompile Include="include\OGLEngine\Logger\Logger.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\OGLEngine\Display\Font\Font.h" />
@@ -47,10 +48,11 @@
     <ClInclude Include="include\OGLEngine\Display\Mesh\Mesh.h" />
     <ClInclude Include="include\OGLEngine\Display\Mesh\BasicMesh.h" />
     <ClInclude Include="include\OGLEngine\Display\Shader\Shaders.h" />
-    <ClInclude Include="include\OGLEngine\Math\Transform.h" />
+    <ClInclude Include="include\OGLEngine\Object\Transform.h" />
     <ClInclude Include="include\OGLEngine\Object\Components\UI\UI.h" />
     <ClInclude Include="include\OGLEngine\Object\Components\UI\Frame.h" />
     <ClInclude Include="include\OGLEngine\Object\Components\BasicMeshImpersonator.h" />
     <ClInclude Include="include\OGLEngine\File\FileReader.h" />
+    <ClInclude Include="include\OGLEngine\Logger\Logger.h" />
   </ItemGroup>
 </Project>

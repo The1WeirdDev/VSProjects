@@ -1,7 +1,0 @@
-Executable : C:\Users\1weir\AppData\Local\Android\Sdk\cmake\3.22.1\bin\ninja.exe
-arguments : 
--C
-F:\VSProjects\VoxelGame-Android-Client\app\.cxx\Debug\1v2e9575\armeabi-v7a
-native-lib
-jvmArgs : 
-

@@ -21,10 +21,12 @@
 #include <OGLEngine/Object/Components/BasicMeshImpersonator.h>
 #include <OGLEngine/Object/Components/UI/Frame.h>
 #include <OGLEngine/File/FileReader.h>
+#include <OGLEngine/Logger/Logger.h>
 
 #include <Networking/TCP/TCPClient.h>
 
 #include "Player/PlayerController.h"
+
 
 #include <glm/vec3.hpp>
 
@@ -55,6 +57,7 @@ int main(int argc, char** argv){
 	UI::Init();
 	Time::Init();
 	FileReader::Init();
+	Logger::Init();
 
 	Scene scene;
 	scene.Awake();
@@ -82,7 +85,7 @@ int main(int argc, char** argv){
 	client.Connect(ip, 8888);
 
 	//std::thread t{ [&client]() { client.Run(); } };
-
+	Logger::Log("HELLO");
 	float* vertices = new float[15] {
 		0, 0, 0,
 			0, 1, 0,
@@ -96,27 +99,27 @@ int main(int argc, char** argv){
 			};
 	GameObject* mesh_object = scene.CreateGameObject();
 	BasicMeshRenderer* mesh_renderer = (BasicMeshRenderer*)mesh_object->AddComponent(new BasicMeshRenderer());
-	GameObject* impersonator = mesh_object->CreateChild();
-	BasicMeshImpersonator* mesh_impersonator = new BasicMeshImpersonator();
-	mesh_impersonator->SetMesh(&mesh_renderer->mesh);
-	impersonator->AddComponent(mesh_impersonator);
-	GameObject* canvas = scene.CreateGameObject();
-	canvas->AddComponent(new Frame());
+	//GameObject* impersonator = mesh_object->CreateChild();
+	//BasicMeshImpersonator* mesh_impersonator = new BasicMeshImpersonator();
+	//mesh_impersonator->SetMesh(&mesh_renderer->mesh);
+	//impersonator->AddComponent(mesh_impersonator);
+	//GameObject* canvas = scene.CreateGameObject();
+	//canvas->AddComponent(new Frame());
 
 	GameObject* player = scene.CreateGameObject();
 	player->AddComponent(new Camera());
 	player->AddComponent(new PlayerController());
 
 	//mesh_renderer->mesh.Create(3, vertices, 15, indices, 9);
-	mesh_renderer->gameobject->Translate(glm::vec3(0, 0, -5));
+	//mesh_renderer->gameobject->Translate(glm::vec3(0, 0, -5));
 
 	FileReader::GenerateMeshFromFBXFile("res/test.fbx", mesh_renderer->mesh);
 	mesh_object->Scale(glm::vec3(0.05f, 0.05f, 0.05f));
-	impersonator->Scale(glm::vec3(0.05f, 0.05f, 0.05f));
-
+	//impersonator->Scale(glm::vec3(0.05f, 0.05f, 0.05f));
+	glfwSetInputMode(Display::window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	float angle = 0.0f;
 
-	Display::SetSwapInterval(1);
+	Display::SetSwapInterval(0);
 	while (Display::ShouldUpdateWindow()) {
 		Display::PollEvents();
 
@@ -156,7 +159,7 @@ int main(int argc, char** argv){
 		//scale.x += amount;
 		///mesh_object->transform.OnScaleUpdate();
 
-		canvas->Translate(glm::vec3(0.2 * Time::delta_time, 0, 0));
+		//canvas->Translate(glm::vec3(0.2 * Time::delta_time, 0, 0));
 		scene.Update();
 		Input::Update();
 
@@ -164,7 +167,7 @@ int main(int argc, char** argv){
 		scene.Draw();
 
 		Display::ClearDepth();
-		scene.LateDraw();
+		//scene.LateDraw();
 		Display::SwapBuffers();
 	}
 

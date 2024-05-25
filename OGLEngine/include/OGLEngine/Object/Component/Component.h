@@ -1,5 +1,7 @@
 #pragma once
 
+#include "OGLEngine/OGLEngine.h"
+
 namespace T1WD {
 #ifndef GameObject
 	class GameObject;

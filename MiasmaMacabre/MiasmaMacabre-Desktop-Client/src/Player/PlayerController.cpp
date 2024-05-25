@@ -2,12 +2,18 @@
 
 #include <OGLEngine/Input/Input.h>
 #include <OGLEngine/Time/Time.h>
-#include <iostream>
+#include <OGLEngine/Logger/Logger.h>
 
+#include <math.h>
+#include <iostream>
 #include <GL/Glew.h>
 #include <GLFW/glfw3.h>
-#include <glm/gtx/euler_angles.hpp>
-
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include <glm/gtc/quaternion.hpp>
+#include <glm/vec3.hpp>
+#include <glm/gtx/rotate_vector.hpp>
 using namespace T1WD;
 PlayerController::PlayerController() {
 	name = "PlayerController";
@@ -20,28 +26,24 @@ void PlayerController::Awake() {
 }
 void PlayerController::CleanUp() {
 }
-float getYawFromQuaternion(const glm::quat& q) {
-	// Extract the yaw angle from the quaternion
-	return atan2(2.0f * (q.y * q.z + q.w * q.x), q.w * q.w - q.x * q.x - q.y * q.y + q.z * q.z);
-}
 void PlayerController::Update() {
 	float speed = Time::delta_time * 10.0f;
 
-	glm::quat q = gameobject->GetRotation();
-	float new_Yaw = glm::eulerAngles(q).y;
-
-	//Not giving correct values
-	std::cout << new_Yaw << " " << suppose_yaw << std::endl;
-	float yaw = glm::yaw(q);
+	glm::quat q = glm::normalize(gameobject->transform.GetGlobalRotation());
+	float g_yaw = glm::yaw(q);
+	glm::eulerAngles(q);
+	float q0 = q.w;
+	float q1 = q.x;
+	float q2 = q.y;
+	float q3 = q.z;
+	float test_yaw = std::asin(2.0f * (q0 * q2 - q3 * q1));
+	std::cout << test_yaw << " " << q.x << " " << q.y << " " << q.z << " " << q.w << std::endl;
+	
 	glm::vec3 dir(0.0f);
-	//std::cout << (yaw * (180.0f / 3.14159f)) << std::endl;
-
+	float yaw = test_yaw;
 	if (Input::IsKeyDown(GLFW_KEY_W)) {
-		dir.x -= sin(yaw);
-		dir.z += cos(yaw);
+		//glm::rotate(dir, q);
 	}else if (Input::IsKeyDown(GLFW_KEY_S)) {
-		dir.x += sin(yaw);
-		dir.z -= cos(yaw);
 	}
 	gameobject->transform.Translate(dir * speed);
 	
@@ -49,7 +51,10 @@ void PlayerController::Update() {
 	float turn_x = Time::delta_time * Input::delta_x;
 	float turn_y = Time::delta_time * Input::delta_y;
 	suppose_yaw += turn_x;
-	gameobject->transform.Rotate(glm::quat(glm::vec3(0.0f, turn_x, 0.0f)));
+
+	glm::vec3 angle(0.0f, 1.0f, 0.0f);
+	//gameobject->transform.Rotate(turn_x * 10.0f, angle);
+	gameobject->transform.Rotate(glm::angleAxis(turn_x, glm::vec3(0.0f, 1.0f, 0.0f)));
 }
 void PlayerController::Draw() {
 }
